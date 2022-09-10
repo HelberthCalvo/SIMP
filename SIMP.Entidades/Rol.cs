@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SIMP.Entidades
 {
-    public class Rol
+    public class Rol : EntidadBase
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }

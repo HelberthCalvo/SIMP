@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SIMP.Entidades
 {
-    public class Proyecto
+    public class Proyecto : EntidadBase
     {
         public int Id { get; set; }
         public int IdCliente { get; set; }

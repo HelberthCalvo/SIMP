@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SIMP.Entidades
 {
-    public class Actividad
+    public class Actividad:EntidadBase
     {
         public int Id { get; set; }
         public int IdFase { get; set; }

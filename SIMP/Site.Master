@@ -15,7 +15,7 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
@@ -67,8 +67,8 @@
                             <li><a><img src="icons/space-rocket-launch.png" />Proyectos</a></li>
                             <li><a><img src="icons/etapas.png" />Fases</a></li>
                             <li><a><img src="icons/portapapeles.png" />Actividades</a></li>
-                            <li><a><img src="icons/garrapata.png" />Estados</a></li>
-                            <li><a><img src="icons/usuario.png" />Usuarios</a></li>
+                            <li><a href="About.aspx"><img src="icons/garrapata.png" />Estados</a></li>
+                            <li><a href="Usuario.aspx"><img src="icons/usuario.png" />Usuarios</a></li>
                             <li><a><img src="icons/hombre-de-traje-y-corbata.png" />Clientes</a></li>
                         </ul>
                     </div>
