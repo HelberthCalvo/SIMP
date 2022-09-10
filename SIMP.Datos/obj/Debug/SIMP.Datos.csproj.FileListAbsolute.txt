@@ -1,0 +1,9 @@
+C:\Cursos\SIMP\SIMP\SIMP.Datos\obj\Debug\SIMP.Datos.csproj.AssemblyReference.cache
+C:\Cursos\SIMP\SIMP\SIMP.Datos\obj\Debug\SIMP.Datos.csproj.CoreCompileInputs.cache
+C:\Cursos\SIMP\SIMP\SIMP.Datos\bin\Debug\SIMP.Datos.dll
+C:\Cursos\SIMP\SIMP\SIMP.Datos\bin\Debug\SIMP.Datos.pdb
+C:\Cursos\SIMP\SIMP\SIMP.Datos\bin\Debug\SIMP.Entidades.dll
+C:\Cursos\SIMP\SIMP\SIMP.Datos\bin\Debug\SIMP.Entidades.pdb
+C:\Cursos\SIMP\SIMP\SIMP.Datos\obj\Debug\SIMP.Datos.csproj.CopyComplete
+C:\Cursos\SIMP\SIMP\SIMP.Datos\obj\Debug\SIMP.Datos.dll
+C:\Cursos\SIMP\SIMP\SIMP.Datos\obj\Debug\SIMP.Datos.pdb
