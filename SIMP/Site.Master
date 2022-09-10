@@ -14,6 +14,9 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -37,36 +40,45 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
+        
+        <nav class="navbar navbar-default navbar-style">
+            <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" href="#">SIMP</a>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                        <li><a runat="server" href="~/Usuario">Usuario</a></li>
-                    </ul>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-4">
+                    <p class="navbar-text navbar-right">Cerrar Sesión</p>
                 </div>
             </div>
-        </div>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
-        </div>
+        </nav>
 
+        <div class="row" style="margin-right: 0px">
+            <div class="col-lg-2 site-col">
+                <div class="site-menu">
+                    <div class="site-header">
+                        <img src="icons/usuario-de-perfil.png" />
+                        <div>
+                            <h1>Esteban Navarro</h1>
+                            <h2>Administrador</h2>
+                        </div>
+                    </div>
+                    <div class="site-links">
+                        <ul>
+                            <li><a><img src="icons/space-rocket-launch.png" />Proyectos</a></li>
+                            <li><a><img src="icons/etapas.png" />Fases</a></li>
+                            <li><a><img src="icons/portapapeles.png" />Actividades</a></li>
+                            <li><a><img src="icons/garrapata.png" />Estados</a></li>
+                            <li><a><img src="icons/usuario.png" />Usuarios</a></li>
+                            <li><a><img src="icons/hombre-de-traje-y-corbata.png" />Clientes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10 site-col-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
     </form>
 </body>
 </html>
