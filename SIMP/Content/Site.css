@@ -1,31 +1,90 @@
-﻿/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+
+/*Navbar*/
+
+.navbar-style {
+    background-color: #5400CB;
+    border: 0px;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    box-shadow: 0px 1px 10px #999;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
+.navbar-brand {
+    color: white !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.navbar-text {
+    color: white !important;
+}
+
+/*Site menu*/
+
+.site-header {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 17px;
     padding-left: 15px;
-    padding-right: 15px;
+    padding-bottom: 30px;
+    color: #5D5D5D;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+    .site-header img {
+        width: 40px;
+        height: auto;
+    }
+
+    .site-header h1 {
+        font-size: 15px;
+        margin-top: 12px;
+        font-weight: 500;
+    }
+
+    .site-header h2 {
+        font-size: 12px;
+        margin-top: 0px;
+        font-weight: 400;
+    }
+
+.site-links ul {
+    list-style: none;
 }
 
+.site-links li {
+    font-size: 16px;
+    padding-bottom: 25px;
+}
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .jumbotron {
-        margin-top: 20px;
+    .site-links li a {
+        color: #5D5D5D;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
     }
 
-    .body-content {
-        padding: 0;
-    }
+        .site-links li a img {
+            padding-right: 21px;
+            padding-left: 7px;
+        }
+
+        .site-links li a:hover {
+            color: #5400CB;
+            text-decoration: none;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+.site-col {
+    padding: 0px;
+    border-right: 1px solid rgba(93,93,93,0.3);
+    padding-bottom: 27vh;
+}
+
+.site-col-content {
+    padding: 50px;
 }
