@@ -9,3 +9,14 @@ C:\Cursos\SIMP\SIMP\SIMP.Logica\bin\Debug\SIMP.Entidades.pdb
 C:\Cursos\SIMP\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.CopyComplete
 C:\Cursos\SIMP\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.dll
 C:\Cursos\SIMP\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.pdb
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\bin\Debug\SIMP.Logica.dll
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\bin\Debug\SIMP.Logica.pdb
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\bin\Debug\SIMP.Datos.dll
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\bin\Debug\SIMP.Entidades.dll
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\bin\Debug\SIMP.Datos.pdb
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\bin\Debug\SIMP.Entidades.pdb
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.AssemblyReference.cache
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.CoreCompileInputs.cache
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.CopyComplete
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.dll
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.pdb

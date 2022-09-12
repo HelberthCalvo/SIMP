@@ -4,3 +4,9 @@ C:\Cursos\SIMP\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.AssemblyRefer
 C:\Cursos\SIMP\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.CoreCompileInputs.cache
 C:\Cursos\SIMP\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.dll
 C:\Cursos\SIMP\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.pdb
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\bin\Debug\SIMP.Entidades.dll
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\bin\Debug\SIMP.Entidades.pdb
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.CoreCompileInputs.cache
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.dll
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.pdb
+C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.AssemblyReference.cache
