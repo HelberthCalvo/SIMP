@@ -71,10 +71,6 @@
                                 Actividades
                             </a>
                             <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><img src="icons/garrapata.png" /></div>
-                                Estados
-                            </a>
-                            <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><img src="icons/usuario.png" /></div>
                                 Usuarios
                             </a>
