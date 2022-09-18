@@ -1,64 +1,61 @@
 USE [SIMPDB]
+GO
 
 /*
 ===================================================================================================================================================
 <<<<<<<<CREACION>>>>>>>
 ===================================================================================================================================================
-AUTOR:          <Helberth.Calvo>
-FECHA:          <2022/09/10>
-DESCRIPCION:   <SELECCIONA USUARIOS>
+AUTOR:          <ESTEBAN.NAVARRO>
+FECHA:          <2022/09/16>
+DESCRIPCION:   <SELECCIONA FASES>
 -------------------------------------------
-
 =========================================COMPLETAR CON NUEVOS PARAMETROS============================================================================
+EXEC dbo.PA_MAN_FASE		@P_USUARIO = '',            -- varchar(20)
+							@P_MODO_EJECUCION = 0		-- varchar(20)
+                            @P_OPCION = 0,              -- smallint
+							@P_IDENTIFICADOR_EXTERO = ''-- varchar(50)
 
-EXEC dbo.PA_CON_USUARIO		@P_USUARIO = '',            -- varchar(20)
-                                    @P_OPCION = 0,              -- smallint
-                                    @P_ID = 0,					-- int
-                                    @P_ESTADO = '',             -- char(1)
-                                    @P_ESQUEMA = ''             -- varchar(20)
-
+                            @P_ID = 0,					-- BIGINT
+							@P_IDPROYECTO = '',			-- BIGINT
+							@P_IDESTADO,			    -- BIGINT
+							@P_NOMBRE       			-- varchar(50)
+                            @P_DESCRIPCION      		-- varchar(50)
+                            @P_ESQUEMA = ''             -- varchar(20)
 ===================================================================================================================================================
 <<<<<<<<MODIFICACIONES>>>>>>>
-
 UTILIZAR LOS SIGUIENTES COMENTARIOS PARA DETALLAR LOS CAMBIOS EN EL CODIGO
 --INICIO,TICKET=00000,RELEASE=000,NOMBRE.APELLIDO, COMENTARIOS SOBRE LOS CAMBIOS
 --FIN,TICKET=00000,RELEASE=000,NOMBRE.APELLIDO, COMENTARIOS SOBRE LOS CAMBIOS
 ===================================================================================================================================================
 */
-GO
-ALTER PROCEDURE [dbo].[PA_CON_USUARIO]
+CREATE PROCEDURE [DBO].[PA_MAN_FASE]
 (
-     @P_USUARIO VARCHAR(50) = '',		 --USUARIO DE LA APLICACION QUE EJECUTA
-     @P_OPCION SMALLINT = 0,			 --OPCION SIRVE PARA CONFIGURAR COMPORTAMIENTOS O FLUJOS EN EL PROCESO (0 muestra todos los registros 1 muestra los registros filtadros por usuario)
-     @P_ID INT = 0,						 --PK DE LA TABLA Y CODIGO DE LOS USUARIOS
-	 @P_IDROL INT = 0,					 --FK DE LA TABLA Y CODIGO DEL ROL
-	 @P_IDESTADO INT = 0,				 --FK DE LA TABLA Y CODIGO DEL ESTADO (0 = INACTIVO 1 = ACTIVO)
-	 @P_NOMBRE VARCHAR = '',			 --NOMBRE DEL USUARIO
-	 @P_PRIMER_APELLIDO VARCHAR = '',	 --APELLIDO 1 DEL USUARIO
-	 @P_SEGUNDO_APELLIDO VARCHAR = '',	 --APELLIDO 2 DEL USUARIO
-	 @P_ESQUEMA VARCHAR(20) = ''         --Parametro que identifica la compa�ia
+    @P_USUARIO VARCHAR(50) = '',					--USUARIO DE LA APLICACION QUE EJECUTA
+    @P_MODO_EJECUCION SMALLINT = 0,					--MODO DE EJECUCION, SIRVE PARA MOSTRAR BANDERAS O DATOS EN CASO DE NECESITAR VALIDAR, EJECUCION_DEPURACION=7, EJECUCION_NORMAL=0 
+    @P_OPCION SMALLINT = 0,							--OPCION SIRVE PARA CONFIGURAR COMPORTAMIENTOS O FLUJOS EN EL PROCESO 
+    @P_IDENTIFICADOR_EXTERNO VARCHAR(50) = '',		--IDENTIFICADOR ENVIADO DESDE EL APLICATIVO, ESTE SE ALMACENA EN LAS BITACORAS DE EJECUCION O EN LAS BITACORAS DE EXCEPCIONES
+    @P_ID BIGINT = 0,								/*ID FASE */
+    @P_IDPROYECTO BIGINT = 0,						/*FK PROYECTO */
+    @P_IDESTADO BIGINT = 0,							/*FK ESTADO */
+	@P_NOMBRE VARCHAR(50) = '',			            /*NOMBRE FASE*/
+    @P_DESCRIPCION VARCHAR(50) = '',			    /*DESCRIPCION FASE*/
+    @P_ESQUEMA VARCHAR(100) = ''					/*COMPAÑIA*/
 )
 AS
 BEGIN
+
     SET XACT_ABORT, NOCOUNT ON; --ADDED TO PREVENT EXTRA RESULT SETS FROM INTERFERING WITH SELECT STATEMENTS.
     --SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; --SERIALIZABLE; -- ADD NOLOCK ALL TABLES 
+
     BEGIN TRY
-
-        --/*MODIFICAR EN CASO DE SELECT*/
-        --BEGIN TRANSACTION;
-        --/*MODIFICAR EN CASO DE SELECT*/
-
-
+        BEGIN TRANSACTION;
         --++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
         -----------------------------                                    
         --DECLARACION Y ASIGNACION DE VARIABLES                                  
         -----------------------------
         BEGIN --INICIO-DECLARACION VARIABLES Y CONSTANTES
+
             BEGIN --INICIO-CONSTANTES
-                DECLARE @P_MODO_EJECUCION SMALLINT
-                    = 0,                                           --MODO DE EJECUCION, SIRVE PARA MOSTRAR BANDERAS O DATOS EN CASO DE NECESITAR VALIDAR, EJECUCION_DEPURACION=7, EJECUCION_NORMAL=0 
-                        @P_IDENTIFICADOR_EXTERNO VARCHAR(50) = ''; --IDENTIFICADOR ENVIADO DESDE EL APLICATIVO, ESTE SE ALMACENA EN LAS BITACORAS DE EJECUCION O EN LAS BITACORAS DE EXCEPCIONES
-                DECLARE @V_STR_ESQUEMA VARCHAR(500) = '';
                 DECLARE @V_MODO_EJECUCION_NORMAL SMALLINT = 0;
                 DECLARE @V_MODO_EJECUCION_DEPURACION SMALLINT = 7;
                 DECLARE @V_OPCION_NORMAL SMALLINT = 0;
@@ -82,21 +79,25 @@ BEGIN
                 DECLARE @V_DESCRIPCION_TIPO_EXCEPCION VARCHAR(300) = 'EXCEPCION-PERSONALIZADA';
                 DECLARE @V_ID_TIPO_DATOS_XML SMALLINT = 1; --ID Tipo dato XML
             END; --FIN-CONSTANTES
+
             BEGIN --INICIO-SOBREESCRITURA DE VARIABLES
                 DECLARE @V_IDENTIFICADOR_UNICO VARCHAR(50) = CONVERT(VARCHAR(50), NEWID());
             END; --FIN-SOBREESCRITURA DE VARIABLES
+
             BEGIN --INICIO-ADMINISTRACION ERRORES
                 DECLARE @V_ERR_FK_UTL_PAR_PAIS SMALLINT = 0;
                 DECLARE @V_ERR_USUARIO_CREACION VARCHAR(50) = ISNULL(@P_USUARIO, 'N/D');
                 DECLARE @V_FEC_ERR_SISTEMA DATETIME = GETDATE();
                 DECLARE @V_FEC_ERR_CREACION DATETIME = GETDATE();
                 DECLARE @V_ERR_ID_SPID INT = @@SPID;
+
                 DECLARE @V_ERR_PRIORIDAD INT = 0;
                 DECLARE @V_ERR_SEVERIDAD INT = 0;
                 DECLARE @V_ERR_ESTADO INT = 0;
                 DECLARE @V_ERR_BASE_DATOS VARCHAR(300) = ISNULL(DB_NAME(), 'N/D');
                 DECLARE @V_ERR_SERVIDOR VARCHAR(300) = ISNULL(@@SERVERNAME, 'N/D');
                 DECLARE @V_ERR_PROCESO VARCHAR(300) = ISNULL(OBJECT_NAME(@@PROCID), 'N/D'); --OBTIENE EL NOMBRE DEL PROCESO EN EJECUCION        
+                DECLARE @V_ERR_APLICATIVO VARCHAR(50) = '1';
                 DECLARE @V_ERR_PARAMETROS VARCHAR(MAX) = '';
                 DECLARE @V_ERR_ID_ORIGEN INT = @V_ID_ORIGEN_PROCEDIMIENTO;
                 DECLARE @V_ERR_DESCRIPCION_ORIGEN VARCHAR(300) = @V_DESCRIPCION_ORIGEN_PROCEDIMIENTO; --1=WINDOWS FORM,2=WEB SERVICE,3=WEB SITE,4=PROCEDURE,5=REPORTING SERVICE,6=ETL
@@ -108,256 +109,274 @@ BEGIN
                 DECLARE @V_ERR_OBSERVACION VARCHAR(MAX) = '';
                 DECLARE @V_ERR_OTROS_DATOS VARCHAR(MAX) = '';
                 DECLARE @V_ERR_XML_DATOS VARCHAR(MAX) = '';
+
+
                 DECLARE @V_ERR_DESCRIPCION_TIPO_DATOS VARCHAR(300) = '';
                 DECLARE @V_ERR_ID_TIPO_DATOS SMALLINT = 0;
+                DECLARE @VBI_ERR_DATOS VARBINARY(MAX) = NULL;
                 DECLARE @V_ERR_NUMERO_USUARIO INT = 75000;
                 DECLARE @V_ERR_NUMERO_SISTEMA INT = 0;
                 DECLARE @V_ERR_NIVEL_ANIDAMIENTO INT = ISNULL(@@NESTLEVEL, 0);
-                DECLARE @V_ERR_APLICATIVO VARCHAR(50) = '';
+
                 SELECT TOP 1
                     @V_ERR_APLICATIVO
-                        = CONCAT(
-                                    'Host:',
-                                    ISNULL(vs.host_name, 'N/D'),
-                                    ' | Program:',
-                                    ISNULL(vs.program_name, 'N,/D'),
-                                    ' | Login:',
+                        = (
+                                    'Host:'+
+                                    ISNULL(vs.host_name, 'N/D')+
+                                    ' | Program:'+
+                                    ISNULL(vs.program_name, 'N,/D')+
+                                    ' | Login:'+
                                     ISNULL(vs.login_name, 'N,/D')
                                 )
                 FROM sys.dm_exec_requests vr
                     INNER JOIN sys.dm_exec_sessions vs
                         ON vr.session_id = vs.session_id
                 WHERE vr.session_id = @V_ERR_ID_SPID;
-                SELECT @V_STR_ESQUEMA = SCHEMA_NAME(schema_id)
-                FROM sys.procedures
-                WHERE (
-                          object_id = @@PROCID
-                          OR object_id = @@SPID
-                      );
-                SELECT @V_ERR_PROCESO = CONCAT(@V_STR_ESQUEMA, '.', @V_ERR_PROCESO);
+
                 DECLARE @V_ERR_NUMERO_LINEA INT = 0;
                 DECLARE @V_ERR_SENTENCIA VARCHAR(MAX) = '';
-                DECLARE @VBI_ERR_DATOS VARBINARY(MAX) = NULL;
                 DECLARE @V_EJEC_DESCRIPCION_TIPO_DATOS VARCHAR(300) = '';
                 DECLARE @V_EJEC_ID_TIPO_DATOS SMALLINT = 0;
                 DECLARE @V_BIN_EJEC_FK_UTL_TRA_BITACORA_EJECUCION BIGINT = 0;
                 DECLARE @V_BIT_EJEC_ACTIVO_EJECUCION INT = 1; --UTILIZA COMO INDICADOR DE QUE EL PROCEDIMIENTO EJECUTA EL CUERPO DEL MISMO O NO  
                 DECLARE @V_OBSERVACIONES VARCHAR(MAX) = '';
             END; --INICIO-ADMINISTRACION ERRORES
+
             BEGIN --INICIO-VARIOS
                 DECLARE @V_CANTIDAD_REGISTROS INT = 0;
                 DECLARE @V_BIT_REGISTRA_XML_PROCESOS_SISTEMA BIT = 0;
-                --SI NO VIENE NINGUN VALOR SE GENERA UNO                                    
+
+                SELECT @V_ERR_PARAMETROS
+                    = (@V_ERR_PARAMETROS + '@P_USUARIO=' + '''' + ISNULL(@P_USUARIO, 'N/D') + '''');
+                
+                
+                SELECT @V_ERR_PARAMETROS
+                    = (
+                                @V_ERR_PARAMETROS+
+                                ',@P_IDENTIFICADOR_EXTERNO='+
+                                ''''+
+                                ISNULL(@P_IDENTIFICADOR_EXTERNO, 'N/D')+
+                                ''''
+                            );
+                SELECT @V_ERR_PARAMETROS
+                    = (
+                                '@P_ESQUEMA= '+
+                                ''''+
+                                @P_ESQUEMA+
+                                ''''+
+                                ' , '+
+                                '@P_ID='+
+                                CAST(@P_ID AS VARCHAR(50))+
+                                ' , '+
+                                '@P_IDPROYECTO='+
+                                CAST(@P_IDPROYECTO AS VARCHAR(50))+
+                                ' , '+
+                                '@P_IDESTADO='+
+                                CAST(@P_IDESTADO AS VARCHAR(50))+
+                                ' , '+
+                                '@P_NOMBRE='+
+                                ''''+
+                                @P_NOMBRE+
+                                ''''+
+                                '@P_DESCRIPCION='+
+                                ''''+
+                                @P_DESCRIPCION+
+                                ''''
+                            );
+
+
+                --DETALLE CUERPO
+
+                -- FIN DETALLE CUERPO
+
+                SELECT @V_ERR_SENTENCIA = ('EXEC '+ @V_ERR_PROCESO+ ' '+ @V_ERR_PARAMETROS);
+
+                --SI NO VIENE NINGUN VALOR SE GENERA UNO									
                 SELECT @P_IDENTIFICADOR_EXTERNO = CASE
                                                       WHEN LTRIM(RTRIM(@P_IDENTIFICADOR_EXTERNO)) = '' THEN
                                                           CONVERT(VARCHAR(50), NEWID())
                                                       ELSE
                                                           @P_IDENTIFICADOR_EXTERNO
                                                   END;
+
             END; --FIN-VARIOS  
 
+            --BEGIN--INICIO-VARIABLE O CONSTANTES DEL CUERPO DEL PROCEDIMIENTO                  
+            DECLARE @V_HILERA NVARCHAR(MAX);
+            DECLARE @ParmDefinition NVARCHAR(MAX);
 
-            --BEGIN--INICIO-VARIABLE O CONSTANTES DEL CUERPO DEL PROCEDIMIENTO 
-			
-            DECLARE @SET_SQLSTRING NVARCHAR(MAX);
-            DECLARE @PARAM_DEFINITION NVARCHAR(MAX);
-		
 
         --END--FIN-VARIABLE O CONSTANTES DEL CUERPO DEL PROCEDIMIENTO
 
-
-        END; --FIN-DECLARACION VARIABLES Y CONSTANTES                                           
-
-
-
-
-
+        END; --FIN-DECLARACION VARIABLES Y CONSTANTES			                                
         --++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
         -----------------------------                                    
         --CUERPO PROCEDIMIENTO                                    
         -----------------------------       
-        BEGIN --INICIO-CUERPO PROCEDIMIENTO
+        BEGIN --INICIO-CUERPO PROCEDIMIENTO								   
             IF (@P_MODO_EJECUCION = @V_MODO_EJECUCION_DEPURACION)
             BEGIN
-                SELECT BANDERA_EJECUCION = CONCAT('00000-', @V_ERR_PROCESO),
+                SELECT BANDERA_EJECUCION = ('00000-'+ @V_ERR_PROCESO),
                        FECHA = GETDATE(),
                        STR_USUARIO = @P_USUARIO,
                        SIN_MODO_EJECUCION = @P_MODO_EJECUCION,
                        SIN_OPCION = @P_OPCION;
-                SELECT BANDERA_EJECUCION = CONCAT('00010-', @V_ERR_PROCESO),
+
+                SELECT BANDERA_EJECUCION = ('00010-'+ @V_ERR_PROCESO),
                        FECHA = GETDATE(),
                        SENTENCIA_EJECUCION = @V_ERR_SENTENCIA;
             END;
+
             --------------------------------------------------------------------------------------------------------------------------------
             --BEGIN--INICIO-INICIAL REGISTRO DE BITACORAS DE EJECUCION
+
             IF (@P_MODO_EJECUCION = @V_MODO_EJECUCION_DEPURACION)
             BEGIN
-                SELECT BANDERA_EJECUCION = CONCAT('00020-', @V_ERR_PROCESO),
+                SELECT BANDERA_EJECUCION = ('00020-'+ @V_ERR_PROCESO),
                        FECHA = GETDATE(),
                        BIT_EJEC_ACTIVO_EJECUCION = @V_BIT_EJEC_ACTIVO_EJECUCION,
                        BIN_EJEC_FK_UTL_TRA_BITACORA_EJECUCION = @V_BIN_EJEC_FK_UTL_TRA_BITACORA_EJECUCION;
             END;
+
             IF (@V_BIT_EJEC_ACTIVO_EJECUCION = 1)
             BEGIN
+                -- DETALLE CUERPO
+                SELECT @V_ERR_NUMERO_USUARIO = 75001;
+                SELECT @V_ERR_MENSAJE_USUARIO = 'ERROR AL SELECCIONAR EN LA TABLA TBL_SIMP_PY_FASE';
 
+                /*INSERTA Y ACTUALIZA EL EROGACION*/
                 IF (@P_OPCION = 0)
                 BEGIN
-                    SELECT @V_ERR_NUMERO_USUARIO = 75001;
-                    SELECT @V_ERR_MENSAJE_USUARIO = 'ERROR AL EJECUTAR LA CONSULTA DE LA TABLA USUARIO';
 
-				SELECT	@SET_SQLSTRING =
-				N'SELECT [ID]
-					  ,[IDROL]
-					  ,[IDESTADO]
-					  ,[NOMBRE]
-					  ,[PRIMER_APELLIDO]
-					  ,[SEGUNDO_APELLIDO]
-					  ,[USUARIO]
-					  ,[CONTRASENA]
-				  FROM ' + @P_ESQUEMA + N'.[USUARIO]
-				  ORDER BY ID asc'
+                    SELECT @V_HILERA
+                        = ' 
+			    IF NOT EXISTS(SELECT 1 FROM  ' + @P_ESQUEMA
+                          + '.TBL_SIMP_PY_FASE
+				 WHERE PK_TBL_SIMP_PY_FASE = @P_ID)
+				 BEGIN
+				 INSERT INTO ' + @P_ESQUEMA
+                          + '.TBL_SIMP_PY_FASE
+				 (
+                     FK_TBL_SIMP_PY_PROYECTO,
+					 FK_TBL_SIMP_ESTADO,
+				     NOMBRE,
+					 DESCRIPCION,
+				 )
+				 VALUES
+				 (   
+                    @P_IDPROYECTO,
+	                @P_IDESTADO,
+	                @P_NOMBRE,
+                    @P_DESCRIPCION
+				 );
+					 
+				  END 
+				  ELSE
+				  BEGIN
+				  UPDATE  ' + @P_ESQUEMA
+							+ '.TBL_SIMP_PY_FASE SET 
+					 FK_TBL_SIMP_PY_PROYECTO =  @P_IDPROYECTO,
+					 FK_TBL_SIMP_ESTADO = @P_IDESTADO,
+					 NOMBRE = @P_NOMBRE,
+					 DESCRIPCION = @P_DESCRIPCION
+					 WHERE PK_TBL_SIMP_PY_FASE = @P_ID
+				  END						
+						';
 
-				  SELECT @PARAM_DEFINITION
-					= '@P_ID int,
-					   @P_IDROL int,
-					   @P_IDESTADO int,
-					   @P_NOMBRE varchar(50),
-					   @P_PRIMER_APELLIDO varchar(50),
-					   @P_SEGUNDO_APELLIDO varchar(50),
-					   @P_USUARIO varchar(50),
-					   @P_ESQUEMA varchar(50)'
-					     
-				   EXEC sys.sp_executesql @SET_SQLSTRING,
-				   		@PARAM_DEFINITION,
-						@P_ID = @P_ID,
-						@P_IDROL = @P_IDROL,
-						@P_IDESTADO = @P_IDESTADO,
-						@P_NOMBRE = @P_NOMBRE,
-						@P_PRIMER_APELLIDO = @P_PRIMER_APELLIDO,
-						@P_SEGUNDO_APELLIDO = @P_SEGUNDO_APELLIDO,
-						@P_USUARIO = @P_USUARIO,
-						@P_ESQUEMA = @P_ESQUEMA
+                    SELECT @V_ERR_NUMERO_USUARIO = 75001; /*INCREMENTAR PARA CADA ACCIÓN*/
+                    SELECT @V_ERR_MENSAJE_USUARIO = 'ERROR AL CREAR EL @ParmDefinition @V_HILERA';
 
-                END;
+                    SELECT @ParmDefinition
+						=	'@P_ID BIGINT,
+							 @P_IDPROYECTO BIGINT,
+							 @P_IDESTADO BIGINT,
+							 @P_NOMBRE VARCHAR(50),
+							 @P_DESCRIPCION VARCHAR(50)';
 
-				 IF (@P_OPCION = 1)
-                BEGIN
-                    SELECT @V_ERR_NUMERO_USUARIO = 75001;
-                    SELECT @V_ERR_MENSAJE_USUARIO = 'ERROR AL EJECUTAR LA CONSULTA DE LA TABLA TBL_CANALES';
+                    SELECT @V_ERR_NUMERO_USUARIO = 75002; /*INCREMENTAR PARA CADA ACCIÓN*/
+                    SELECT @V_ERR_MENSAJE_USUARIO = 'ERROR AL EJECUTAR EL sp_executesql @V_HILERA';
 
-				SELECT	@SET_SQLSTRING =
-				N'SELECT [ID]
-					  ,[IDROL]
-					  ,[IDESTADO]
-					  ,[NOMBRE]
-					  ,[PRIMER_APELLIDO]
-					  ,[SEGUNDO_APELLIDO]
-					  ,[USUARIO]
-					  ,[CONTRASENA]
-				  FROM ' + @P_ESQUEMA + N'.[USUARIO] WHERE  ([ID] =  @P_ID OR @P_ID = 0) 
-				  AND ([IDROL] = @P_IDROL OR @P_IDROL = 0)
-				  AND ([IDESTADO] = @P_IDESTADO OR @P_IDESTADO = 0)
-				  AND ([NOMBRE] = @P_NOMBRE OR @P_NOMBRE = '''')
-				  AND ([PRIMER_APELLIDO] = @P_PRIMER_APELLIDO OR @P_PRIMER_APELLIDO = '''')
-				  AND ([SEGUNDO_APELLIDO] = @P_SEGUNDO_APELLIDO OR @P_SEGUNDO_APELLIDO = '''')
-				  AND ([USUARIO] = @P_USUARIO OR @P_USUARIO = '''')'
-
-						
-						SELECT @PARAM_DEFINITION
-					= '@P_ID int,
-					   @P_IDROL int,
-					   @P_IDESTADO int,
-					   @P_NOMBRE varchar(50),
-					   @P_PRIMER_APELLIDO varchar(50),
-					   @P_SEGUNDO_APELLIDO varchar(50),
-					   @P_USUARIO varchar(50),
-					   @P_ESQUEMA varchar(50)'
-		
-  
-					   	EXEC sys.sp_executesql @SET_SQLSTRING,
-						@PARAM_DEFINITION,
-						@P_ID = @P_ID,
-						@P_IDROL = @P_IDROL,
-						@P_IDESTADO = @P_IDESTADO,
-						@P_NOMBRE = @P_NOMBRE,
-						@P_PRIMER_APELLIDO = @P_PRIMER_APELLIDO,
-						@P_SEGUNDO_APELLIDO = @P_SEGUNDO_APELLIDO,
-						@P_USUARIO = @P_USUARIO,
-						@P_ESQUEMA = @P_ESQUEMA
+                    EXEC sys.sp_executesql @V_HILERA,
+                                           @ParmDefinition,
+                                           @P_ID = @P_ID,
+										   @P_IDPROYECTO = @P_IDPROYECTO,
+										   @P_IDESTADO = @P_IDESTADO,
+										   @P_NOMBRE = @P_NOMBRE,
+                                           @P_DESCRIPCION = @P_DESCRIPCION;
 
                 END;
-                  
 
-            -- A MODIFICAR
+            -- FIN DETALLE CUERPO
             END;
-        --------------------------------------------------------------------------------------------------------------------------------
-        --BEGIN--INICIO-INICIAL REGISTRO DE BITACORAS DE EJECUCION
-        --END--FIN-INICIAL REGISTRO DE BITACORAS DE EJECUCION
+
+            --------------------------------------------------------------------------------------------------------------------------------
+            --BEGIN--INICIO-INICIAL REGISTRO DE BITACORAS DE EJECUCION
+            --END--FIN-INICIAL REGISTRO DE BITACORAS DE EJECUCION
+
+            COMMIT TRANSACTION;
+        --++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
+        --DETALLE DEL PROCEDIMIENTO  
 
 
-        --/*MODIFICAR EN CASO DE SELECT*/
-        --COMMIT TRANSACTION;
-
-        END; --FIN-CUERPO PROCEDIMIENTO              
+        END; --FIN-CUERPO PROCEDIMIENTO				 
     --+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++                                    
+
+
+
     END TRY
     BEGIN CATCH
         -----------------------------                                    
         --ADMINISTRACION DE ERRORES                                  
-        -----------------------------     
-        -- A MODIFICAR
-       SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, '@P_OPCION=', ISNULL(@P_OPCION, -1));
-        SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_USUARIO=', '''', ISNULL(@P_USUARIO, 'N/D'), '''');
-        SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_ID=', '''', ISNULL(@P_ID, -1));
-        SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_IDROL=', '''', ISNULL(@P_IDROL, -1));
-		SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_IDESTADO=', '''', ISNULL(@P_IDESTADO, -1));
-		SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_NOMBRE=', '''', ISNULL(@P_NOMBRE, -1));
-		SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_PRIMER_APELLIDO=', '''', ISNULL(@P_PRIMER_APELLIDO, 'N/D'), '''');
-		SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_SEGUNDO_APELLIDO=', '''', ISNULL(@P_SEGUNDO_APELLIDO, 'N/D'), '''');
-        SELECT @V_ERR_PARAMETROS = CONCAT(@V_ERR_PARAMETROS, ',@P_ESQUEMA=', '''', ISNULL(@P_ESQUEMA, 'N/D'), '''');
-
-        -- A MODIFICAR
-        SELECT @V_ERR_SENTENCIA = CONCAT('EXEC ', @V_STR_ESQUEMA, '.', @V_ERR_PROCESO, ' ', @V_ERR_PARAMETROS);
+        -----------------------------         
         BEGIN --INICIO-ADMINISTRACION DE ERRORES
-            --IF (@P_MODO_EJECUCION = @V_MODO_EJECUCION_DEPURACION)
-            --BEGIN
-            --    SELECT BANDERA_EJECUCION = CONCAT('ERROR-99999-01-', @V_ERR_PROCESO),
-            --           FECHA = GETDATE(),
-            --           [XACT_STATE] = XACT_STATE(),
-            --           TRANCOUNT = @@TRANCOUNT;
-            --END;
-            -- --VALIDA SI LA TRANSACCION NO SE PUEDE HACER COMMIT
-            --IF (XACT_STATE()) = -1
-            --BEGIN
-            --    IF (@@TRANCOUNT > 0)
-            --    BEGIN
-            --        ROLLBACK TRANSACTION;
-            --    END;
-            --END;
-            ---- VALIDA SI LA TRANSACCION SE PUEDE HACER COMMIT
-            --IF (XACT_STATE()) = 1
-            --BEGIN
-            --    IF (@@TRANCOUNT > 0)
-            --    BEGIN
-            --        COMMIT TRANSACTION;
-            --    END;
-            --END;
-            ERRORHANDLER:
+
+            IF (@P_MODO_EJECUCION = @V_MODO_EJECUCION_DEPURACION)
+            BEGIN
+                SELECT BANDERA_EJECUCION = ('ERROR-99999-01-'+ @V_ERR_PROCESO),
+                       FECHA = GETDATE(),
+                       [XACT_STATE] = XACT_STATE(),
+                       TRANCOUNT = @@TRANCOUNT;
+            END;
+
+            -- VALIDA SI LA TRANSACCION NO SE PUEDE HACER COMMIT
+            IF (XACT_STATE()) = -1
+            BEGIN
+                IF (@@TRANCOUNT > 0)
+                BEGIN
+                    ROLLBACK TRANSACTION;
+                END;
+            END;
+
+            -- VALIDA SI LA TRANSACCION SE PUEDE HACER COMMIT
+            IF (XACT_STATE()) = 1
+            BEGIN
+                IF (@@TRANCOUNT > 0)
+                BEGIN
+                    COMMIT TRANSACTION;
+                END;
+            END;
+
+            --ERRORHANDLER:		
             SELECT @V_ERR_SEVERIDAD = ISNULL(ERROR_SEVERITY(), 0);
             SELECT @V_ERR_ESTADO = ISNULL(ERROR_STATE(), 0);
             SELECT @V_ERR_NUMERO_LINEA = ISNULL(ERROR_LINE(), 0);
             SELECT @V_ERR_MENSAJE_SISTEMA = ISNULL(ERROR_MESSAGE(), '');
             SELECT @V_ERR_NUMERO_SISTEMA = ISNULL(ERROR_NUMBER(), 0);
+
             --DEFINICION DE MENSAJE DE ERROR
+
             SELECT @V_ERR_OBSERVACION
                 = '(' + CONVERT(VARCHAR, @V_ERR_NIVEL_ANIDAMIENTO) + ')' + +',MENSAJE:'
                   + ISNULL(@V_ERR_MENSAJE_USUARIO, 'N/D') + '|' + ISNULL(@V_ERR_MENSAJE_SISTEMA, 'N/D') + ',PROCESO:'
                   + ISNULL(@V_ERR_PROCESO, 'N/D');
             BEGIN TRY
                 SELECT @V_FEC_ERR_CREACION = GETDATE();
-                EXEC dbo.PA_MAN_TBL_TRA_EXCEPCION_GUARDAR @SIN_MODO_EJECUCION = @P_MODO_EJECUCION,                     -- smallint
-                                                            @SIN_FK_UTL_PAR_PAIS = @V_ERR_FK_UTL_PAR_PAIS,               -- int
-                                                            @STR_USUARIO_CREACION = @V_ERR_USUARIO_CREACION,             -- varchar(50)
+                SELECT @V_ERR_SENTENCIA = ('EXEC '+ @V_ERR_PROCESO+ ' '+ @V_ERR_PARAMETROS);
+                DECLARE @STR_IDENTIFICADOR_UNICO VARCHAR(50);
+
+            EXEC DBO.PA_MAN_TBL_TRA_EXCEPCION_GUARDAR @SIN_MODO_EJECUCION = 0,                                     -- smallint
+                                                            @SIN_FK_UTL_PAR_PAIS = '',                                   -- int
+                                                            @STR_USUARIO_CREACION = @P_USUARIO,                          -- varchar(50)
                                                             @FEC_CREACION = @V_FEC_ERR_CREACION,                         -- datetime
                                                             @STR_USUARIO_MODIFICACION = '',                              -- varchar(50)
                                                             @FEC_MODIFICACION = '19000101',                              -- datetime
@@ -367,7 +386,7 @@ BEGIN
                                                             @INT_SEVERIDAD = @V_ERR_SEVERIDAD,                           -- int
                                                             @INT_ERROR_ESTADO = @V_ERR_ESTADO,                           -- int
                                                             @STR_SERVIDOR = @V_ERR_SERVIDOR,                             -- varchar(300)
-                                                            @STR_ESTACION = @V_STR_ESQUEMA,                              -- varchar(300)
+                                                            @STR_ESTACION = '',                                          -- varchar(300)
                                                             @STR_BASE_DATOS = @V_ERR_BASE_DATOS,                         -- varchar(300)
                                                             @STR_APLICATIVO = @V_ERR_APLICATIVO,                         -- varchar(300)
                                                             @STR_CLASE = '',                                             -- varchar(300)
@@ -391,14 +410,17 @@ BEGIN
                                                             @INT_NUMERO_SISTEMA = @V_ERR_NUMERO_SISTEMA,                 -- int
                                                             @INT_NIVEL_ANIDAMIENTO = @V_ERR_NIVEL_ANIDAMIENTO,           -- int
                                                             @INT_NUMERO_LINEA = @V_ERR_NUMERO_LINEA,                     -- int
-                                                            @STR_IDENTIFICADOR_EXTERNO = @P_IDENTIFICADOR_EXTERNO,       -- varchar(50)
+                                                            @STR_IDENTIFICADOR_EXTERNO = 0,                              -- varchar(50)
                                                             @STR_IDENTIFICADOR_UNICO = @V_IDENTIFICADOR_UNICO,           -- varchar(50)
-															@STR_COMPANNIA=@P_ESQUEMA
+                                                            @STR_COMPANNIA = @P_ESQUEMA;
+
             END TRY
             BEGIN CATCH
+
                 IF (@P_MODO_EJECUCION = @V_MODO_EJECUCION_DEPURACION)
                 BEGIN
-                    SELECT BANDERA_EJECUCION = CONCAT('ERROR-99999-02-', @V_ERR_PROCESO),
+
+                    SELECT BANDERA_EJECUCION = ('ERROR-99999-02-'+ @V_ERR_PROCESO),
                            FECHA = GETDATE();
                 END;
                 SELECT @V_ERR_SEVERIDAD = ISNULL(ERROR_SEVERITY(), 0);
@@ -406,23 +428,29 @@ BEGIN
                 SELECT @V_ERR_NUMERO_LINEA = ISNULL(ERROR_LINE(), 0);
                 SELECT @V_ERR_MENSAJE_SISTEMA = ISNULL(ERROR_MESSAGE(), '');
                 SELECT @V_ERR_NUMERO_SISTEMA = ISNULL(ERROR_NUMBER(), 0);
+
                 --DEFINICION DE MENSAJE DE ERROR
+
+
                 SELECT @V_ERR_NUMERO_USUARIO = 76001;
                 --VERBOS A UTILIZAR DE ACUERDO A LA OPERACION=SELECT:SELECCIONAR, DELETE: ELIMINAR, UPDATE: ACTUALIZAR, INSERT: INSERTAR, EXEC: EJECUTAR
-                SELECT @V_ERR_MENSAJE_USUARIO = 'ERROR AL EJECUTAR EL PROCEDIMIENTO <PA_MAN_UTL_TRA_EXCEPCION_GUARDAR>';
+                SELECT @V_ERR_MENSAJE_USUARIO = 'ERROR AL EJECUTAR EL PROCEDIMIENTO <PA_MAN_TBL_TRA_EXCEPCION_GUARDAR>';
+
                 SELECT @V_ERR_OBSERVACION
                     = '(' + CONVERT(VARCHAR, @V_ERR_NIVEL_ANIDAMIENTO) + ')' + +',MENSAJE:'
                       + ISNULL(@V_ERR_MENSAJE_USUARIO, 'N/D') + '|' + ISNULL(@V_ERR_MENSAJE_SISTEMA, 'N/D')
                       + ',PROCESO:' + ISNULL(@V_ERR_PROCESO, 'N/D');
+
                 RAISERROR(@V_ERR_OBSERVACION, 16, 1);
             END CATCH;
+
             RAISERROR(@V_ERR_OBSERVACION, 16, 1);
+
             RETURN @V_ERR_NUMERO_USUARIO;
         END; --FIN-ADMINISTRACION DE ERRORES
     END CATCH;
-    --++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++      
-    --COMMIT TRAN   
+    --++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
+    --COMMIT TRAN 	
     RETURN 0;
+
 END;
-
-
