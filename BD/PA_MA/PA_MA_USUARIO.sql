@@ -262,11 +262,11 @@ BEGIN
                     SELECT @V_HILERA
                         = ' 
 			    IF NOT EXISTS(SELECT 1 FROM  ' + @P_ESQUEMA
-                          + '.TBL_SIMP_SEG_USUARIO
-				 WHERE PK_TBL_SEG_SIMP_USUARIO = @P_ID)
+                          + '.TBL_SIMP_USUARIO
+				 WHERE PK_TBL_SIMP_USUARIO = @P_ID)
 				 BEGIN
 				 INSERT INTO ' + @P_ESQUEMA
-                          + '.TBL_SIMP_SEG_USUARIO
+                          + '.TBL_SIMP_USUARIO
 				 (
 				     FK_TBL_SIMP_ROL,
 					 FK_TBL_SIMP_ESTADO,
@@ -290,7 +290,7 @@ BEGIN
 				  ELSE
 				  BEGIN
 				  UPDATE  ' + @P_ESQUEMA
-							+ '.TBL_SIMP_SEG_USUARIO SET 
+							+ '.TBL_SIMP_USUARIO SET 
 				     FK_TBL_SIMP_ROL = @P_IDROL,
 					 FK_TBL_SIMP_ESTADO = @P_IDESTADO,
 					 NOMBRE =  @P_NOMBRE,
@@ -298,7 +298,7 @@ BEGIN
 					 SEGUNDO_APELLIDO = @P_SEGUNDO_APELLIDO,
 					 USUARIO = @P_USUARIO,
 					 CONTRASENA = @P_CONTRASENA
-					 WHERE PK_TBL_SEG_SIMP_USUARIO = @P_ID
+					 WHERE PK_TBL_SIMP_USUARIO = @P_ID
 				  END						
 						';
 
