@@ -32,7 +32,7 @@ UTILIZAR LOS SIGUIENTES COMENTARIOS PARA DETALLAR LOS CAMBIOS EN EL CODIGO
 --FIN,TICKET=00000,RELEASE=000,NOMBRE.APELLIDO, COMENTARIOS SOBRE LOS CAMBIOS
 ===================================================================================================================================================
 */
-CREATE PROCEDURE [DBO].[PA_MAN_FASE]
+CREATE PROCEDURE [DBO].[PA_MAN_ACTIVIDAD]
 (
     @P_USUARIO VARCHAR(50) = '',					--USUARIO DE LA APLICACION QUE EJECUTA
     @P_MODO_EJECUCION SMALLINT = 0,					--MODO DE EJECUCION, SIRVE PARA MOSTRAR BANDERAS O DATOS EN CASO DE NECESITAR VALIDAR, EJECUCION_DEPURACION=7, EJECUCION_NORMAL=0 
@@ -328,7 +328,7 @@ BEGIN
 										   @P_IDFASE = @P_IDFASE,
 										   @P_IDUSUARIO = @P_IDUSUARIO,
 										   @P_IDESTADO = @P_IDESTADO,
-                                           @P_DESCRIPCION = @P_DESCRIPCION
+                                           @P_DESCRIPCION = @P_DESCRIPCION,
                                            @P_FECHA_INICIO = @P_FECHA_INICIO,
 										   @P_FECHA_ESTIMADA = @P_FECHA_ESTIMADA,
                                            @P_FECHA_FINALIZACION = @P_FECHA_FINALIZACION;

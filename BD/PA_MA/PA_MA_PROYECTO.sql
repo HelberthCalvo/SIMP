@@ -196,7 +196,6 @@ BEGIN
                                 ' , '+
                                 '@P_FECHA_FINALIZACION ='+
                                 CAST(@P_FECHA_FINALIZACION AS VARCHAR(50))
-                                ''''
                             );
 
 
