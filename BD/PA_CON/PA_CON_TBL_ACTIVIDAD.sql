@@ -26,7 +26,7 @@ UTILIZAR LOS SIGUIENTES COMENTARIOS PARA DETALLAR LOS CAMBIOS EN EL CODIGO
 ===================================================================================================================================================
 */
 GO
-ALTER PROCEDURE [dbo].[PA_CON_ACTIVIDAD]
+CREATE PROCEDURE [dbo].[PA_CON_ACTIVIDAD]
 (
      @P_USUARIO VARCHAR(50) = '',		 --USUARIO DE LA APLICACION QUE EJECUTA
      @P_OPCION SMALLINT = 0,			 --OPCION SIRVE PARA CONFIGURAR COMPORTAMIENTOS O FLUJOS EN EL PROCESO (0 muestra todos los registros 1 muestra los registros filtadros por usuario)
