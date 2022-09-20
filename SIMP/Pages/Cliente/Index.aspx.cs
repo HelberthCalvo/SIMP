@@ -5,18 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SIMP
+namespace SIMP.Pages.Cliente
 {
-    public partial class SiteMaster : MasterPage
+    public partial class Index : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void linkBtnCliente_Click(object sender, EventArgs e)
+        protected void btnCrear_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pages/Cliente/Index.aspx");
+            Response.Redirect("Create.aspx");
         }
     }
 }

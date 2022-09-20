@@ -92,6 +92,7 @@ namespace SIMP
             CargarGridUsuario();
             Mensaje("Usuario", "Guardada correctamente", true);
         }
+
         private bool ValidarCampos()
         {
             if (string.IsNullOrEmpty(txtNombre.Text))
@@ -124,6 +125,7 @@ namespace SIMP
             }
             return false;
         }
+
         private void LimpiarCampos()
         {
             txtId.Text = null;
@@ -136,6 +138,7 @@ namespace SIMP
             txtContrasena.Text = string.Empty;
             string estado = string.Empty;
         }
+
         private void CargarGridUsuario()
         {
             try
