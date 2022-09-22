@@ -10,3 +10,9 @@ C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.cspro
 C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.dll
 C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.pdb
 C:\Cursos\PracticaProfesional\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.AssemblyReference.cache
+C:\Proyectos\SIMP\SIMP.Entidades\bin\Debug\SIMP.Entidades.dll
+C:\Proyectos\SIMP\SIMP.Entidades\bin\Debug\SIMP.Entidades.pdb
+C:\Proyectos\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.AssemblyReference.cache
+C:\Proyectos\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.CoreCompileInputs.cache
+C:\Proyectos\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.dll
+C:\Proyectos\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.pdb

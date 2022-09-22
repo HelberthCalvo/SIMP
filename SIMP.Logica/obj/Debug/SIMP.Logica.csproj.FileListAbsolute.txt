@@ -31,3 +31,14 @@ C:\Users\User\Source\Repos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.CoreCom
 C:\Users\User\Source\Repos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.CopyComplete
 C:\Users\User\Source\Repos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.dll
 C:\Users\User\Source\Repos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.pdb
+C:\Proyectos\SIMP\SIMP.Logica\bin\Debug\SIMP.Logica.dll
+C:\Proyectos\SIMP\SIMP.Logica\bin\Debug\SIMP.Logica.pdb
+C:\Proyectos\SIMP\SIMP.Logica\bin\Debug\SIMP.Datos.dll
+C:\Proyectos\SIMP\SIMP.Logica\bin\Debug\SIMP.Entidades.dll
+C:\Proyectos\SIMP\SIMP.Logica\bin\Debug\SIMP.Datos.pdb
+C:\Proyectos\SIMP\SIMP.Logica\bin\Debug\SIMP.Entidades.pdb
+C:\Proyectos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.AssemblyReference.cache
+C:\Proyectos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.CoreCompileInputs.cache
+C:\Proyectos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.csproj.CopyComplete
+C:\Proyectos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.dll
+C:\Proyectos\SIMP\SIMP.Logica\obj\Debug\SIMP.Logica.pdb
