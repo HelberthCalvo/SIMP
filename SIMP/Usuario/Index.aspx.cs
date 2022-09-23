@@ -25,6 +25,7 @@ namespace SIMP
             }
         }
 
+
         //private void HabilitaOpcionesPermisos()
         //{
         //    try
@@ -76,7 +77,7 @@ namespace SIMP
                 return;
             }
             UsuarioEntidad usuario = new UsuarioEntidad();
-            usuario.Id = !string.IsNullOrEmpty(txtId.Text.ToString()) ? Convert.ToInt32(txtId.Text) : 0;
+            //usuario.Id = !string.IsNullOrEmpty(txtId.Text.ToString()) ? Convert.ToInt32(txtId.Text) : 0;
             usuario.Rol = !string.IsNullOrEmpty(txtRol.Text.ToString()) ? Convert.ToInt32(txtRol.Text) : 0;
             usuario.Estado = !string.IsNullOrEmpty(txtEstado.Text.ToString()) ? Convert.ToInt32(txtEstado.Text) : 0;
             usuario.Nombre = txtNombre.Text;
@@ -85,7 +86,7 @@ namespace SIMP
             usuario.Usuario1 = txtUsuario.Text;
             usuario.Contrasena = txtContrasena.Text;
             usuario.Esquema = "dbo";
-            usuario.Usuario = "Helberth C";
+            usuario.Usuario = "hcalvo";
             new UsuarioLogica().MantUsuario(usuario);
 
             LimpiarCampos();
@@ -128,7 +129,7 @@ namespace SIMP
 
         private void LimpiarCampos()
         {
-            txtId.Text = null;
+            //txtId.Text = null;
             txtRol.Text = string.Empty;
             txtEstado.Text = string.Empty;
             txtNombre.Text = string.Empty;

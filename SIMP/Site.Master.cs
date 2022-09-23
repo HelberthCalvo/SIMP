@@ -16,7 +16,13 @@ namespace SIMP
 
         protected void linkBtnCliente_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pages/Cliente/Index.aspx");
+            //Response.Redirect("~/Pages/Cliente/Index.aspx");
+            Response.Redirect("~/Cliente/Index.aspx");
+        }
+
+        protected void linkBtnUsuario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Usuario/Index.aspx");
         }
     }
 }

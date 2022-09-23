@@ -58,27 +58,32 @@
                         <div class="nav">
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon">
-                                    <img src="icons/space-rocket-launch.png" /></div>
+                                    <img src="../icons/space-rocket-launch.png" />
+                                </div>
                                 Proyectos
                             </a>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon">
-                                    <img src="icons/etapas.png" /></div>
+                                    <img src="../icons/etapas.png" />
+                                </div>
                                 Fases
                             </a>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon">
-                                    <img src="icons/portapapeles.png" /></div>
+                                    <img src="../icons/portapapeles.png" />
+                                </div>
                                 Actividades
                             </a>
-                            <a class="nav-link" href="index.html">
+
+                            <asp:LinkButton runat="server" ID="linkBtnUsuario" CssClass="nav-link" OnClick="linkBtnUsuario_Click">
                                 <div class="sb-nav-link-icon">
-                                    <img src="icons/usuario.png" /></div>
+                                    <img src="../icons/usuario.png" />
+                                </div>
                                 Usuarios
-                            </a>
+                            </asp:LinkButton>
                             <asp:LinkButton runat="server" ID="linkBtnCliente" CssClass="nav-link" OnClick="linkBtnCliente_Click">
                                 <div class="sb-nav-link-icon">
-                                    <img src="icons/hombre-de-traje-y-corbata.png" />
+                                    <img src="../icons/hombre-de-traje-y-corbata.png" />
                                 </div>
                                 Clientes
                             </asp:LinkButton>
