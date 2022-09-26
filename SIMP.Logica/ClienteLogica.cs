@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace SIMP.Logica
 {
-    public static class ClienteLogica
+    public class ClienteLogica
     {
-        public static List<ClienteEntidad> GetClientes(ClienteEntidad cliente)
+        ClienteDatos clienteDatos = new ClienteDatos();
+        public List<ClienteEntidad> GetClientes(ClienteEntidad cliente)
         {
-            return ClienteDatos.GetClientes(cliente);
+            return clienteDatos.GetClientes(cliente);
         }
-        public static void MantCliente(ClienteEntidad cliente)
+        public void MantCliente(ClienteEntidad cliente)
         {
-            ClienteDatos.MantCliente(cliente);
+            clienteDatos.MantCliente(cliente);
         }
     }
 }

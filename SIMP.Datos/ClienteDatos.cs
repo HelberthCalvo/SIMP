@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SIMP.Datos
 {
-    public static class ClienteDatos
+    public class ClienteDatos
     {
-        public static List<ClienteEntidad> GetClientes(ClienteEntidad cliente)
+        public List<ClienteEntidad> GetClientes(ClienteEntidad cliente)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;
@@ -63,7 +63,7 @@ namespace SIMP.Datos
                 throw new ApplicationException("Error en Base de Datos" + ex.Message);
             }
         }
-        public static void MantCliente(ClienteEntidad cliente)
+        public void MantCliente(ClienteEntidad cliente)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;

@@ -77,7 +77,7 @@ namespace SIMP
                 return;
             }
             UsuarioEntidad usuario = new UsuarioEntidad();
-            //usuario.Id = !string.IsNullOrEmpty(txtId.Text.ToString()) ? Convert.ToInt32(txtId.Text) : 0;
+            usuario.Id = !string.IsNullOrEmpty(txtId.Value.ToString()) ? Convert.ToInt32(txtId.Value) : 0;
             usuario.Rol = !string.IsNullOrEmpty(txtRol.Text.ToString()) ? Convert.ToInt32(txtRol.Text) : 0;
             usuario.Estado = !string.IsNullOrEmpty(txtEstado.Text.ToString()) ? Convert.ToInt32(txtEstado.Text) : 0;
             usuario.Nombre = txtNombre.Text;
@@ -172,49 +172,55 @@ namespace SIMP
 
         protected void gvUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //try
-            //{
-            //    if (e.CommandName == "editar")
-            //    {
-            //        int index = Convert.ToInt32(e.CommandArgument);
-            //        hfIdFlowMoneda.Value = gvMoneda.DataKeys[index].Values[0].ToString();
-            //        txtDescripcion.Text = gvMoneda.DataKeys[index].Values[1].ToString();
-            //        txtSimbolo.Text = gvMoneda.DataKeys[index].Values[2].ToString();
-            //        txtTipoCambio.Text = gvMoneda.DataKeys[index].Values[3].ToString();
-            //        string estado = gvMoneda.DataKeys[index].Values[4].ToString();
-            //        if (estado == "1")
-            //        {
-            //            rdbInactivo.Checked = false;
-            //            rdbActivo.Checked = true;
-            //        }
-            //        else
-            //        {
-            //            rdbActivo.Checked = false;
-            //            rdbInactivo.Checked = true;
-            //        }
-            //    }
-            //    else if (e.CommandName == "eliminar")
-            //    {
-            //        int index = Convert.ToInt32(e.CommandArgument);
-            //        MonedaE moneda = new MonedaE();
-            //        moneda.ID = Convert.ToInt32(gvMoneda.DataKeys[index].Values[0]);
-            //        moneda.Descripcion = gvMoneda.DataKeys[index].Values[1].ToString();
-            //        moneda.Simbolo = gvMoneda.DataKeys[index].Values[2].ToString();
-            //        moneda.TipoCambio = Convert.ToDecimal(gvMoneda.DataKeys[index].Values[3]);
-            //        moneda.Estado = "0";
-            //        moneda.Esquema = Session["Compañia"].ToString();
-            //        moneda.Usuario = Session["UsuarioSistema"].ToString();
+            try
+            {
+                if (e.CommandName == "editar")
+                {
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    txtId.Value = gvUsuarios.DataKeys[index].Values[0].ToString();
+                    txtNombre.Text = gvUsuarios.DataKeys[index].Values[1].ToString();
+                    txtPrimer_Apellido.Text = gvUsuarios.DataKeys[index].Values[2].ToString();
+                    txtSegundo_Apellido.Text = gvUsuarios.DataKeys[index].Values[3].ToString();
+                    txtUsuario.Text = gvUsuarios.DataKeys[index].Values[4].ToString();
+                    txtRol.Text = gvUsuarios.DataKeys[index].Values[5].ToString();
+                    txtEstado.Text = gvUsuarios.DataKeys[index].Values[6].ToString();
+                    string estado = gvUsuarios.DataKeys[index].Values[6].ToString();
+                    //if (estado == "1")
+                    //{
+                    //    rdbInactivo.Checked = false;
+                    //    rdbActivo.Checked = true;
+                    //}
+                    //else
+                    //{
+                    //    rdbActivo.Checked = false;
+                    //    rdbInactivo.Checked = true;
+                    //}
+                    CargarGridUsuario();
+                }
+                else if (e.CommandName == "eliminar")
+                {
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    UsuarioEntidad usuario = new UsuarioEntidad();
+                    usuario.Id = Convert.ToInt32(gvUsuarios.DataKeys[index].Values[0]);
+                    usuario.Nombre = gvUsuarios.DataKeys[index].Values[1].ToString();
+                    usuario.Primer_Apellido = gvUsuarios.DataKeys[index].Values[2].ToString();
+                    usuario.Segundo_Apellido = gvUsuarios.DataKeys[index].Values[3].ToString();
+                    usuario.Usuario1 = gvUsuarios.DataKeys[index].Values[4].ToString();
+                    usuario.Rol = Convert.ToInt32(gvUsuarios.DataKeys[index].Values[5].ToString());
+                    usuario.Estado = Convert.ToInt32(gvUsuarios.DataKeys[index].Values[6].ToString());
+                    usuario.Esquema = "dbo";
+                    usuario.Usuario = "hcalvo";
 
-            //        new MonedaL().MantMonedas(moneda);
+                    new UsuarioLogica().MantUsuario(usuario);
 
-            //        CargarGridMoneda();
-            //        Mensaje("Moneda", "Desactivada correctamente", true);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
-            //}
+                    CargarGridUsuario();
+                    Mensaje("Usuario", "Desactivado correctamente", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
         }
         //protected void gvOperaciones_RowCommand(object sender, GridViewCommandEventArgs e)
         //{

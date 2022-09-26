@@ -13,9 +13,39 @@ namespace SIMP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["UsuarioSistema"] = "hcalvo";
+            if (Session["UsuarioSistema"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            if (!IsPostBack)
+            {
+                //HabilitaOpcionesPermisos();
+                CargarGridCliente();
+            }
         }
 
+        private void CargarGridCliente()
+        {
+            try
+            {
+                List<ClienteEntidad> lstCliente = new List<ClienteEntidad>();
+                lstCliente = new ClienteLogica().GetClientes(new ClienteEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" });
+                gvClientes.DataSource = lstCliente;
+                gvClientes.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
+
+        private void Mensaje(string titulo, string msg, bool esCorrecto, string textoBoton = "Ok")
+        {
+            string icono = esCorrecto ? "success" : "error";
+            string script = "Swal.fire({ title: '" + titulo + "!', text: '" + msg + "', icon: '" + icono + "', confirmButtonText: '" + textoBoton + "' })";
+            ScriptManager.RegisterStartupScript(this, GetType(), "script", script, true);
+        }
 
         protected void gvClientes_PreRender(object sender, EventArgs e)
         {
@@ -36,39 +66,39 @@ namespace SIMP
             }
             ClienteEntidad cliente = new ClienteEntidad()
             {
-                Nombre = txbNombre.Text,
-                Primer_Apellido = txbApellido1.Text,
-                Segundo_Apellido = txbApellido2.Text,
-                Correo_Electronico = txbEmail.Text,
-                Telefono = txbTelefono.Text,
+                Nombre = txtNombre.Text,
+                Primer_Apellido = txtApellido1.Text,
+                Segundo_Apellido = txtApellido2.Text,
+                Correo_Electronico = txtEmail.Text,
+                Telefono = txtTelefono.Text,
                 Estado = "",
                 Usuario = "hcalvo",
                 Esquema = "dbo"
             };
-            ClienteLogica.MantCliente(cliente);
+            new ClienteLogica().MantCliente(cliente);
 
             LimpiarCampos();
             Response.Redirect("Index.aspx");
         }
         private bool CamposVacios()
         {
-            if (string.IsNullOrEmpty(txbNombre.Text))
+            if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txbApellido1.Text))
+            else if (string.IsNullOrEmpty(txtApellido1.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txbApellido2.Text))
+            else if (string.IsNullOrEmpty(txtApellido2.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txbEmail.Text))
+            else if (string.IsNullOrEmpty(txtEmail.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txbTelefono.Text))
+            else if (string.IsNullOrEmpty(txtTelefono.Text))
             {
                 return true;
             }
@@ -77,10 +107,10 @@ namespace SIMP
 
         private void LimpiarCampos()
         {
-            txbNombre.Text = null;
-            txbApellido1.Text = string.Empty;
-            txbApellido2.Text = string.Empty;
-            txbEmail.Text = string.Empty;
+            txtNombre.Text = null;
+            txtApellido1.Text = string.Empty;
+            txtApellido2.Text = string.Empty;
+            txtEmail.Text = string.Empty;
         }
     }
 }
