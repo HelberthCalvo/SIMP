@@ -1,73 +1,88 @@
 ﻿<%@ Page Title="Mantenimiento de Usuario" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="SIMP.Usuario" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel runat="server">
+
+    <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <h2>Mantenimiento de Usuario</h2>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label class="control-label">ID:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtId"></asp:TextBox>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Nombre:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtNombre"></asp:TextBox>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Primer Apellido:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtPrimer_Apellido"></asp:TextBox>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Segundo Apellido:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtSegundo_Apellido"></asp:TextBox>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Usuario:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtUsuario"></asp:TextBox>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Contraseña:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtContrasena"></asp:TextBox>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Rol:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtRol"></asp:TextBox>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Estado:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="txtEstado"></asp:TextBox>
-                    </div>
-                    <asp:UpdatePanel runat="server">
-                        <ContentTemplate>
-                            <div class="form-actions">
-                                <div class="card-body d-flex flex-row justify-content-center flex-wrap">
-                                    <asp:LinkButton ID="btnGuardar" class="btn btn-success rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
-                                </div>
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
 
+            <div class="row">
+                <%--                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <label class="form-label">Nombre:</label>
+                        <asp:TextBox runat="server" ID="txtId" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+                    </div>
+                </div>--%>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Nombre:</label>
+                        <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+                    </div>
                 </div>
-            </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Primer Apellido:</label>
+                        <asp:TextBox runat="server" ID="txtPrimer_Apellido" CssClass="form-control" placeholder="Primer Apellido"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Segundo Apellido:</label>
+                        <asp:TextBox runat="server" ID="txtSegundo_Apellido" CssClass="form-control" placeholder="Segundo Apellido"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Usuario:</label>
+                        <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Contraseña:</label>
+                        <asp:TextBox runat="server" TextMode="Password" ID="txtContrasena" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Rol:</label>
+                        <asp:TextBox runat="server" ID="txtRol" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Estado:</label>
+                        <asp:TextBox runat="server" ID="txtEstado" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>                               
+                                <br />
+                                <asp:LinkButton ID="btnGuardar" class="btn btn-success rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+
+                <%--<asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-primary" Text="Agregar" OnClick="btnAgregar_Click" />--%>
         </ContentTemplate>
 
     </asp:UpdatePanel>
 
-    <asp:UpdatePanel runat="server">
+    <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div class="row pb-4">
                 <div class="col-sm-12">
                     <div class="table-responsive">
                         <asp:GridView ID="gvUsuarios" CssClass="table-responsive table customize-table v-middle"
-                            DataKeyNames="Id,
-                                            Nombre, 
-                                            Primer_Apellido,
-                                            Segundo_Apellido,
-                                            Usuario,
-                                            Contrasena,
-                                            Rol,
-                                            Estado"
+                            DataKeyNames="Nombre, 
+                                          Primer_Apellido,
+                                          Segundo_Apellido,
+                                          Usuario,
+                                          Rol,
+                                          Estado"
                             OnPreRender="gvUsuarios_PreRender"
                             OnRowCommand="gvUsuarios_RowCommand"
                             AutoGenerateColumns="false"
@@ -79,7 +94,6 @@
                                 <asp:BoundField DataField="Primer_Apellido" HeaderText="Primer Apellido" />
                                 <asp:BoundField DataField="Segundo_Apellido" HeaderText="Segundo Apellido" />
                                 <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
-                                <asp:BoundField DataField="Contrasena" HeaderText="Contraseña" />
                                 <asp:BoundField DataField="Rol" HeaderText="Rol" />
                                 <asp:BoundField DataField="Estado" HeaderText="Estado" />
                                 <asp:ButtonField CommandName="editar" Text="<i class='fas fa-2x fa-edit'></i>" />

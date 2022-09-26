@@ -41,9 +41,9 @@ namespace SIMP.Datos
                 while (reader.Read())
                 {
                     UsuarioEntidad obj = new UsuarioEntidad();
-                    obj.Id = UtilitarioSQL.ObtieneInt(reader, "ID");
-                    obj.Rol = UtilitarioSQL.ObtieneInt(reader, "IDROL");
-                    obj.Estado = UtilitarioSQL.ObtieneInt(reader, "IDESTADO");
+                    obj.Id = UtilitarioSQL.ObtieneInt(reader, "PK_TBL_SIMP_SEG_USUARIO");
+                    obj.Rol = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_ROL");
+                    obj.Estado = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_ESTADO");
                     obj.Nombre = UtilitarioSQL.ObtieneString(reader, "NOMBRE");
                     obj.Primer_Apellido = UtilitarioSQL.ObtieneString(reader, "PRIMER_APELLIDO");
                     obj.Segundo_Apellido = UtilitarioSQL.ObtieneString(reader, "SEGUNDO_APELLIDO");
@@ -83,6 +83,8 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_NOMBRE", usuario.Nombre);
                 cmd.Parameters.AddWithValue("@P_PRIMER_APELLIDO", usuario.Primer_Apellido);
                 cmd.Parameters.AddWithValue("@P_SEGUNDO_APELLIDO", usuario.Segundo_Apellido);
+                cmd.Parameters.AddWithValue("@P_USUARIO1", usuario.Usuario1);
+                cmd.Parameters.AddWithValue("@P_CONTRASENA", usuario.Contrasena);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", usuario.Esquema);
 
                 myConexion.Open();
