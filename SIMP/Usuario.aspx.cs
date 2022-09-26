@@ -216,5 +216,64 @@ namespace SIMP
             //    Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             //}
         }
+        //protected void gvOperaciones_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "editar")
+        //    {
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        hfIdOperacion.Value = gvOperaciones.DataKeys[index].Values[0].ToString();
+        //        try
+        //        {
+        //            ddlTipo.SelectedValue = gvOperaciones.DataKeys[index].Values[1].ToString();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            ddlTipo.SelectedIndex = -1;
+        //        }
+        //        txtCuotasPorAño.Text = gvOperaciones.DataKeys[index].Values[2].ToString();
+        //        txtPeriodos.Text = gvOperaciones.DataKeys[index].Values[14].ToString();
+        //        txtDescripcion.Text = gvOperaciones.DataKeys[index].Values[4].ToString();
+        //        txtBanco.Text = gvOperaciones.DataKeys[index].Values[5].ToString();
+        //        txtFechaInicio.Text = gvOperaciones.DataKeys[index].Values[6].ToString();
+        //        txtFechaFinal.Text = gvOperaciones.DataKeys[index].Values[7].ToString();
+
+        //        decimal monto = Math.Round(Convert.ToDecimal(gvOperaciones.DataKeys[index].Values[8].ToString()), 2);
+        //        decimal montoOtros = Math.Round(Convert.ToDecimal(gvOperaciones.DataKeys[index].Values[15].ToString()), 2);
+        //        txtMontoPrincipal.Text = monto.ToString();
+        //        txtMontoOtros.Text = montoOtros.ToString();
+        //        txtTasaInteres.Text = gvOperaciones.DataKeys[index].Values[13].ToString();
+        //        string estado = gvOperaciones.DataKeys[index].Values[10].ToString();
+        //        txtDiaPago.Text = gvOperaciones.DataKeys[index].Values[11].ToString();
+        //        if (estado == "1")
+        //        {
+        //            rdbEstadoInactivo.Checked = false;
+        //            rdbEstadoActivo.Checked = true;
+        //        }
+        //        else
+        //        {
+        //            rdbEstadoActivo.Checked = false;
+        //            rdbEstadoInactivo.Checked = true;
+        //        }
+        //    }
+        //    else if (e.CommandName == "eliminar")
+        //    {
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        //int ID = Convert.ToInt32(gvOperaciones.DataKeys[0].Values[index]);
+        //        OperacionBancariaE operacionBancaria = new OperacionBancariaE()
+        //        {
+        //            ID = Convert.ToInt32(gvOperaciones.DataKeys[index].Values[0].ToString()),
+        //            Opcion = 1,
+        //            Estado = "0",
+        //            Esquema = Session["Compañia"].ToString(),
+        //            Usuario = Session["UsuarioSistema"].ToString()
+        //        };
+
+        //        new OperacionBancariasL().MantOperacionBancaria(operacionBancaria);
+
+        //        LimpiarOperacionBancaria();
+        //        CargarGridOperaciones();
+        //        Mensaje("Operación Bancaría", "Desactivada correctamente", true);
+        //    }
+        //}
     }
 }

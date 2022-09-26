@@ -7,29 +7,42 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SIMP.Pages.Cliente
+namespace SIMP
 {
-    public partial class Create : System.Web.UI.Page
+    public partial class Cliente : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
+
+        protected void gvClientes_PreRender(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (CamposVacios())
             {
                 //Mensaje("Moneda", "Debe ingresar todos los datos", false);
                 return;
             }
-            ClienteEntidad cliente = new ClienteEntidad() {
+            ClienteEntidad cliente = new ClienteEntidad()
+            {
                 Nombre = txbNombre.Text,
                 Primer_Apellido = txbApellido1.Text,
                 Segundo_Apellido = txbApellido2.Text,
                 Correo_Electronico = txbEmail.Text,
                 Telefono = txbTelefono.Text,
                 Estado = "",
+                Usuario = "hcalvo",
                 Esquema = "dbo"
             };
             ClienteLogica.MantCliente(cliente);
@@ -37,7 +50,6 @@ namespace SIMP.Pages.Cliente
             LimpiarCampos();
             Response.Redirect("Index.aspx");
         }
-
         private bool CamposVacios()
         {
             if (string.IsNullOrEmpty(txbNombre.Text))

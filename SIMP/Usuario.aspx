@@ -1,8 +1,8 @@
-﻿<%@ Page Title="Mantenimiento de Usuario" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="SIMP.Usuario" %>
+﻿<%@ Page Title="Mantenimiento de Usuario" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuario.aspx.cs" Inherits="SIMP.Usuario" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+    <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <h2>Mantenimiento de Usuario</h2>
 
@@ -58,13 +58,9 @@
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <asp:UpdatePanel runat="server">
-                            <ContentTemplate>
-
-                                
+                            <ContentTemplate>                               
                                 <br />
                                 <asp:LinkButton ID="btnGuardar" class="btn btn-success rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
-
-
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
