@@ -2,12 +2,12 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:UpdatePanel id="form" runat="server">
+    <asp:UpdatePanel ID="form" runat="server">
         <ContentTemplate>
             <h2 class="fs-4">Mantenimiento de Usuario</h2>
             <hr />
             <div class="row">
-                <asp:HiddenField runat="server" ID="txtId"/>
+                <asp:HiddenField runat="server" ID="txtId" />
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Nombre:</label>
@@ -41,13 +41,21 @@
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Rol:</label>
-                        <asp:TextBox runat="server" ID="txtRol" CssClass="form-control"></asp:TextBox>
+                        <asp:DropDownList runat="server" ID="ddlRol" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Estado:</label>
-                        <asp:TextBox runat="server" ID="txtEstado" CssClass="form-control"></asp:TextBox>
+                        <label style="color: black !important">Estado</label>
+                        <br />
+                        <div class="form-check">
+                            <asp:RadioButton ID="rdbActivo" Style="border:none" Checked="true" GroupName="groupEstado" runat="server" />
+                            <label class="form-check-label" style="color: black !important" for="MainContent_rdbActivo">Activo</label>
+                        </div>
+                        <div class="form-check">
+                            <asp:RadioButton ID="rdbInactivo" Style="border:none" GroupName="groupEstado" runat="server" />
+                            <label class="form-check-label" style="color: black !important" for="MainContent_rdbInactivo">Inactivo</label>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -56,7 +64,7 @@
                             <ContentTemplate>
                                 <br />
                                 <asp:LinkButton ID="btnGuardar" class="btn btn-success rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
-                                <asp:LinkButton ID="LinkButton2" class="btn btn-secondary rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Limpiar</asp:LinkButton>
+                                <asp:LinkButton ID="btnLimpiar" class="btn btn-secondary rounded-pill px-4" runat="server" OnClick="btnLimpiar_Click">Limpiar</asp:LinkButton>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
@@ -64,31 +72,32 @@
                 </div>
 
                 <div class="row pb-4">
-                <div class="col-sm-12">
-                    <div class="table-responsive">
-                        <asp:GridView ID="gvUsuarios" CssClass="table-responsive table customize-table v-middle"
-                            DataKeyNames="Id, Nombre, Primer_Apellido, Segundo_Apellido, Usuario, Rol, Estado"
-                            OnPreRender="gvUsuarios_PreRender"
-                            OnRowCommand="gvUsuarios_RowCommand"
-                            AutoGenerateColumns="false"
-                            HeaderStyle-CssClass="table-dark"
-                            Width="100%"
-                            runat="server">
-                            <Columns>
-                                <asp:BoundField DataField="Id" HeaderText="Id" />
-                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                                <asp:BoundField DataField="Primer_Apellido" HeaderText="Primer Apellido" />
-                                <asp:BoundField DataField="Segundo_Apellido" HeaderText="Segundo Apellido" />
-                                <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
-                                <asp:BoundField DataField="Rol" HeaderText="Rol" />
-                                <asp:BoundField DataField="Estado" HeaderText="Estado" />
-                                <asp:ButtonField CommandName="editar" Text="<i class='fas fa-2x fa-edit'></i>" />
-                                <asp:ButtonField CommandName="eliminar" Text="<i class='fas fa-2x fa-trash-alt'></i>" />
-                            </Columns>
-                        </asp:GridView>
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <asp:GridView ID="gvUsuarios" CssClass="table-responsive table customize-table v-middle"
+                                DataKeyNames="Id, Nombre, Primer_Apellido, Segundo_Apellido, Usuario, Rol, Estado"
+                                OnPreRender="gvUsuarios_PreRender"
+                                OnRowCommand="gvUsuarios_RowCommand"
+                                OnRowDataBound="gvUsuarios_RowDataBound"
+                                AutoGenerateColumns="false"
+                                HeaderStyle-CssClass="table-dark"
+                                Width="100%"
+                                runat="server"  >
+                                <Columns>
+                                    <asp:BoundField DataField="Id" HeaderText="Id" />
+                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                    <asp:BoundField DataField="Primer_Apellido" HeaderText="Primer Apellido" />
+                                    <asp:BoundField DataField="Segundo_Apellido" HeaderText="Segundo Apellido" />
+                                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                                    <asp:BoundField DataField="Rol" HeaderText="Rol" />
+                                    <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                                    <asp:ButtonField CommandName="editar" Text="<i class='fas fa-2x fa-edit'></i>" />
+                                    <asp:ButtonField CommandName="eliminar" Text="<i class='fas fa-2x fa-trash-alt'></i>" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <%--<asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-primary" Text="Agregar" OnClick="btnAgregar_Click" />--%>
         </ContentTemplate>
 

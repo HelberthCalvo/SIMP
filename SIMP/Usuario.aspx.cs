@@ -22,6 +22,7 @@ namespace SIMP
             {
                 //HabilitaOpcionesPermisos();
                 CargarGridUsuario();
+                CargarRoles();
             }
         }
 
@@ -73,13 +74,14 @@ namespace SIMP
         {
             if (ValidarCampos())
             {
-                Mensaje("Moneda", "Debe ingresar todos los datos", false);
+                Mensaje("Usuario", "Debe ingresar todos los datos", false);
                 return;
             }
             UsuarioEntidad usuario = new UsuarioEntidad();
             usuario.Id = !string.IsNullOrEmpty(txtId.Value.ToString()) ? Convert.ToInt32(txtId.Value) : 0;
-            usuario.Rol = !string.IsNullOrEmpty(txtRol.Text.ToString()) ? Convert.ToInt32(txtRol.Text) : 0;
-            usuario.Estado = !string.IsNullOrEmpty(txtEstado.Text.ToString()) ? Convert.ToInt32(txtEstado.Text) : 0;
+            usuario.Rol = !string.IsNullOrEmpty(ddlRol.SelectedValue.ToString()) ? Convert.ToInt32(ddlRol.SelectedValue) : 0;
+            usuario.Estado = 1;
+            usuario.Estado = rdbActivo.Checked? 1:2;
             usuario.Nombre = txtNombre.Text;
             usuario.Primer_Apellido = txtPrimer_Apellido.Text;
             usuario.Segundo_Apellido = txtSegundo_Apellido.Text;
@@ -116,28 +118,27 @@ namespace SIMP
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtRol.Text))
+            else if (ddlRol.Text == "0")
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtEstado.Text))
-            {
-                return true;
-            }
+            //else if (string.IsNullOrEmpty(txtEstado.Text))
+            //{
+            //    return true;
+            //}
             return false;
         }
 
         private void LimpiarCampos()
         {
-            //txtId.Text = null;
-            txtRol.Text = string.Empty;
-            txtEstado.Text = string.Empty;
+            txtId.Value = string.Empty;
+            //txtEstado.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtPrimer_Apellido.Text = string.Empty;
             txtSegundo_Apellido.Text = string.Empty;
             txtUsuario.Text = string.Empty;
-            txtContrasena.Text = string.Empty;
-            string estado = string.Empty;
+            txtContrasena.Attributes["value"] = string.Empty;
+            ddlRol.SelectedIndex = -1;
         }
 
         private void CargarGridUsuario()
@@ -148,6 +149,25 @@ namespace SIMP
                 lstUsuario = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" });
                 gvUsuarios.DataSource = lstUsuario;
                 gvUsuarios.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
+        private void CargarRoles()
+        {
+            try
+            {
+                List<RolEntidad> lstRoles = new List<RolEntidad>();
+                lstRoles.Add(new RolEntidad() { Id = 0, Descripcion = "Seleccione un rol", });
+                lstRoles.AddRange(new RolLogica().GetRoles(new RolEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" }));
+                
+                ddlRol.DataSource = lstRoles;
+
+                ddlRol.DataTextField = "Descripcion";
+                ddlRol.DataValueField = "Id";
+                ddlRol.DataBind();
             }
             catch (Exception ex)
             {
@@ -182,19 +202,20 @@ namespace SIMP
                     txtPrimer_Apellido.Text = gvUsuarios.DataKeys[index].Values[2].ToString();
                     txtSegundo_Apellido.Text = gvUsuarios.DataKeys[index].Values[3].ToString();
                     txtUsuario.Text = gvUsuarios.DataKeys[index].Values[4].ToString();
-                    txtRol.Text = gvUsuarios.DataKeys[index].Values[5].ToString();
-                    txtEstado.Text = gvUsuarios.DataKeys[index].Values[6].ToString();
+                    txtContrasena.Attributes["value"] = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" }).FirstOrDefault().Contrasena;
+                    ddlRol.SelectedValue = gvUsuarios.DataKeys[index].Values[5].ToString();
+                    //txtEstado.Text = gvUsuarios.DataKeys[index].Values[6].ToString();
                     string estado = gvUsuarios.DataKeys[index].Values[6].ToString();
-                    //if (estado == "1")
-                    //{
-                    //    rdbInactivo.Checked = false;
-                    //    rdbActivo.Checked = true;
-                    //}
-                    //else
-                    //{
-                    //    rdbActivo.Checked = false;
-                    //    rdbInactivo.Checked = true;
-                    //}
+                    if (estado == "1")
+                    {
+                        rdbInactivo.Checked = false;
+                        rdbActivo.Checked = true;
+                    }
+                    else
+                    {
+                        rdbActivo.Checked = false;
+                        rdbInactivo.Checked = true;
+                    }
                     CargarGridUsuario();
                 }
                 else if (e.CommandName == "eliminar")
@@ -202,12 +223,7 @@ namespace SIMP
                     int index = Convert.ToInt32(e.CommandArgument);
                     UsuarioEntidad usuario = new UsuarioEntidad();
                     usuario.Id = Convert.ToInt32(gvUsuarios.DataKeys[index].Values[0]);
-                    usuario.Nombre = gvUsuarios.DataKeys[index].Values[1].ToString();
-                    usuario.Primer_Apellido = gvUsuarios.DataKeys[index].Values[2].ToString();
-                    usuario.Segundo_Apellido = gvUsuarios.DataKeys[index].Values[3].ToString();
-                    usuario.Usuario1 = gvUsuarios.DataKeys[index].Values[4].ToString();
-                    usuario.Rol = Convert.ToInt32(gvUsuarios.DataKeys[index].Values[5].ToString());
-                    usuario.Estado = Convert.ToInt32(gvUsuarios.DataKeys[index].Values[6].ToString());
+                    usuario.Opcion = 1;
                     usuario.Esquema = "dbo";
                     usuario.Usuario = "hcalvo";
 
@@ -221,6 +237,29 @@ namespace SIMP
             {
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        protected void gvUsuarios_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.Cells[6].Text == "1")
+                {
+                    e.Row.Cells[6].Text = "Activo";
+
+                }
+                else
+                {
+                    e.Row.Cells[6].Text = "Inactivo";
+                }
+                e.Row.Cells[5].Text = new RolLogica().GetRoles(new RolEntidad() { Id = int.Parse(e.Row.Cells[5].Text), Opcion = 1, Esquema = "dbo" }).FirstOrDefault().Descripcion;
+            }
+
         }
         //protected void gvOperaciones_RowCommand(object sender, GridViewCommandEventArgs e)
         //{

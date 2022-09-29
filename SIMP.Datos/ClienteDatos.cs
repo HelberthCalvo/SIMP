@@ -43,7 +43,7 @@ namespace SIMP.Datos
                 while (reader.Read())
                 {
                     ClienteEntidad obj = new ClienteEntidad();
-                    obj.Id = UtilitarioSQL.ObtieneInt(reader, "ID");
+                    obj.Id = UtilitarioSQL.ObtieneInt(reader, "PK_TBL_SIMP_CLIENTE");
                     //obj.Estado = UtilitarioSQL.ObtieneInt(reader, "IDESTADO");
                     obj.Nombre = UtilitarioSQL.ObtieneString(reader, "NOMBRE");
                     obj.Primer_Apellido = UtilitarioSQL.ObtieneString(reader, "PRIMER_APELLIDO");
