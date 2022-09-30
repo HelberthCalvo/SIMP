@@ -1,0 +1,116 @@
+﻿.TreeView i {
+  color: #2f659a;
+}
+
+.TreeView label {
+  color: #555555;
+  font-size: 1.1em;
+}
+
+.TreeViewCheck {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.TreeView img {
+  height: 20px !important;
+}
+
+
+.TreeView table {
+  margin-bottom: 1%;
+}
+
+
+
+.TreeView input[type="checkbox"] {
+  position: relative;
+  right: 0px !important;
+  width: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Hide the browser's default checkbox */
+.TreeViewCheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 2px solid #868686;
+  border-radius: 15%;
+}
+
+/* On mouse-over, add a grey background color */
+/*.TreeViewCheck:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+*/
+
+/* When the checkbox is checked, add a blue background */
+.TreeViewCheck input:checked ~ .checkmark {
+  background-color: #2f659a;
+  border: 2px solid #2f659a;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.TreeViewCheck input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.TreeViewCheck .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 7px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  border-radius: 10%;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+
+
+
+

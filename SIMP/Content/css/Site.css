@@ -1,0 +1,78 @@
+﻿img.dark-logo,
+img.light-logo {
+    width: 2.5rem;
+}
+
+.topbar .navbar-header[data-logobg=skin1] .navbar-brand .logo-text,
+.topbar .navbar-header[data-logobg=skin2] .navbar-brand .logo-text,
+.topbar .navbar-header[data-logobg=skin3] .navbar-brand .logo-text,
+.topbar .navbar-header[data-logobg=skin4] .navbar-brand .logo-text,
+.topbar .navbar-header[data-logobg=skin5] .navbar-brand .logo-text {
+    color: #ffffff;
+}
+
+.topbar .navbar-header[data-logobg=skin6] .navbar-brand .logo-text {
+    color: #3e5569;
+}
+
+.content-main-logo {
+    min-height: calc(100vh - 167px);
+}
+
+    .content-main-logo > .main-logo {
+        background-image: url('../img/SecureCR.jpg');
+        min-height: 20rem !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+@media screen and (min-width:992px) {
+    .dropdown-hover li {
+        position: relative;
+    }
+
+    .dropdown-hover .submenu {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: -7px;
+    }
+
+    .dropdown-hover .submenu-left {
+        right: 100%;
+        left: auto;
+    }
+
+    .dropdown-hover > li:hover {
+        background-color: #f1f1f1
+    }
+
+        .dropdown-hover > li:hover > .submenu {
+            display: block;
+        }
+}
+
+.rounded-10{
+    border-radius: 10px !important;
+}
+
+body[data-theme=dark] .color-light {
+    color: #ffffff !important;
+}
+
+.tab-pane.content {
+    margin: 0 !important;
+}
+
+    .tab-pane.content.active {
+        margin: 0.5em !important;
+    }
+
+.tab-pane.content > .body {
+    display: none !important;
+}
+
+.tab-pane.content.active > .body {
+    display: block !important;
+}

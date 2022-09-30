@@ -1,0 +1,231 @@
+﻿
+
+
+.loading-panel {
+    background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99999999;
+    top: 0;
+    left: 0;
+}
+
+.loading-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+
+input[type=checkbox], input[type=radio] {
+    width: 100%;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+}
+
+.form-check-input {
+    border: none !important;
+}
+
+.listaGrids .selected, .listaGridsExistente .selected {
+    background: #d8eeef !important;
+}
+
+.invisibleColumn {
+    display: none;
+}
+
+@media only screen and (max-width: 991px) {
+    .divAutocompletado {
+        display: none;
+    }
+}
+
+input[disabled] {
+    cursor: not-allowed;
+}
+
+
+
+
+.text-right {
+    text-align: right;
+}
+
+
+.swal2-html-container {
+    color: black !important;
+}
+
+.displayNone {
+    display: none;
+}
+
+.containerHorizontalScroll {
+    /*overflow-x: scroll;*/
+    overflow-x: scroll;
+    /*height: 550px;*/
+    /*margin-top:60px;*/
+    scrollbar-face-color: #646464;
+    scrollbar-base-color: #646464;
+    scrollbar-3dlight-color: #646464;
+    scrollbar-highlight-color: #646464;
+    scrollbar-track-color: #000;
+    scrollbar-arrow-color: #000;
+    scrollbar-shadow-color: #646464;
+    scrollbar-dark-shadow-color: #646464;
+}
+
+    .containerHorizontalScroll::-webkit-scrollbar {
+        width: 8px;
+        height: 10px;
+    }
+
+    .containerHorizontalScroll::-webkit-scrollbar-button {
+        background-color: #666;
+    }
+
+    .containerHorizontalScroll::-webkit-scrollbar-track {
+        background-color: #646464;
+    }
+
+    .containerHorizontalScroll::-webkit-scrollbar-track-piece {
+        background-color: #000;
+    }
+
+    .containerHorizontalScroll::-webkit-scrollbar-thumb {
+        height: 50px;
+        background-color: #666;
+        border-radius: 3px;
+    }
+
+    .containerHorizontalScroll::-webkit-scrollbar-corner {
+        background-color: #646464;
+    }
+
+    .containerHorizontalScroll::-webkit-resizer {
+        background-color: #666;
+    }
+
+    .containerHorizontalScroll .badge {
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        font-size: 20px;
+        text-align: left;
+    }
+
+.badgeInHeader {
+    padding-top: 30px;
+}
+
+.tableHorizontalScroll div table thead tr td, .tableHorizontalScroll div table tbody tr td, .tableHorizontalScroll table thead tr td, .tableHorizontalScroll table tbody tr td {
+    width: 240px;
+    max-width: 240px;
+    min-width: 240px;
+    padding: 10px !important;
+    text-align-last: center;
+}
+
+.tableHorizontalScroll div table, .tableHorizontalScroll table {
+    margin-bottom: 0 !important;
+}
+
+    .tableHorizontalScroll div table tbody tr td:first-child, .tableHorizontalScroll table tbody tr td:first-child {
+        background-color: #707cd2;
+        color: #FFF;
+        text-align-last: left;
+        position: absolute !important;
+        line-height: 40px;
+        height: 55px;
+    }
+
+    .tableHorizontalScroll table thead tr td:nth-child(2n+2), .tableHorizontalScroll table tbody tr td:nth-child(2n+3) {
+        background: #3f4551
+    }
+
+    .tableHorizontalScroll div table tbody tr td:nth-child(2), .tableHorizontalScroll table tbody tr td:nth-child(2) {
+        margin-left: 200px;
+    }
+
+.tableHorizontalScroll.mainBadge {
+    padding-top: 4px;
+}
+
+    .tableHorizontalScroll.mainBadge div table tbody tr td:first-child, .tableHorizontalScroll.mainBadge table tbody tr td:first-child {
+        background-color: rgb(75 82 130) !important;
+        border-color: rgba(112,124,210,.5) !important;
+        position: absolute !important;
+        line-height: 40px;
+        height: 55px;
+    }
+
+    .tableHorizontalScroll.mainBadge div table tbody tr td:nth-child(2), .tableHorizontalScroll.mainBadge table tbody tr td:nth-child(2) {
+        margin-left: 200px;
+    }
+
+.rowExistente {
+    background-color: #9090d6 !important;
+}
+
+#main-wrapper[data-layout=horizontal] .topbar .navbar-collapse[data-navbarbg=skin2], #main-wrapper[data-layout=vertical] .topbar .navbar-collapse[data-navbarbg=skin2] {
+    background: #4285f4 !important;
+}
+
+body[data-theme=dark] {
+    color: #fdfeff;
+    background: white !important;
+}
+
+body[data-theme=dark] .accordion-button:not(.collapsed), body[data-theme=dark] .card, body[data-theme=dark] .card-footer, body[data-theme=dark] .css-bar:after, body[data-theme=dark] .dtp > .dtp-content, body[data-theme=dark] .form-control, body[data-theme=dark] .form-select, body[data-theme=dark] .jsgrid-header-row > .jsgrid-header-cell, body[data-theme=dark] .jsgrid-row > .jsgrid-cell, body[data-theme=dark] .jvectormap-container, body[data-theme=dark] .left-part, body[data-theme=dark] .list-group-item, body[data-theme=dark] .list-group-item-action:active, body[data-theme=dark] .lobilists .lobilist, body[data-theme=dark] .modal-content, body[data-theme=dark] .nav-tabs .nav-item.show .nav-link, body[data-theme=dark] .nav-tabs .nav-link.active, body[data-theme=dark] .note-editor.note-frame .note-editing-area .note-editable, body[data-theme=dark] .note-editor.note-frame .note-statusbar, body[data-theme=dark] .page-breadcrumb, body[data-theme=dark] .page-item.disabled .page-link, body[data-theme=dark] .page-link, body[data-theme=dark] .popover, body[data-theme=dark] .popover-header, body[data-theme=dark] .right-part.mail-compose, body[data-theme=dark] .right-part.mail-details, body[data-theme=dark] .right-part.mail-list, body[data-theme=dark] .select2-container--classic .select2-selection--single, body[data-theme=dark] .select2-container--default .select2-selection--multiple, body[data-theme=dark] .select2-container--default .select2-selection--single, body[data-theme=dark] .select2-dropdown, body[data-theme=dark] .typeahead.form-control {
+    background-color: white !important;
+}
+
+body[data-theme=dark] .badge-success, body[data-theme=dark] .bg-success, body[data-theme=dark] .btn-success, body[data-theme=dark] .card.bg-success, body[data-theme=dark] .label-success {
+    background-color: #4285f4 !important;
+    border-color: darkblue !important;
+}
+
+body[data-theme=dark] .badge-danger, body[data-theme=dark] .bg-danger, body[data-theme=dark] .btn-danger, body[data-theme=dark] .card.bg-danger, body[data-theme=dark] .label-danger {
+    background-color: dimgrey !important;
+    border-color: black !important;
+}
+
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link {
+    opacity: 1;
+    background-color: #4285f4;
+    border-left: 3px solid transparent;
+    font-weight: 500;
+    color:white !important;
+}
+
+body[data-theme=dark] .badge-info, body[data-theme=dark] .bg-info, body[data-theme=dark] .btn-info, body[data-theme=dark] .card.bg-info, body[data-theme=dark] .label-info {
+    /* background-color: rgba(44,171,227,.5)!important; */
+    /* border-color: rgba(44,171,227,.5)!important; */
+    background-color:white !important;
+}
+
+.text-white {
+    color: black !important;
+}
+
+.card {
+     margin-bottom: 0px; 
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0solidrgba(0,0,0,.125);
+    border-radius: 0;
+}
+

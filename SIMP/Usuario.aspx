@@ -49,11 +49,11 @@
                         <label style="color: black !important">Estado</label>
                         <br />
                         <div class="form-check">
-                            <asp:RadioButton ID="rdbActivo" Style="border:none" Checked="true" GroupName="groupEstado" runat="server" />
+                            <asp:RadioButton ID="rdbActivo" style="color:black !important; background:white !important" class="form-check-input" Checked="true" GroupName="groupEstado" runat="server" />
                             <label class="form-check-label" style="color: black !important" for="MainContent_rdbActivo">Activo</label>
                         </div>
                         <div class="form-check">
-                            <asp:RadioButton ID="rdbInactivo" Style="border:none" GroupName="groupEstado" runat="server" />
+                            <asp:RadioButton ID="rdbInactivo" style="color:black !important; background:white !important" class="form-check-input" GroupName="groupEstado" runat="server" />
                             <label class="form-check-label" style="color: black !important" for="MainContent_rdbInactivo">Inactivo</label>
                         </div>
                     </div>
