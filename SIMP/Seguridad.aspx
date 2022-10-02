@@ -1,18 +1,5 @@
-﻿<%@ Page Title="Seguridad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MantSeguridad.aspx.cs" Inherits="CashFlow.UI.MantSeguridad" %>
+﻿<%@ Page Title="Seguridad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Seguridad.aspx.cs" Inherits="SIMP.Seguridad" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">--%>
-    <%
-      if (Session["Compañia"] == null || Session["UsuarioSistema"].ToString() == null)
-      {
-          Response.Redirect("Login.aspx", false);
-      }
-    %>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="scripts" runat="server">
-    <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>--%>
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
