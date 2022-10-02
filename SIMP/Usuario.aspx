@@ -91,8 +91,8 @@
                                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
                                     <asp:BoundField DataField="Rol" HeaderText="Rol" />
                                     <asp:BoundField DataField="Estado" HeaderText="Estado" />
-                                    <asp:ButtonField CommandName="editar" Text="<i class='fas fa-2x fa-edit'></i>" />
-                                    <asp:ButtonField CommandName="eliminar" Text="<i class='fas fa-2x fa-trash-alt'></i>" />
+                                    <asp:ButtonField CommandName="editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
+                                    <asp:ButtonField CommandName="eliminar" ControlStyle-CssClass="text-danger" Text="<i class='fas fa-xl fa-trash-alt'></i>" />
                                 </Columns>
                             </asp:GridView>
                         </div>

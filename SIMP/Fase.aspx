@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <asp:HiddenField ID="idFase" runat="server" />
+            <asp:HiddenField ID="hdnIdFase" runat="server" />
+            <asp:HiddenField ID="hdnIdProyecto" runat="server" />
             <h2 class="fs-4">Mantenimiento de Fases</h2>
             <hr />
             <div class="row">
@@ -47,7 +48,8 @@
                                           IdEstado,
                                           Nombre,
                                           Descripcion,
-                                          NombreProyecto"
+                                          NombreProyecto,
+                                          NombreEstado"
                             OnPreRender="gvFases_PreRender"
                             OnRowCommand="gvFases_RowCommand"
                             AutoGenerateColumns="false"
@@ -61,9 +63,10 @@
                                 <asp:BoundField DataField="Nombre" HeaderText="Fase" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                                 <asp:BoundField DataField="NombreProyecto" HeaderText="Proyecto" />
+                                <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
                                 <asp:ButtonField CommandName="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                                 <asp:ButtonField CommandName="Eliminar" ControlStyle-CssClass="text-danger" Text="<i class='fas fa-xl fa-trash-alt'></i>" />
-                                <asp:ButtonField CommandName="Finalizar" ControlStyle-CssClass="btn btn-success rounded-pill" Text="Finalizar Fase" />
+                                <asp:ButtonField CommandName="CambiarEstado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
                             </Columns>
                         </asp:GridView>
                     </div>

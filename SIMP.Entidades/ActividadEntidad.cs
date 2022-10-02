@@ -13,8 +13,8 @@ namespace SIMP.Entidades
         public int IdUsuario { get; set; }
         public int IdEstado { get; set; }
         public string Descripcion { get; set; }
-        public DateTime Fecha_Inicio { get; set; }
-        public DateTime Fecha_Estimada { get; set; }
-        public DateTime Fecha_Finalizacion { get; set; }
+        public string Fecha_Inicio { get; set; }
+        public string Fecha_Estimada { get; set; }
+        public string Fecha_Finalizacion { get; set; }
     }
 }

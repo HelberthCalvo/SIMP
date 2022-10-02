@@ -1,18 +1,11 @@
-﻿<%@ Page Title="Mantenimiento Proyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Proyecto.aspx.cs" Inherits="SIMP.Proyecto" %>
-
+﻿<%@ Page Title="Mantenimiento Actividad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Actividad.aspx.cs" Inherits="SIMP.Actividad" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel runat="server" UpdateMode="Always">
+     <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <asp:HiddenField ID="hdnIdProyecto" runat="server" />
-            <h2 class="fs-4">Mantenimiento de Proyectos</h2>
+            <asp:HiddenField ID="hdnIdActividad" runat="server" />
+            <h2 class="fs-4">Mantenimiento de Actividades</h2>
             <hr />
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="mb-4">
-                        <label class="form-label">Nombre</label>
-                        <asp:TextBox runat="server" ID="txbNombre" CssClass="form-control" placeholder="Nombre del proyecto"></asp:TextBox>
-                    </div>
-                </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
                         <label class="form-label">Descripción:</label>
@@ -21,8 +14,20 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Cliente:</label>
-                        <asp:DropDownList runat="server" ID="ddlClientes" CssClass="form-control"></asp:DropDownList>
+                        <label class="form-label">Proyecto:</label>
+                        <asp:DropDownList runat="server" ID="ddlProyecto" OnSelectedIndexChanged="ddlProyecto_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-4">
+                        <label class="form-label">Fase:</label>
+                        <asp:DropDownList runat="server" ID="ddlFase" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-4">
+                        <label class="form-label">Usuario:</label>
+                        <asp:DropDownList runat="server" ID="ddlUsuario" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -58,26 +63,24 @@
             <div class="row pb-4">
                 <div class="col-sm-12">
                     <div class="table-responsive">
-                        <asp:GridView ID="gvProyectos" CssClass="table-responsive table customize-table v-middle"
+                        <asp:GridView ID="gvActividad" CssClass="table-responsive table customize-table v-middle"
                             DataKeyNames="Id,
-                                          IdCliente,
-                                          Nombre,
-                                          Nombre_Cliente,
+                                          IdFase,
+                                          IdUsuario,
                                           Descripcion,
                                           Fecha_Inicio,
                                           Fecha_Estimada,
                                           NombreEstado"
-                            OnPreRender="gvProyectos_PreRender"
-                            OnRowCommand="gvProyectos_RowCommand"
+                            OnPreRender="gvActividad_PreRender"
+                            OnRowCommand="gvActividad_RowCommand"
                             AutoGenerateColumns="false"
                             HeaderStyle-CssClass="table-dark"
                             Width="100%"
                             runat="server">
                             <Columns>
                                 <asp:BoundField DataField="Id" HeaderText="Id" />
-                                <asp:BoundField DataField="IdCliente" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdCliente" />
-                                <asp:BoundField DataField="Nombre" HeaderText="Proyecto" />
-                                <asp:BoundField DataField="Nombre_Cliente" HeaderText="Cliente" />
+                                <asp:BoundField DataField="IdFase" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdFase" />
+                                <asp:BoundField DataField="IdUsuario" HeaderText="IdUsuario" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                                 <asp:BoundField DataField="Fecha_Inicio" HeaderText="Fecha Inicio" />
                                 <asp:BoundField DataField="Fecha_Estimada" HeaderText="Fecha Estimada" />

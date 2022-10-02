@@ -91,10 +91,12 @@ namespace SIMP
                     Esquema = "dbo",
                     Opcion = 0
                 };
-                if (!string.IsNullOrEmpty(idFase.Value))
+                if (!string.IsNullOrEmpty(hdnIdFase.Value))
                 {
-                    fase.Id = Convert.ToInt32(idFase.Value);
-                    idFase.Value = "";
+                    fase.Id = Convert.ToInt32(hdnIdFase.Value);
+                    fase.IdProyecto = Convert.ToInt32(hdnIdProyecto.Value);
+                    hdnIdFase.Value = "";
+                    hdnIdProyecto.Value = "";
                 }
                 FaseLogica.MantFase(fase);
 
@@ -104,6 +106,35 @@ namespace SIMP
             catch (Exception ex)
             {
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
+
+
+        protected void gvFases_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+
+            var id = gvFases.Rows[index].Cells[0].Text;
+            var idProyecto = gvFases.Rows[index].Cells[1].Text;
+            var idEstado = gvFases.Rows[index].Cells[2].Text;
+            var nombre = gvFases.Rows[index].Cells[3].Text;
+            var descripcion = gvFases.Rows[index].Cells[4].Text;
+
+            if (e.CommandName == "Editar")
+            {
+                hdnIdFase.Value = Convert.ToInt32(id).ToString();
+                hdnIdProyecto.Value = Convert.ToInt32(idProyecto).ToString();
+                txbNombre.Text = nombre;
+                txbDescripcion.Text = descripcion;
+            }
+            else if (e.CommandName == "Eliminar")
+            {
+                //ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
+            }
+            else if (e.CommandName == "Finalizar")
+            {
+                FaseLogica.MantFase(new FaseEntidad { Id = Convert.ToInt32(id), Opcion = 0, Esquema = "dbo", IdEstado = 2, IdProyecto = Convert.ToInt32(idProyecto) });
+                CargarGridFases();
             }
         }
 
@@ -131,32 +162,5 @@ namespace SIMP
 
         }
 
-        protected void gvFases_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            int index = Convert.ToInt32(e.CommandArgument);
-
-            var id = gvFases.Rows[index].Cells[0].Text;
-            var idProyecto = gvFases.Rows[index].Cells[1].Text;
-            var idEstado = gvFases.Rows[index].Cells[2].Text;
-            var nombre = gvFases.Rows[index].Cells[3].Text;
-            var descripcion = gvFases.Rows[index].Cells[4].Text;
-
-            if (e.CommandName == "Editar")
-            {
-                idFase.Value = Convert.ToInt32(id).ToString();
-                txbNombre.Text = nombre;
-                txbDescripcion.Text = descripcion;
-                idFase.Value = "";
-            }
-            else if (e.CommandName == "Eliminar")
-            {
-                //ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
-            }
-            else if (e.CommandName == "Finalizar")
-            {
-                FaseLogica.MantFase(new FaseEntidad { Id = Convert.ToInt32(id), Opcion = 0, Esquema = "dbo", IdEstado = 2, IdProyecto = Convert.ToInt32(idProyecto) });
-                CargarGridFases();
-            }
-        }
     }
 }

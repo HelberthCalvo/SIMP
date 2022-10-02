@@ -66,14 +66,24 @@ namespace SIMP
             return formato;
         }
 
+        private string FormatoFechaGridView(string fecha)
+        {
+            return fecha.Split(' ')[0];
+        }
+
         private void CargarGridProyectos()
         {
             try
             {
                 List<ProyectoEntidad> lstProyetos = new List<ProyectoEntidad>();
-                lstProyetos = ProyectoLogica.GetProyectos(new ProyectoEntidad() { 
+                lstProyetos = ProyectoLogica.GetProyectos(new ProyectoEntidad()
+                {
                     Esquema = "dbo"
-                }).FindAll(x=>x.IdEstado==1);
+                });
+                lstProyetos.ForEach(x => { 
+                    x.Fecha_Inicio = FormatoFechaGridView(x.Fecha_Inicio);
+                    x.Fecha_Estimada = FormatoFechaGridView(x.Fecha_Estimada);
+                });
                 gvProyectos.DataSource = lstProyetos;
                 gvProyectos.DataBind();
             }
@@ -105,12 +115,12 @@ namespace SIMP
                     Esquema = "dbo",
                     Opcion = 0
                 };
-                if (!string.IsNullOrEmpty(idProyecto.Value))
+                if (!string.IsNullOrEmpty(hdnIdProyecto.Value))
                 {
-                    proyecto.Id = Convert.ToInt32(idProyecto.Value);
+                    proyecto.Id = Convert.ToInt32(hdnIdProyecto.Value);
                     proyecto.Fecha_Inicio = FormatoFecha(txbFechaInicio.Text);
                     proyecto.Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text);
-                    idProyecto.Value = "";
+                    hdnIdProyecto.Value = "";
                 }
                 ProyectoLogica.MantProyecto(proyecto);
 
@@ -170,7 +180,7 @@ namespace SIMP
 
             if (e.CommandName == "Editar")
             {
-                idProyecto.Value = Convert.ToInt32(id).ToString();
+                hdnIdProyecto.Value = Convert.ToInt32(id).ToString();
                 txbNombre.Text = nombre;
                 txbDescripcion.Text = descripcion;
                 ddlClientes.SelectedValue = idCliente;
