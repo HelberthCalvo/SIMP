@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Mantenimiento Fase" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Fase.aspx.cs" Inherits="SIMP.Fase" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Fase.aspx.cs" Inherits="SIMP.Fase" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>

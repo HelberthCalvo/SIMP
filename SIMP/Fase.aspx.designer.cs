@@ -11,17 +11,26 @@ namespace SIMP
 {
 
 
-    public partial class Cliente
+    public partial class Fase
     {
 
         /// <summary>
-        /// idCliente control.
+        /// hdnIdFase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idCliente;
+        protected global::System.Web.UI.WebControls.HiddenField hdnIdFase;
+
+        /// <summary>
+        /// hdnIdProyecto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnIdProyecto;
 
         /// <summary>
         /// txbNombre control.
@@ -33,40 +42,22 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.TextBox txbNombre;
 
         /// <summary>
-        /// txbApellido1 control.
+        /// txbDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbApellido1;
+        protected global::System.Web.UI.WebControls.TextBox txbDescripcion;
 
         /// <summary>
-        /// txbApellido2 control.
+        /// ddlProyectos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbApellido2;
-
-        /// <summary>
-        /// txbEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbEmail;
-
-        /// <summary>
-        /// txbTelefono control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbTelefono;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProyectos;
 
         /// <summary>
         /// btnGuardar control.
@@ -78,12 +69,12 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
 
         /// <summary>
-        /// gvClientes control.
+        /// gvFases control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvClientes;
+        protected global::System.Web.UI.WebControls.GridView gvFases;
     }
 }

@@ -11,62 +11,89 @@ namespace SIMP
 {
 
 
-    public partial class Cliente
+    public partial class Actividad
     {
 
         /// <summary>
-        /// idCliente control.
+        /// hdnIdActividad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idCliente;
+        protected global::System.Web.UI.WebControls.HiddenField hdnIdActividad;
 
         /// <summary>
-        /// txbNombre control.
+        /// txbDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbNombre;
+        protected global::System.Web.UI.WebControls.TextBox txbDescripcion;
 
         /// <summary>
-        /// txbApellido1 control.
+        /// ddlProyecto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbApellido1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProyecto;
 
         /// <summary>
-        /// txbApellido2 control.
+        /// ddlFase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbApellido2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFase;
 
         /// <summary>
-        /// txbEmail control.
+        /// ddlUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbEmail;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUsuario;
 
         /// <summary>
-        /// txbTelefono control.
+        /// txbFechaInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbTelefono;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaInicio;
+
+        /// <summary>
+        /// CalendarExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+
+        /// <summary>
+        /// txbFechaEstimada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbFechaEstimada;
+
+        /// <summary>
+        /// CalendarExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
 
         /// <summary>
         /// btnGuardar control.
@@ -78,12 +105,12 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
 
         /// <summary>
-        /// gvClientes control.
+        /// gvActividad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvClientes;
+        protected global::System.Web.UI.WebControls.GridView gvActividad;
     }
 }

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMP
 {
-    public partial class Proyecto : System.Web.UI.Page
+    public partial class Proyecto1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -54,8 +54,7 @@ namespace SIMP
         private void Mensaje(string titulo, string msg, bool esCorrecto, string textoBoton = "Ok")
         {
             string icono = esCorrecto ? "success" : "error";
-            string script = $"alert({msg})";
-            //string script = "Swal.fire({ title: '" + titulo + "!', text: '" + msg + "', icon: '" + icono + "', confirmButtonText: '" + textoBoton + "' })";
+            string script = "Swal.fire({ title: '" + titulo + "!', text: '" + msg + "', icon: '" + icono + "', confirmButtonText: '" + textoBoton + "' })";
             ScriptManager.RegisterStartupScript(this, GetType(), "script", script, true);
         }
 
@@ -80,7 +79,7 @@ namespace SIMP
                 {
                     Esquema = "dbo"
                 });
-                lstProyetos.ForEach(x => { 
+                lstProyetos.ForEach(x => {
                     x.Fecha_Inicio = FormatoFechaGridView(x.Fecha_Inicio);
                     x.Fecha_Estimada = FormatoFechaGridView(x.Fecha_Estimada);
                 });
@@ -99,7 +98,6 @@ namespace SIMP
             {
                 if (CamposVacios())
                 {
-                    Mensaje("Aviso", "Debe ingresar todos los datos", false);
                     return;
                 }
 
@@ -123,6 +121,7 @@ namespace SIMP
                     hdnIdProyecto.Value = "";
                 }
                 ProyectoLogica.MantProyecto(proyecto);
+                Mensaje("Aviso", "El proyecto se guardó correctamente", true);
 
                 LimpiarCampos();
                 CargarGridProyectos();
@@ -135,20 +134,29 @@ namespace SIMP
 
         private bool CamposVacios()
         {
-            if (string.IsNullOrEmpty(txbNombre.Text))
+            if (ddlClientes.Items.Count <= 0)
             {
+                Mensaje("Aviso", "No hay clientes disponibles. Por favor agregue uno para continuar", false);
+                return true;
+            }
+            else if (string.IsNullOrEmpty(txbNombre.Text))
+            {
+                Mensaje("Aviso", "Debe ingresar un nombre", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbDescripcion.Text))
             {
+                Mensaje("Aviso", "Debe ingresar una descripción", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbFechaInicio.Text))
             {
+                Mensaje("Aviso", "Debe ingresar una fecha de inicio", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbFechaEstimada.Text))
             {
+                Mensaje("Aviso", "Debe ingresar una fecha de finalización", false);
                 return true;
             }
             return false;
