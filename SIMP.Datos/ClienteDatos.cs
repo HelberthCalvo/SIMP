@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SIMP.Datos
 {
-    public class ClienteDatos
+    public static class ClienteDatos
     {
-        public List<ClienteEntidad> GetClientes(ClienteEntidad cliente)
+        public static List<ClienteEntidad> GetClientes(ClienteEntidad cliente)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;
@@ -32,7 +32,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_SEGUNDO_APELLIDO", cliente.Segundo_Apellido);
                 cmd.Parameters.AddWithValue("@P_CORREO_ELECTRONICO", cliente.Correo_Electronico);
                 cmd.Parameters.AddWithValue("@P_TELEFONO", cliente.Telefono);
-                
+
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", cliente.Esquema);
 
                 myConexion.Open();
@@ -63,7 +63,7 @@ namespace SIMP.Datos
                 throw new ApplicationException("Error en Base de Datos" + ex.Message);
             }
         }
-        public void MantCliente(ClienteEntidad cliente)
+        public static void MantCliente(ClienteEntidad cliente)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;
@@ -102,3 +102,4 @@ namespace SIMP.Datos
         }
     }
 }
+
