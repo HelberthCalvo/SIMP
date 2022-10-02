@@ -22,7 +22,7 @@ namespace SIMP
             {
                 //HabilitaOpcionesPermisos();
                 CargarGridUsuario();
-                CargarRoles();
+                CargarPerfiles();
             }
         }
 
@@ -79,7 +79,7 @@ namespace SIMP
             }
             UsuarioEntidad usuario = new UsuarioEntidad();
             usuario.Id = !string.IsNullOrEmpty(txtId.Value.ToString()) ? Convert.ToInt32(txtId.Value) : 0;
-            usuario.Rol = !string.IsNullOrEmpty(ddlRol.SelectedValue.ToString()) ? Convert.ToInt32(ddlRol.SelectedValue) : 0;
+            usuario.Perfil = !string.IsNullOrEmpty(ddlPerfil.SelectedValue.ToString()) ? Convert.ToInt32(ddlPerfil.SelectedValue) : 0;
             usuario.Estado = 1;
             usuario.Estado = rdbActivo.Checked? 1:2;
             usuario.Nombre = txtNombre.Text;
@@ -118,7 +118,7 @@ namespace SIMP
             {
                 return true;
             }
-            else if (ddlRol.Text == "0")
+            else if (ddlPerfil.Text == "-1")
             {
                 return true;
             }
@@ -138,7 +138,7 @@ namespace SIMP
             txtSegundo_Apellido.Text = string.Empty;
             txtUsuario.Text = string.Empty;
             txtContrasena.Attributes["value"] = string.Empty;
-            ddlRol.SelectedIndex = -1;
+            ddlPerfil.SelectedIndex = 0;
         }
 
         private void CargarGridUsuario()
@@ -155,19 +155,19 @@ namespace SIMP
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
-        private void CargarRoles()
+        private void CargarPerfiles()
         {
             try
             {
-                List<RolEntidad> lstRoles = new List<RolEntidad>();
-                lstRoles.Add(new RolEntidad() { Id = 0, Descripcion = "Seleccione un rol", });
-                lstRoles.AddRange(new RolLogica().GetRoles(new RolEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" }));
+                List<PerfilEntidad> lstPerfiles = new List<PerfilEntidad>();
+                lstPerfiles.Add(new PerfilEntidad() { Id = 0, Descripcion = "Seleccione un perfil", Estado="1"});
+                lstPerfiles.AddRange(new PerfilLogica().GetPerfiles(new PerfilEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" }));
                 
-                ddlRol.DataSource = lstRoles;
+                ddlPerfil.DataSource = lstPerfiles;
 
-                ddlRol.DataTextField = "Descripcion";
-                ddlRol.DataValueField = "Id";
-                ddlRol.DataBind();
+                ddlPerfil.DataTextField = "Descripcion";
+                ddlPerfil.DataValueField = "Id";
+                ddlPerfil.DataBind();
             }
             catch (Exception ex)
             {
@@ -203,7 +203,7 @@ namespace SIMP
                     txtSegundo_Apellido.Text = gvUsuarios.DataKeys[index].Values[3].ToString();
                     txtUsuario.Text = gvUsuarios.DataKeys[index].Values[4].ToString();
                     txtContrasena.Attributes["value"] = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" }).FirstOrDefault().Contrasena;
-                    ddlRol.SelectedValue = gvUsuarios.DataKeys[index].Values[5].ToString();
+                    ddlPerfil.SelectedValue = gvUsuarios.DataKeys[index].Values[5].ToString();
                     //txtEstado.Text = gvUsuarios.DataKeys[index].Values[6].ToString();
                     string estado = gvUsuarios.DataKeys[index].Values[6].ToString();
                     if (estado == "1")
@@ -257,7 +257,7 @@ namespace SIMP
                 {
                     e.Row.Cells[6].Text = "Inactivo";
                 }
-                e.Row.Cells[5].Text = new RolLogica().GetRoles(new RolEntidad() { Id = int.Parse(e.Row.Cells[5].Text), Opcion = 1, Esquema = "dbo" }).FirstOrDefault().Descripcion;
+                e.Row.Cells[5].Text = new PerfilLogica().GetPerfiles(new PerfilEntidad() { Id = int.Parse(e.Row.Cells[5].Text), Opcion = 1, Esquema = "dbo" }).FirstOrDefault().Descripcion;
             }
 
         }

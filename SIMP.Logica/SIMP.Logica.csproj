@@ -41,11 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActividadLogica.cs" />
     <Compile Include="ClienteLogica.cs" />
     <Compile Include="FaseLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoLogica.cs" />
-    <Compile Include="RolLogica.cs" />
+    <Compile Include="PerfilLogica.cs" />
     <Compile Include="UsuarioLogica.cs" />
   </ItemGroup>
   <ItemGroup>

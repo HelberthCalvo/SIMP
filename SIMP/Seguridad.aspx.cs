@@ -42,7 +42,7 @@ namespace SIMP
     //    string nombreUrl = Request.Url.Segments[Request.Url.Segments.Length - 1].ToString();
     //    if (Session["Permiso_" + nombreUrl] != null)
     //    {
-    //      MenuE obMenu = (Session["Permiso_" + nombreUrl] as MenuE);
+    //      MenuEntidad obMenu = (Session["Permiso_" + nombreUrl] as MenuEntidad);
     //      string permisos = string.Empty;
 
     //      if (!obMenu.CrearPermiso)
@@ -94,7 +94,7 @@ namespace SIMP
     //  }
     //}
 
-    #region Perfiles
+    #region PerfilEntidads
     protected void gvPerfil_RowCommand(object sender, GridViewCommandEventArgs e)
     {
       try
@@ -119,8 +119,8 @@ namespace SIMP
         else if (e.CommandName == "eliminar")
         {
           int index = Convert.ToInt32(e.CommandArgument);
-          PerfilE perfil = new PerfilE();
-          perfil.ID = Convert.ToInt32(gvPerfil.DataKeys[index].Values[0]);
+          PerfilEntidad perfil = new PerfilEntidad();
+          perfil.Id = Convert.ToInt32(gvPerfil.DataKeys[index].Values[0]);
           perfil.Descripcion = gvPerfil.DataKeys[index].Values[1].ToString();
           perfil.Estado = "0";
           perfil.Esquema = Session["Compañia"].ToString();
@@ -162,7 +162,7 @@ namespace SIMP
           Mensaje("Perfil", "Debe ingresar todos los datos", false);
           return;
         }
-        PerfilE perfil = new PerfilE();
+        PerfilEntidad perfil = new PerfilEntidad();
         perfil.ID = !string.IsNullOrEmpty(hfIdPerfil.Value.ToString()) ? Convert.ToInt32(hfIdPerfil.Value) : 0;
         perfil.Descripcion = txtDescripcionPerfil.Text;
         perfil.Estado = rdbActivoPerfil.Checked ? "1" : "0";
@@ -188,8 +188,8 @@ namespace SIMP
     {
       try
       {
-        List<PerfilE> lstPerfil = new List<PerfilE>();
-        lstPerfil = new PerfilL().GetPerfiles(new PerfilE() { ID = 0, Opcion = 0, Usuario = Session["UsuarioSistema"].ToString(), Estado = "1", Esquema = Session["Compañia"].ToString() });
+        List<PerfilEntidad> lstPerfil = new List<PerfilEntidad>();
+        lstPerfil = new PerfilL().GetPerfilEntidads(new PerfilEntidad() { ID = 0, Opcion = 0, Usuario = Session["UsuarioSistema"].ToString(), Estado = "1", Esquema = Session["Compañia"].ToString() });
         gvPerfil.DataSource = lstPerfil;
         gvPerfil.DataBind();
 
@@ -235,8 +235,8 @@ namespace SIMP
     {
       try
       {
-        List<UsuarioE> lstUsuario = new List<UsuarioE>();
-        lstUsuario = new UsuarioL().GetUsuarios(new UsuarioE() { ID = 0, Opcion = 0, Usuario = Session["UsuarioSistema"].ToString(), Estado = "1", Esquema = Session["Compañia"].ToString() });
+        List<UsuarioEntidad> lstUsuario = new List<UsuarioEntidad>();
+        lstUsuario = new UsuarioL().GetUsuarios(new UsuarioEntidad() { ID = 0, Opcion = 0, Usuario = Session["UsuarioSistema"].ToString(), Estado = "1", Esquema = Session["Compañia"].ToString() });
         gvUsuario.DataSource = lstUsuario;
         gvUsuario.DataBind();
       }
@@ -294,13 +294,13 @@ namespace SIMP
         else if (e.CommandName == "eliminar")
         {
           int index = Convert.ToInt32(e.CommandArgument);
-          UsuarioE usuario = new UsuarioE();
-          usuario.ID = Convert.ToInt32(gvUsuario.DataKeys[index].Values[0]);
+          UsuarioEntidad usuario = new UsuarioEntidad();
+          usuario.Id = Convert.ToInt32(gvUsuario.DataKeys[index].Values[0]);
           usuario.UsuarioSistema = gvUsuario.DataKeys[index].Values[1].ToString();
           usuario.Nombre = gvUsuario.DataKeys[index].Values[2].ToString();
           usuario.Correo = gvUsuario.DataKeys[index].Values[3].ToString();
           usuario.IDPerfil = Convert.ToInt32(gvUsuario.DataKeys[index].Values[4]);
-          usuario.Estado = "0";
+          usuario.Estado = 0;
           usuario.Esquema = Session["Compañia"].ToString();
           usuario.Usuario = Session["UsuarioSistema"].ToString();
           usuario.CambioClave = gvUsuario.DataKeys[index].Values[7].ToString();
@@ -314,7 +314,7 @@ namespace SIMP
         else if (e.CommandName == "cambiarContrasenna")
         {
           int index = Convert.ToInt32(e.CommandArgument);
-          UsuarioE usuario = new UsuarioE();
+          UsuarioEntidad usuario = new UsuarioEntidad();
           usuario.ID = Convert.ToInt32(gvUsuario.DataKeys[index].Values[0]);
           usuario.UsuarioSistema = gvUsuario.DataKeys[index].Values[1].ToString();
           usuario.Nombre = gvUsuario.DataKeys[index].Values[2].ToString();
@@ -394,7 +394,7 @@ namespace SIMP
 
 
 
-        UsuarioE usuario = new UsuarioE();
+        UsuarioEntidad usuario = new UsuarioEntidad();
         usuario.ID = !string.IsNullOrEmpty(hfIdUsuario.Value.ToString()) ? Convert.ToInt32(hfIdUsuario.Value) : 0;
 
         usuario.Esquema = Session["Compañia"].ToString();
@@ -424,7 +424,7 @@ namespace SIMP
         {
           usuario.Contrasenna = contraseniaAlfanumerica(5);
         }
-        new UsuarioL().MantUsuario(usuario);
+        new UsuarioLogica().MantUsuario(usuario);
 
         if (hdfPermisoEnviarCorreos.Value == "1")
         {
@@ -442,7 +442,7 @@ namespace SIMP
         Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
       }
     }
-    public void EnviarCorreoCrearUsuario(UsuarioE pUsuario)
+    public void EnviarCorreoCrearUsuario(UsuarioEntidad pUsuario)
     {
 
 
@@ -621,22 +621,22 @@ namespace SIMP
       try
       {
         TreeNode nodoMenu;
-        MenuE obMenuE = new MenuE();
+        MenuEntidad obMenuEntidad = new MenuEntidad();
         MenuL obMenuL = new MenuL();
         string usuarioLogin = Session["UsuarioSistema"].ToString();
         string Compania = Session["Compañia"].ToString();
-        List<MenuE> listaMenu = new List<MenuE>();
+        List<MenuEntidad> listaMenu = new List<MenuEntidad>();
 
 
-        obMenuE.Opcion = 0;
-        obMenuE.Usuario = usuarioLogin;
-        obMenuE.Esquema = Compania;
-        obMenuE.IDPerfil = string.IsNullOrEmpty(ddlPerfilPermisos.SelectedValue) ? 0 : Convert.ToInt32(ddlPerfilPermisos.SelectedValue);
-        listaMenu = obMenuL.ObtenerMenu(obMenuE);
+        obMenuEntidad.Opcion = 0;
+        obMenuEntidad.Usuario = usuarioLogin;
+        obMenuEntidad.Esquema = Compania;
+        obMenuEntidad.IDPerfil = string.IsNullOrEmpty(ddlPerfilPermisos.SelectedValue) ? 0 : Convert.ToInt32(ddlPerfilPermisos.SelectedValue);
+        listaMenu = obMenuL.ObtenerMenu(obMenuEntidad);
 
-        List<MenuE> listaMenuPadre = listaMenu.ToList().Where(x => x.CodigoPadre == "0").ToList();
+        List<MenuEntidad> listaMenuPadre = listaMenu.ToList().Where(x => x.CodigoPadre == "0").ToList();
 
-        foreach (MenuE iMenu in listaMenuPadre)
+        foreach (MenuEntidad iMenu in listaMenuPadre)
         {
           nodoMenu = new TreeNode();
           nodoMenu.Text = "&nbsp;<span><i class='" + iMenu.Icono + "' aria-hidden='true'></i> &nbsp;" + iMenu.Descripcion + "</span>";
@@ -671,11 +671,11 @@ namespace SIMP
 
     }
 
-    private void ObtenerSubmenus(TreeNode nodoPadre, MenuE pMenuHijos, List<MenuE> plistaMenu)
+    private void ObtenerSubmenus(TreeNode nodoPadre, MenuEntidad pMenuHijos, List<MenuEntidad> plistaMenu)
     {
-      List<MenuE> listaMenuHijos = new List<MenuE>();
-      List<MenuE> listaMenuTieneHijos = new List<MenuE>();
-      List<MenuE> listaMenu = plistaMenu;
+      List<MenuEntidad> listaMenuHijos = new List<MenuEntidad>();
+      List<MenuEntidad> listaMenuTieneHijos = new List<MenuEntidad>();
+      List<MenuEntidad> listaMenu = plistaMenu;
 
       TreeNode nodoSubmenu;
 
@@ -685,7 +685,7 @@ namespace SIMP
         // verificacion para identificar si el menu tiene submenus
         if (listaMenuHijos.Count > 0)
         {
-          foreach (MenuE submenu in listaMenuHijos)
+          foreach (MenuEntidad submenu in listaMenuHijos)
           {
             nodoSubmenu = new TreeNode();
 

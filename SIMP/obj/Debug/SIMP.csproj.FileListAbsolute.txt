@@ -235,8 +235,6 @@ C:\Users\User\Source\Repos\SIMP\SIMP\obj\Debug\SIMP.csproj.CoreCompileInputs.cac
 C:\Users\User\Source\Repos\SIMP\SIMP\obj\Debug\SIMP.csproj.CopyComplete
 C:\Users\User\Source\Repos\SIMP\SIMP\obj\Debug\SIMP.dll
 C:\Users\User\Source\Repos\SIMP\SIMP\obj\Debug\SIMP.pdb
-C:\Proyectos\SIMP\SIMP\obj\Debug\SIMP.csproj.AssemblyReference.cache
-C:\Proyectos\SIMP\SIMP\obj\Debug\SIMP.csproj.CoreCompileInputs.cache
 C:\Proyectos\SIMP\SIMP\bin\SIMP.dll.config
 C:\Proyectos\SIMP\SIMP\bin\SIMP.dll
 C:\Proyectos\SIMP\SIMP\bin\SIMP.pdb
@@ -289,6 +287,7 @@ C:\Proyectos\SIMP\SIMP\bin\roslyn\vbc.exe.config
 C:\Proyectos\SIMP\SIMP\bin\roslyn\vbc.rsp
 C:\Proyectos\SIMP\SIMP\bin\roslyn\VBCSCompiler.exe
 C:\Proyectos\SIMP\SIMP\bin\roslyn\VBCSCompiler.exe.config
+C:\Proyectos\SIMP\SIMP\bin\AjaxControlToolkit.dll
 C:\Proyectos\SIMP\SIMP\bin\Antlr3.Runtime.dll
 C:\Proyectos\SIMP\SIMP\bin\AspNet.ScriptManager.jQuery.dll
 C:\Proyectos\SIMP\SIMP\bin\Microsoft.AspNet.FriendlyUrls.dll
@@ -311,6 +310,8 @@ C:\Proyectos\SIMP\SIMP\bin\Antlr3.Runtime.pdb
 C:\Proyectos\SIMP\SIMP\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Proyectos\SIMP\SIMP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Proyectos\SIMP\SIMP\bin\SIMP.Datos.pdb
+C:\Proyectos\SIMP\SIMP\obj\Debug\SIMP.csproj.AssemblyReference.cache
+C:\Proyectos\SIMP\SIMP\obj\Debug\SIMP.csproj.CoreCompileInputs.cache
 C:\Proyectos\SIMP\SIMP\obj\Debug\SIMP.csproj.CopyComplete
 C:\Proyectos\SIMP\SIMP\obj\Debug\SIMP.dll
 C:\Proyectos\SIMP\SIMP\obj\Debug\SIMP.pdb
