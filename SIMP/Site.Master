@@ -17,7 +17,7 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="Content/bootstrap.css" />
 
-<%--    Estilos personalizados--%>
+    <%--    Estilos personalizados--%>
     <link href="Content/css/TreeView.css" rel="stylesheet" />
     <link href="Content/css/Site.css" rel="stylesheet" />
     <link href="Content/css/MiEstilo.css" rel="stylesheet" />
@@ -63,25 +63,25 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon">
+                            <asp:LinkButton runat="server" ID="linkBtnProyecto" CssClass="nav-link" OnClick="linkBtnProyecto_Click">
+                            <div class="sb-nav-link-icon">
                                     <img src="../icons/space-rocket-launch.png" />
                                 </div>
                                 Proyectos
-                            </a>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon">
+                            </asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="linkBtnFase" CssClass="nav-link" OnClick="linkBtnFase_Click">
+                            <div class="sb-nav-link-icon">
                                     <img src="../icons/etapas.png" />
                                 </div>
                                 Fases
-                            </a>
-                            <a class="nav-link" href="index.html">
+                            </asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="linkBtnActividad" CssClass="nav-link" OnClick="linkBtnActividad_Click">
+                            
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/portapapeles.png" />
                                 </div>
                                 Actividades
-                            </a>
-
+                            </asp:LinkButton>
                             <asp:LinkButton runat="server" ID="linkBtnUsuario" CssClass="nav-link" OnClick="linkBtnUsuario_Click">
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/usuario.png" />

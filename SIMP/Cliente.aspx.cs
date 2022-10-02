@@ -25,12 +25,42 @@ namespace SIMP
             }
         }
 
+        protected void gvClientes_PreRender(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            var id = gvClientes.Rows[index].Cells[0].Text;
+            var nombre = gvClientes.Rows[index].Cells[1].Text;
+            var primer_apellido = gvClientes.Rows[index].Cells[2].Text;
+            var segundo_apellido = gvClientes.Rows[index].Cells[3].Text;
+            var correo_electronico = gvClientes.Rows[index].Cells[4].Text;
+            var telefono = gvClientes.Rows[index].Cells[5].Text;
+
+            if (e.CommandName == "Editar")
+            {
+                idCliente.Value = Convert.ToInt32(id).ToString();
+                txbNombre.Text = nombre;
+                txbApellido1.Text = primer_apellido;
+                txbApellido2.Text = segundo_apellido;
+                txbEmail.Text = correo_electronico;
+                txbTelefono.Text = telefono;
+            }
+            else if (e.CommandName == "Eliminar")
+            {
+                ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
+            }
+
+        }
         private void CargarGridCliente()
         {
             try
             {
                 List<ClienteEntidad> lstCliente = new List<ClienteEntidad>();
-                lstCliente = new ClienteLogica().GetClientes(new ClienteEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" });
+                lstCliente = ClienteLogica.GetClientes(new ClienteEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" });
                 gvClientes.DataSource = lstCliente;
                 gvClientes.DataBind();
             }
@@ -39,7 +69,6 @@ namespace SIMP
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
-
         private void Mensaje(string titulo, string msg, bool esCorrecto, string textoBoton = "Ok")
         {
             string icono = esCorrecto ? "success" : "error";
@@ -47,58 +76,55 @@ namespace SIMP
             ScriptManager.RegisterStartupScript(this, GetType(), "script", script, true);
         }
 
-        protected void gvClientes_PreRender(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (CamposVacios())
             {
-                //Mensaje("Moneda", "Debe ingresar todos los datos", false);
+                Mensaje("Aviso", "Debe ingresar todos los datos", false);
                 return;
             }
+
             ClienteEntidad cliente = new ClienteEntidad()
             {
-                Nombre = txtNombre.Text,
-                Primer_Apellido = txtApellido1.Text,
-                Segundo_Apellido = txtApellido2.Text,
-                Correo_Electronico = txtEmail.Text,
-                Telefono = txtTelefono.Text,
+                Nombre = txbNombre.Text,
+                Primer_Apellido = txbApellido1.Text,
+                Segundo_Apellido = txbApellido2.Text,
+                Correo_Electronico = txbEmail.Text,
+                Telefono = txbTelefono.Text,
                 Estado = "",
                 Usuario = "hcalvo",
-                Esquema = "dbo"
+                Esquema = "dbo",
+                Opcion = 0
             };
-            new ClienteLogica().MantCliente(cliente);
+            if (!string.IsNullOrEmpty(idCliente.Value))
+            {
+                cliente.Id = Convert.ToInt32(idCliente.Value);
+                idCliente.Value = "";
+            }
+            ClienteLogica.MantCliente(cliente);
 
             LimpiarCampos();
-            Response.Redirect("Index.aspx");
+            CargarGridCliente();
         }
         private bool CamposVacios()
         {
-            if (string.IsNullOrEmpty(txtNombre.Text))
+            if (string.IsNullOrEmpty(txbNombre.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtApellido1.Text))
+            else if (string.IsNullOrEmpty(txbApellido1.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtApellido2.Text))
+            else if (string.IsNullOrEmpty(txbApellido2.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtEmail.Text))
+            else if (string.IsNullOrEmpty(txbEmail.Text))
             {
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtTelefono.Text))
+            else if (string.IsNullOrEmpty(txbTelefono.Text))
             {
                 return true;
             }
@@ -107,10 +133,11 @@ namespace SIMP
 
         private void LimpiarCampos()
         {
-            txtNombre.Text = null;
-            txtApellido1.Text = string.Empty;
-            txtApellido2.Text = string.Empty;
-            txtEmail.Text = string.Empty;
+            txbNombre.Text = null;
+            txbApellido1.Text = string.Empty;
+            txbApellido2.Text = string.Empty;
+            txbEmail.Text = string.Empty;
+            txbTelefono.Text = string.Empty;
         }
     }
 }

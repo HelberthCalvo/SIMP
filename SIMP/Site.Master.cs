@@ -24,5 +24,20 @@ namespace SIMP
         {
             Response.Redirect("~/Usuario.aspx");
         }
+
+        protected void linkBtnProyecto_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Proyecto.aspx");
+        }
+
+        protected void linkBtnFase_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Fase.aspx");
+        }
+
+        protected void linkBtnActividad_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Actividad.aspx");
+        }
     }
 }
