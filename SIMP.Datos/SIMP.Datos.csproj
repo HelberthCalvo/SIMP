@@ -63,7 +63,9 @@
     <Compile Include="ClienteDatos.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="EstadoDatos.cs" />
+    <Compile Include="FaseDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProyectoDatos.cs" />
     <Compile Include="RolDatos.cs" />
     <Compile Include="UsuarioDatos.cs" />
     <Compile Include="UtilitarioSQL.cs" />

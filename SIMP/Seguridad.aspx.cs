@@ -1,6 +1,5 @@
-﻿using CashFlow.Entidades;
-using CashFlow.Logica;
-using Logica.UTILITIES;
+﻿using SIMP.Entidades;
+using SIMP.Logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +12,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CashFlow.UI
+namespace SIMP
 {
-  public partial class MantSeguridad : System.Web.UI.Page
+  public partial class Seguridad : System.Web.UI.Page
   {
     private const int CHECKEAR_NODOS = 1;
     private const int DESCHECKEAR_NODOS = 2;
@@ -36,64 +35,64 @@ namespace CashFlow.UI
     }
 
 
-    private void HabilitaOpcionesPermisos()
-    {
-      try
-      {
-        string nombreUrl = Request.Url.Segments[Request.Url.Segments.Length - 1].ToString();
-        if (Session["Permiso_" + nombreUrl] != null)
-        {
-          MenuE obMenu = (Session["Permiso_" + nombreUrl] as MenuE);
-          string permisos = string.Empty;
+    //private void HabilitaOpcionesPermisos()
+    //{
+    //  try
+    //  {
+    //    string nombreUrl = Request.Url.Segments[Request.Url.Segments.Length - 1].ToString();
+    //    if (Session["Permiso_" + nombreUrl] != null)
+    //    {
+    //      MenuE obMenu = (Session["Permiso_" + nombreUrl] as MenuE);
+    //      string permisos = string.Empty;
 
-          if (!obMenu.CrearPermiso)
-          {
-            btnGuardarUsuario.Visible = false;
-            btnGuardarPerfil.Visible = false;
-            btnGuardarPermisos.Visible = false;
-            permisos += "- Crear ";
-          }
+    //      if (!obMenu.CrearPermiso)
+    //      {
+    //        btnGuardarUsuario.Visible = false;
+    //        btnGuardarPerfil.Visible = false;
+    //        btnGuardarPermisos.Visible = false;
+    //        permisos += "- Crear ";
+    //      }
 
-          if (!obMenu.EditarPermiso)
-          {
-            gvPerfil.Columns[2].Visible = false;
-            gvPerfil.Columns[3].Visible = false;
-            gvUsuario.Columns[5].Visible = false;
-            gvUsuario.Columns[6].Visible = false;
-            gvUsuario.Columns[7].Visible = false;
-            permisos += "- Editar ";
-          }
+    //      if (!obMenu.EditarPermiso)
+    //      {
+    //        gvPerfil.Columns[2].Visible = false;
+    //        gvPerfil.Columns[3].Visible = false;
+    //        gvUsuario.Columns[5].Visible = false;
+    //        gvUsuario.Columns[6].Visible = false;
+    //        gvUsuario.Columns[7].Visible = false;
+    //        permisos += "- Editar ";
+    //      }
 
-          if (!obMenu.VerPermiso)
-          {
-            gvUsuario.Visible = false;
-            gvPerfil.Visible = false;
-            ddlPerfilPermisos.Enabled = false;
-            permisos += "- Consultar ";
-          }
+    //      if (!obMenu.VerPermiso)
+    //      {
+    //        gvUsuario.Visible = false;
+    //        gvPerfil.Visible = false;
+    //        ddlPerfilPermisos.Enabled = false;
+    //        permisos += "- Consultar ";
+    //      }
 
-          if (obMenu.EnviarPermiso)
-          {
-            hdfPermisoEnviarCorreos.Value = "1";
-          }
-          else
-          {
-            hdfPermisoEnviarCorreos.Value = "0";
-            permisos += "- Enviar Correos";
-          }
+    //      if (obMenu.EnviarPermiso)
+    //      {
+    //        hdfPermisoEnviarCorreos.Value = "1";
+    //      }
+    //      else
+    //      {
+    //        hdfPermisoEnviarCorreos.Value = "0";
+    //        permisos += "- Enviar Correos";
+    //      }
 
-          if (!string.IsNullOrEmpty(permisos))
-          {
-            mensajePermiso.Visible = true;
-            lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
-      }
-    }
+    //      if (!string.IsNullOrEmpty(permisos))
+    //      {
+    //        mensajePermiso.Visible = true;
+    //        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
+    //      }
+    //    }
+    //  }
+    //  catch (Exception ex)
+    //  {
+    //    Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+    //  }
+    //}
 
     #region Perfiles
     protected void gvPerfil_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -469,7 +468,7 @@ namespace CashFlow.UI
         //Nota: La propiedad To es una colección que permite enviar el mensaje a más de un destinatario
 
         //Asunto
-        mmsg.Subject = "Seguridad de Cash Flow";
+        mmsg.Subject = "Seguridad de SIMP";
         mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
 
         //Cuerpo del Mensaje
@@ -483,7 +482,7 @@ namespace CashFlow.UI
             "<p>Nombre: " + pUsuario.Nombre + "</p>" +
             "<p>Contraseña: " + pUsuario.Contrasenna + "</p>" +
             "<p>Perfil: " + pUsuario.FkPerfilNombre + "</p>" +
-            "<p><em>No responder este correo, ya que se generó de forma automática por el sistema Cash Flow<em></p>" +
+            "<p><em>No responder este correo, ya que se generó de forma automática por el sistema SIMP<em></p>" +
                "<p>Gracias.</p>" +
                "<p>&nbsp;</p> " +
                "<p> <img src='cid:" + contentID1 + "' width='450' height='150'/></p> ";
@@ -501,7 +500,7 @@ namespace CashFlow.UI
         CorreoAlias = GlobalesE.CorreoSalida;
 
 
-        string NombreUsuario = "Sistema Cash Flow";
+        string NombreUsuario = "Sistema SIMP";
 
 
         //Correo electronico desde la que enviamos el mensaje

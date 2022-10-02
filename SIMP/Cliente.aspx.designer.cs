@@ -21,7 +21,7 @@ namespace SIMP
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField txtId;
+        protected global::System.Web.UI.WebControls.HiddenField idCliente;
 
         /// <summary>
         /// Control txtNombre.
@@ -30,7 +30,7 @@ namespace SIMP
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.TextBox txbNombre;
 
         /// <summary>
         /// Control txtApellido1.
@@ -39,7 +39,7 @@ namespace SIMP
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellido1;
+        protected global::System.Web.UI.WebControls.TextBox txbApellido1;
 
         /// <summary>
         /// Control txtApellido2.
@@ -48,7 +48,7 @@ namespace SIMP
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellido2;
+        protected global::System.Web.UI.WebControls.TextBox txbApellido2;
 
         /// <summary>
         /// Control txtEmail.
@@ -57,7 +57,7 @@ namespace SIMP
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txbEmail;
 
         /// <summary>
         /// Control txtTelefono.
@@ -66,7 +66,7 @@ namespace SIMP
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
+        protected global::System.Web.UI.WebControls.TextBox txbTelefono;
 
         /// <summary>
         /// Control btnGuardar.
