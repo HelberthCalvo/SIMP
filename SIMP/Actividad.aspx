@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Mantenimiento Actividad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Actividad.aspx.cs" Inherits="SIMP.Actividad" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Actividad.aspx.cs" Inherits="SIMP.Actividad" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <asp:UpdatePanel runat="server" UpdateMode="Always">
+    <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <asp:HiddenField ID="hdnIdActividad" runat="server" />
             <h2 class="fs-4">Mantenimiento de Actividades</h2>
@@ -15,7 +15,7 @@
                 <div class="col-lg-4">
                     <div class="mb-4">
                         <label class="form-label">Proyecto:</label>
-                        <asp:DropDownList runat="server" ID="ddlProyecto" OnSelectedIndexChanged="ddlProyecto_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList runat="server" ID="ddlProyecto" OnSelectedIndexChanged="ddlProyecto_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -79,7 +79,7 @@
                             runat="server">
                             <Columns>
                                 <asp:BoundField DataField="Id" HeaderText="Id" />
-                                <asp:BoundField DataField="IdFase" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdFase" />
+                                <asp:BoundField DataField="IdFase"  HeaderText="IdFase" />
                                 <asp:BoundField DataField="IdUsuario" HeaderText="IdUsuario" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                                 <asp:BoundField DataField="Fecha_Inicio" HeaderText="Fecha Inicio" />

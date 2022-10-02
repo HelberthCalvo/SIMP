@@ -48,8 +48,7 @@ namespace SIMP
         private void Mensaje(string titulo, string msg, bool esCorrecto, string textoBoton = "Ok")
         {
             string icono = esCorrecto ? "success" : "error";
-            string script = $"alert('{msg}')";
-            //string script = "Swal.fire({ title: '" + titulo + "!', text: '" + msg + "', icon: '" + icono + "', confirmButtonText: '" + textoBoton + "' })";
+            string script = "Swal.fire({ title: '" + titulo + "!', text: '" + msg + "', icon: '" + icono + "', confirmButtonText: '" + textoBoton + "' })";
             ScriptManager.RegisterStartupScript(this, GetType(), "script", script, true);
         }
 
@@ -78,7 +77,6 @@ namespace SIMP
             {
                 if (CamposVacios())
                 {
-                    Mensaje("Aviso", "Debe ingresar todos los datos", false);
                     return;
                 }
                 FaseEntidad fase = new FaseEntidad()
@@ -99,7 +97,7 @@ namespace SIMP
                     hdnIdProyecto.Value = "";
                 }
                 FaseLogica.MantFase(fase);
-
+                Mensaje("Aviso", "La fase se guardó correctamente", true);
                 LimpiarCampos();
                 CargarGridFases();
             }
@@ -140,12 +138,19 @@ namespace SIMP
 
         private bool CamposVacios()
         {
-            if (string.IsNullOrEmpty(txbNombre.Text))
+            if (ddlProyectos.Items.Count <= 0)
             {
+                Mensaje("Aviso", "No hay proyectos disponibles. Por favor agregue uno para continuar", false);
+                return true;
+            }
+            else if (string.IsNullOrEmpty(txbNombre.Text))
+            {
+                Mensaje("Aviso", "Debe ingresar un nombre", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbDescripcion.Text))
             {
+                Mensaje("Aviso", "Debe ingresar una descripción", false);
                 return true;
             }
             return false;

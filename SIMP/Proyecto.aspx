@@ -1,7 +1,6 @@
-﻿<%@ Page Title="Mantenimiento Proyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Proyecto.aspx.cs" Inherits="SIMP.Proyecto" %>
-
+﻿<%@ Page Title="Mantenimiento Proyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Proyecto.aspx.cs" Inherits="SIMP.Proyecto1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel runat="server" UpdateMode="Always">
+        <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <asp:HiddenField ID="hdnIdProyecto" runat="server" />
             <h2 class="fs-4">Mantenimiento de Proyectos</h2>
