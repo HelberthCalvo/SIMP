@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Mantenimiento Proyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Proyecto.aspx.cs" Inherits="SIMP.Proyecto1" %>
+﻿<%@ Page Title="Mantenimiento Proyecto" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Proyecto.aspx.cs" Inherits="SIMP.Proyecto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>

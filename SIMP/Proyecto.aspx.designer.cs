@@ -11,7 +11,7 @@ namespace SIMP
 {
 
 
-    public partial class Proyecto1
+    public partial class Proyecto
     {
 
         /// <summary>

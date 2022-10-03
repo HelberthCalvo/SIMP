@@ -124,6 +124,8 @@ namespace SIMP
                 hdnIdProyecto.Value = Convert.ToInt32(idProyecto).ToString();
                 txbNombre.Text = nombre;
                 txbDescripcion.Text = descripcion;
+                ddlProyectos.SelectedValue = idProyecto;
+                ddlProyectos.Enabled = false;
             }
             else if (e.CommandName == "Eliminar")
             {
@@ -160,6 +162,7 @@ namespace SIMP
         {
             txbNombre.Text = string.Empty;
             txbDescripcion.Text = string.Empty;
+            ddlProyectos.Enabled = true;
         }
 
         protected void gvFases_PreRender(object sender, EventArgs e)

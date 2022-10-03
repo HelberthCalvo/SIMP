@@ -166,6 +166,7 @@ namespace SIMP
             string script = "Swal.fire({ title: '" + titulo + "!', text: '" + msg + "', icon: '" + icono + "', confirmButtonText: '" + textoBoton + "' })";
             ScriptManager.RegisterStartupScript(this, GetType(), "script", script, true);
         }
+
         private string FormatoFecha(string fecha)
         {
             var lstFecha = fecha.Split('/');
@@ -197,6 +198,7 @@ namespace SIMP
                 if (!string.IsNullOrEmpty(hdnIdActividad.Value))
                 {
                     actividad.Id = Convert.ToInt32(hdnIdActividad.Value);
+                    actividad.IdFase = 0;
                     actividad.Fecha_Inicio = FormatoFecha(txbFechaInicio.Text);
                     actividad.Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text);
                     hdnIdActividad.Value = "";
@@ -217,8 +219,10 @@ namespace SIMP
             txbDescripcion.Text = string.Empty;
             txbFechaInicio.Text = string.Empty;
             txbFechaEstimada.Text = string.Empty;
-            ddlProyecto.SelectedIndex = 0;
-            CargarFases(0);
+            ddlProyecto.Enabled = true;
+            ddlFase.Enabled = true;
+            //ddlProyecto.SelectedIndex = 0;
+            //CargarFases(0);
         }
 
         private bool CamposVacios()
@@ -263,7 +267,42 @@ namespace SIMP
 
         protected void gvActividad_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
 
+                var id = gvActividad.Rows[index].Cells[0].Text;
+                var idFase = gvActividad.Rows[index].Cells[1].Text;
+                var idUsuario = gvActividad.Rows[index].Cells[2].Text;
+                var descripcion = gvActividad.Rows[index].Cells[5].Text;
+                var fecha_inicio = gvActividad.Rows[index].Cells[6].Text;
+                var fecha_estimada = gvActividad.Rows[index].Cells[7].Text;
+
+                if (e.CommandName == "Editar")
+                {
+                    hdnIdActividad.Value = Convert.ToInt32(id).ToString();
+                    ddlProyecto.Enabled = false;
+                    ddlFase.Enabled = false;
+                    ddlUsuario.SelectedValue = idUsuario;
+                    txbDescripcion.Text = descripcion;
+                    txbFechaInicio.Text = fecha_inicio;
+                    txbFechaEstimada.Text = fecha_estimada;
+                }
+                else if (e.CommandName == "Eliminar")
+                {
+                    //ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
+                }
+                else if (e.CommandName == "Finalizar")
+                {
+                    ActividadLogica.MantActividad(new ActividadEntidad { Id = Convert.ToInt32(id), Opcion = 0, Esquema = "dbo", Fecha_Finalizacion = DateTime.Now.ToString() });
+                    CargarGridActividades();
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+            
         }
 
     }

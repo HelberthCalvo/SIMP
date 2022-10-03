@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMP
 {
-    public partial class Proyecto1 : System.Web.UI.Page
+    public partial class Proyecto : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
