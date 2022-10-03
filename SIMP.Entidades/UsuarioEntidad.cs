@@ -9,7 +9,7 @@ namespace SIMP.Entidades
     public class UsuarioEntidad : EntidadBase
     {
         public int Id { get; set; }
-        public int Rol { get; set; }
+        public int Perfil { get; set; }
         public int Estado { get; set; }
         public string Nombre { get; set; }
         public string Primer_Apellido { get; set; }

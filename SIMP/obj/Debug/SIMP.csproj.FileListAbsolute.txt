@@ -287,6 +287,7 @@ C:\Proyectos\SIMP\SIMP\bin\roslyn\vbc.exe.config
 C:\Proyectos\SIMP\SIMP\bin\roslyn\vbc.rsp
 C:\Proyectos\SIMP\SIMP\bin\roslyn\VBCSCompiler.exe
 C:\Proyectos\SIMP\SIMP\bin\roslyn\VBCSCompiler.exe.config
+C:\Proyectos\SIMP\SIMP\bin\AjaxControlToolkit.dll
 C:\Proyectos\SIMP\SIMP\bin\Antlr3.Runtime.dll
 C:\Proyectos\SIMP\SIMP\bin\AspNet.ScriptManager.jQuery.dll
 C:\Proyectos\SIMP\SIMP\bin\Microsoft.AspNet.FriendlyUrls.dll

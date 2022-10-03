@@ -26,7 +26,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_USUARIO", usuario.Usuario);
                 cmd.Parameters.AddWithValue("@P_OPCION", usuario.Opcion);
                 cmd.Parameters.AddWithValue("@P_ID", usuario.Id);
-                cmd.Parameters.AddWithValue("@P_IDROL", usuario.Rol);
+                cmd.Parameters.AddWithValue("@P_IDPERFIL", usuario.Perfil);
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
                 cmd.Parameters.AddWithValue("@P_NOMBRE", usuario.Nombre);
                 cmd.Parameters.AddWithValue("@P_PRIMER_APELLIDO", usuario.Primer_Apellido);
@@ -42,7 +42,7 @@ namespace SIMP.Datos
                 {
                     UsuarioEntidad obj = new UsuarioEntidad();
                     obj.Id = UtilitarioSQL.ObtieneInt(reader, "PK_TBL_SIMP_SEG_USUARIO");
-                    obj.Rol = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_ROL");
+                    obj.Perfil = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_SEG_PERFIL");
                     obj.Estado = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_ESTADO");
                     obj.Nombre = UtilitarioSQL.ObtieneString(reader, "NOMBRE");
                     obj.Primer_Apellido = UtilitarioSQL.ObtieneString(reader, "PRIMER_APELLIDO");
@@ -78,7 +78,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_USUARIO", usuario.Usuario);
                 cmd.Parameters.AddWithValue("@P_OPCION", usuario.Opcion);
                 cmd.Parameters.AddWithValue("@P_ID", usuario.Id);
-                cmd.Parameters.AddWithValue("@P_IDROL", usuario.Rol);
+                cmd.Parameters.AddWithValue("@P_IDPERFIL", usuario.Perfil);
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
                 cmd.Parameters.AddWithValue("@P_NOMBRE", usuario.Nombre);
                 cmd.Parameters.AddWithValue("@P_PRIMER_APELLIDO", usuario.Primer_Apellido);

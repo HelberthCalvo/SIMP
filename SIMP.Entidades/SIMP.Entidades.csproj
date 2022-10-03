@@ -45,9 +45,11 @@
     <Compile Include="ClienteEntidad.cs" />
     <Compile Include="EntidadBase.cs" />
     <Compile Include="EstadoEntidad.cs" />
+    <Compile Include="FaseEntidad.cs" />
+    <Compile Include="MenuEntidad.cs" />
+    <Compile Include="PerfilEntidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoEntidad.cs" />
-    <Compile Include="RolEntidad.cs" />
     <Compile Include="UsuarioEntidad.cs" />
     <Compile Include="UsuarioxProyectoEntidad.cs" />
   </ItemGroup>

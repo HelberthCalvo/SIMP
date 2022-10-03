@@ -39,5 +39,10 @@ namespace SIMP
         {
             Response.Redirect("~/Actividad.aspx");
         }
+
+        protected void linkBtnSeguridad_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Seguridad.aspx");
+        }
     }
 }

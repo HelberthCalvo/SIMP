@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SIMP.Datos
 {
-    public class RolDatos
+    public class PerfilDatos
     {
-        public List<RolEntidad> GetRoles(RolEntidad rol)
+        public List<PerfilEntidad> GetPerfiles(PerfilEntidad perfil)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;
@@ -19,30 +19,31 @@ namespace SIMP.Datos
             try
             {
                 myConexion = new SqlConnection(Conexion.CadenaDeConexion());
-                string Sql = $"{rol.Esquema}.PA_CON_ROL";
+                string Sql = $"{perfil.Esquema}.PA_CON_PERFIL";
                 cmd = new SqlCommand(Sql, myConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@P_USUARIO", rol.Usuario);
-                cmd.Parameters.AddWithValue("@P_OPCION", rol.Opcion);
+                cmd.Parameters.AddWithValue("@P_USUARIO", perfil.Usuario);
+                cmd.Parameters.AddWithValue("@P_OPCION", perfil.Opcion);
 
-                cmd.Parameters.AddWithValue("@P_ID", rol.Id);
-                cmd.Parameters.AddWithValue("@P_DESCRIPCION", rol.Descripcion);
+                cmd.Parameters.AddWithValue("@P_ID", perfil.Id);
+                cmd.Parameters.AddWithValue("@P_DESCRIPCION", perfil.Descripcion);
 
 
-                cmd.Parameters.AddWithValue("@P_ESQUEMA", rol.Esquema);
+                cmd.Parameters.AddWithValue("@P_ESQUEMA", perfil.Esquema);
 
                 myConexion.Open();
                 reader = cmd.ExecuteReader();
 
-                List<RolEntidad> lista = new List<RolEntidad>();
+                List<PerfilEntidad> lista = new List<PerfilEntidad>();
 
                 while (reader.Read())
                 {
-                    RolEntidad obj = new RolEntidad();
-                    obj.Id = UtilitarioSQL.ObtieneInt(reader, "PK_TBL_SIMP_ROL");
-                    //obj.rol = UtilitarioSQL.ObtieneInt(reader, "IDrol");
+                    PerfilEntidad obj = new PerfilEntidad();
+                    obj.Id = UtilitarioSQL.ObtieneInt(reader, "PK_TBL_SIMP_SEG_PERFIL");
+                    //obj.perfil = UtilitarioSQL.ObtieneInt(reader, "IDperfil");
                     obj.Descripcion = UtilitarioSQL.ObtieneString(reader, "DESCRIPCION");
+                    obj.Estado = UtilitarioSQL.ObtieneString(reader, "ESTADO");
                     lista.Add(obj);
                 }
                 reader.Dispose();
@@ -56,7 +57,7 @@ namespace SIMP.Datos
                 throw new ApplicationException("Error en Base de Datos" + ex.Message);
             }
         }
-        public void MantRol(RolEntidad rol)
+        public void MantPerfil(PerfilEntidad perfil)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;
@@ -64,15 +65,15 @@ namespace SIMP.Datos
             try
             {
                 myConexion = new SqlConnection(Conexion.CadenaDeConexion());
-                string Sql = $"{rol.Esquema}.PA_MAN_ROL";
+                string Sql = $"{perfil.Esquema}.PA_MAN_PERFIL";
                 cmd = new SqlCommand(Sql, myConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@P_USUARIO", rol.Usuario);
-                cmd.Parameters.AddWithValue("@P_OPCION", rol.Opcion);
-                cmd.Parameters.AddWithValue("@P_ID", rol.Id);
-                cmd.Parameters.AddWithValue("@P_DESCRIPCION", rol.Descripcion);
-                cmd.Parameters.AddWithValue("@P_ESQUEMA", rol.Esquema);
+                cmd.Parameters.AddWithValue("@P_USUARIO", perfil.Usuario);
+                cmd.Parameters.AddWithValue("@P_OPCION", perfil.Opcion);
+                cmd.Parameters.AddWithValue("@P_ID", perfil.Id);
+                cmd.Parameters.AddWithValue("@P_DESCRIPCION", perfil.Descripcion);
+                cmd.Parameters.AddWithValue("@P_ESQUEMA", perfil.Esquema);
 
                 myConexion.Open();
                 reader = cmd.ExecuteReader();

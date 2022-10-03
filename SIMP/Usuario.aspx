@@ -40,8 +40,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Rol:</label>
-                        <asp:DropDownList runat="server" ID="ddlRol" CssClass="form-control"></asp:DropDownList>
+                        <label class="form-label">Perfil:</label>
+                        <asp:DropDownList runat="server" ID="ddlPerfil" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -75,7 +75,7 @@
                     <div class="col-sm-12">
                         <div class="table-responsive">
                             <asp:GridView ID="gvUsuarios" CssClass="table-responsive table customize-table v-middle"
-                                DataKeyNames="Id, Nombre, Primer_Apellido, Segundo_Apellido, Usuario, Rol, Estado"
+                                DataKeyNames="Id, Nombre, Primer_Apellido, Segundo_Apellido, Usuario, Perfil, Estado"
                                 OnPreRender="gvUsuarios_PreRender"
                                 OnRowCommand="gvUsuarios_RowCommand"
                                 OnRowDataBound="gvUsuarios_RowDataBound"
@@ -89,7 +89,7 @@
                                     <asp:BoundField DataField="Primer_Apellido" HeaderText="Primer Apellido" />
                                     <asp:BoundField DataField="Segundo_Apellido" HeaderText="Segundo Apellido" />
                                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
-                                    <asp:BoundField DataField="Rol" HeaderText="Rol" />
+                                    <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
                                     <asp:BoundField DataField="Estado" HeaderText="Estado" />
                                     <asp:ButtonField CommandName="editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                                     <asp:ButtonField CommandName="eliminar" ControlStyle-CssClass="text-danger" Text="<i class='fas fa-xl fa-trash-alt'></i>" />
