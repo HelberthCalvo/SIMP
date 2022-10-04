@@ -24,14 +24,12 @@ namespace SIMP.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@P_USUARIO", usuario.Usuario);
+                cmd.Parameters.AddWithValue("@P_USUARIO_SISTEMA", usuario.Usuario);
                 cmd.Parameters.AddWithValue("@P_OPCION", usuario.Opcion);
                 cmd.Parameters.AddWithValue("@P_ID", usuario.Id);
-                cmd.Parameters.AddWithValue("@P_IDPERFIL", usuario.Perfil);
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
-                cmd.Parameters.AddWithValue("@P_NOMBRE", usuario.Nombre);
-                cmd.Parameters.AddWithValue("@P_PRIMER_APELLIDO", usuario.Primer_Apellido);
-                cmd.Parameters.AddWithValue("@P_SEGUNDO_APELLIDO", usuario.Segundo_Apellido);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", usuario.Esquema);
+                cmd.Parameters.AddWithValue("@P_CONTRASENA", usuario.Contrasena);
 
                 myConexion.Open();
                 reader = cmd.ExecuteReader();
@@ -45,11 +43,9 @@ namespace SIMP.Datos
                     obj.Perfil = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_SEG_PERFIL");
                     obj.Estado = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_ESTADO");
                     obj.Nombre = UtilitarioSQL.ObtieneString(reader, "NOMBRE");
-                    obj.Primer_Apellido = UtilitarioSQL.ObtieneString(reader, "PRIMER_APELLIDO");
-                    obj.Segundo_Apellido = UtilitarioSQL.ObtieneString(reader, "SEGUNDO_APELLIDO");
-                    obj.Usuario = UtilitarioSQL.ObtieneString(reader, "USUARIO");
+                    obj.Usuario = UtilitarioSQL.ObtieneString(reader, "USUARIO_SISTEMA");
                     obj.Contrasena = UtilitarioSQL.ObtieneString(reader, "CONTRASENA");
-                    obj.Usuario1 = UtilitarioSQL.ObtieneString(reader, "USUARIO");
+                    obj.Correo = UtilitarioSQL.ObtieneString(reader, "CORREO");
                     lista.Add(obj);
                 }
                 reader.Dispose();

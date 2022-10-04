@@ -15,6 +15,7 @@ namespace SIMP.Entidades
         public string Primer_Apellido { get; set; }
         public string Segundo_Apellido { get; set; }
         public string Usuario1 { get; set; }
+        public string Correo { get; set; }
         public string Contrasena { get; set; }
     }
 }

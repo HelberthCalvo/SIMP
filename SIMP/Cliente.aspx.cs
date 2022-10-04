@@ -13,7 +13,6 @@ namespace SIMP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UsuarioSistema"] = "hcalvo";
             if (Session["UsuarioSistema"] == null)
             {
                 Response.Redirect("Login.aspx");
@@ -49,11 +48,6 @@ namespace SIMP
                 txbEmail.Text = correo_electronico;
                 txbTelefono.Text = telefono;
             }
-            else if (e.CommandName == "Eliminar")
-            {
-                ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
-            }
-
         }
         private void CargarGridCliente()
         {
@@ -80,7 +74,6 @@ namespace SIMP
         {
             if (CamposVacios())
             {
-                Mensaje("Aviso", "Debe ingresar todos los datos", false);
                 return;
             }
 
@@ -102,7 +95,7 @@ namespace SIMP
                 idCliente.Value = "";
             }
             ClienteLogica.MantCliente(cliente);
-
+            Mensaje("Aviso", "El cliente se guardó correctamente", true);
             LimpiarCampos();
             CargarGridCliente();
         }
@@ -110,22 +103,27 @@ namespace SIMP
         {
             if (string.IsNullOrEmpty(txbNombre.Text))
             {
+                Mensaje("Aviso", "Debe ingresar un nombre", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbApellido1.Text))
             {
+                Mensaje("Aviso", "Debe ingresar un primer apellido", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbApellido2.Text))
             {
+                Mensaje("Aviso", "Debe ingresar un segundo apellido", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbEmail.Text))
             {
+                Mensaje("Aviso", "Debe ingresar un correo electrónico", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbTelefono.Text))
             {
+                Mensaje("Aviso", "Debe ingresar un numero de teléfono", false);
                 return true;
             }
             return false;

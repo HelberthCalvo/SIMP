@@ -13,7 +13,6 @@ namespace SIMP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UsuarioSistema"] = "hcalvo";
             if (Session["UsuarioSistema"] == null)
             {
                 Response.Redirect("Login.aspx");
@@ -60,8 +59,8 @@ namespace SIMP
                 lstFases = FaseLogica.GetFases(new FaseEntidad()
                 {
                     Esquema = "dbo"
-                }).FindAll(x => x.IdEstado == 1);
-
+                });
+                lstFases.ForEach(x => { x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo"; });
                 gvFases.DataSource = lstFases;
                 gvFases.DataBind();
             }
@@ -110,31 +109,44 @@ namespace SIMP
 
         protected void gvFases_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
 
-            var id = gvFases.Rows[index].Cells[0].Text;
-            var idProyecto = gvFases.Rows[index].Cells[1].Text;
-            var idEstado = gvFases.Rows[index].Cells[2].Text;
-            var nombre = gvFases.Rows[index].Cells[3].Text;
-            var descripcion = gvFases.Rows[index].Cells[4].Text;
+                var id = gvFases.Rows[index].Cells[0].Text;
+                var idProyecto = gvFases.Rows[index].Cells[1].Text;
+                var nombreEstado = gvFases.Rows[index].Cells[6].Text;
+                var nombre = gvFases.Rows[index].Cells[3].Text;
+                var descripcion = gvFases.Rows[index].Cells[4].Text;
 
-            if (e.CommandName == "Editar")
-            {
-                hdnIdFase.Value = Convert.ToInt32(id).ToString();
-                hdnIdProyecto.Value = Convert.ToInt32(idProyecto).ToString();
-                txbNombre.Text = nombre;
-                txbDescripcion.Text = descripcion;
-                ddlProyectos.SelectedValue = idProyecto;
-                ddlProyectos.Enabled = false;
+                if (e.CommandName == "Editar")
+                {
+                    hdnIdFase.Value = Convert.ToInt32(id).ToString();
+                    hdnIdProyecto.Value = Convert.ToInt32(idProyecto).ToString();
+                    txbNombre.Text = nombre;
+                    txbDescripcion.Text = descripcion;
+                    ddlProyectos.SelectedValue = idProyecto;
+                    ddlProyectos.Enabled = false;
+                }
+                else if (e.CommandName == "CambiarEstado")
+                {
+                    FaseLogica.MantFase(new FaseEntidad
+                    {
+                        Id = Convert.ToInt32(id),
+                        Nombre = nombre,
+                        Descripcion = descripcion,
+                        Opcion = 0,
+                        Esquema = "dbo",
+                        IdEstado = nombreEstado == "Activo" ? 2 : 1,
+                        IdProyecto = Convert.ToInt32(idProyecto)
+                    });
+                    Mensaje("Aviso", "Estado de la fase actualizado con éxito", true);
+                    CargarGridFases();
+                }
             }
-            else if (e.CommandName == "Eliminar")
+            catch (Exception ex)
             {
-                //ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
-            }
-            else if (e.CommandName == "Finalizar")
-            {
-                FaseLogica.MantFase(new FaseEntidad { Id = Convert.ToInt32(id), Opcion = 0, Esquema = "dbo", IdEstado = 2, IdProyecto = Convert.ToInt32(idProyecto) });
-                CargarGridFases();
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
 

@@ -13,7 +13,6 @@ namespace SIMP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UsuarioSistema"] = "hcalvo";
             if (Session["UsuarioSistema"] == null)
             {
                 Response.Redirect("Login.aspx");
@@ -42,11 +41,11 @@ namespace SIMP
                 {
                     Esquema = "dbo"
                 });
-
                 lstActividades.ForEach(x =>
                 {
                     x.Fecha_Inicio = FormatoFechaGridView(x.Fecha_Inicio);
                     x.Fecha_Estimada = FormatoFechaGridView(x.Fecha_Estimada);
+                    x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo";
                 });
                 gvActividad.DataSource = lstActividades;
                 gvActividad.DataBind();
@@ -140,9 +139,10 @@ namespace SIMP
                 List<UsuarioEntidad> lstUsuarios = new List<UsuarioEntidad>();
                 lstUsuarios = usuarioLogica.GetUsuarios(new UsuarioEntidad()
                 {
-                    Esquema = "dbo"
+                    Esquema = "dbo",
+                    Opcion = 1,
+                    Estado = 1
                 });
-                lstUsuarios.ForEach(x => { x.Nombre = NombreCompleto(x.Nombre, x.Primer_Apellido); });
                 ddlUsuario.DataSource = lstUsuarios;
                 ddlUsuario.DataTextField = "Nombre";
                 ddlUsuario.DataValueField = "Id";
@@ -186,8 +186,8 @@ namespace SIMP
                 ActividadEntidad actividad = new ActividadEntidad()
                 {
                     Descripcion = txbDescripcion.Text,
-                    Fecha_Inicio = txbFechaInicio.Text,
-                    Fecha_Estimada = txbFechaEstimada.Text,
+                    Fecha_Inicio = FormatoFecha(txbFechaInicio.Text),
+                    Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text),
                     IdFase = Convert.ToInt32(ddlFase.SelectedValue),
                     IdUsuario = Convert.ToInt32(ddlUsuario.SelectedValue),
                     IdEstado = 1,
@@ -198,14 +198,14 @@ namespace SIMP
                 if (!string.IsNullOrEmpty(hdnIdActividad.Value))
                 {
                     actividad.Id = Convert.ToInt32(hdnIdActividad.Value);
-                    actividad.IdFase = 0;
                     actividad.Fecha_Inicio = FormatoFecha(txbFechaInicio.Text);
                     actividad.Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text);
-                    hdnIdActividad.Value = "";
+                    
                 }
                 ActividadLogica.MantActividad(actividad);
                 Mensaje("Aviso", "La actividad se guardó correctamente", true);
                 LimpiarCampos();
+                hdnIdActividad.Value = "";
                 CargarGridActividades();
             }
             catch (Exception ex)
@@ -277,10 +277,12 @@ namespace SIMP
                 var descripcion = gvActividad.Rows[index].Cells[5].Text;
                 var fecha_inicio = gvActividad.Rows[index].Cells[6].Text;
                 var fecha_estimada = gvActividad.Rows[index].Cells[7].Text;
+                var nombreEstado = gvActividad.Rows[index].Cells[8].Text;
 
                 if (e.CommandName == "Editar")
                 {
                     hdnIdActividad.Value = Convert.ToInt32(id).ToString();
+                    ddlFase.SelectedValue = idFase;
                     ddlProyecto.Enabled = false;
                     ddlFase.Enabled = false;
                     ddlUsuario.SelectedValue = idUsuario;
@@ -288,13 +290,38 @@ namespace SIMP
                     txbFechaInicio.Text = fecha_inicio;
                     txbFechaEstimada.Text = fecha_estimada;
                 }
-                else if (e.CommandName == "Eliminar")
+                else if (e.CommandName == "CambiarEstado")
                 {
-                    //ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
+                    ActividadLogica.MantActividad(new ActividadEntidad
+                    {
+                        Id = Convert.ToInt32(id),
+                        Opcion = 0,
+                        Esquema = "dbo",
+                        Descripcion = descripcion,
+                        Fecha_Inicio = fecha_inicio,
+                        Fecha_Estimada = fecha_estimada,
+                        IdEstado = nombreEstado == "Activo" ? 2 : 1,
+                        IdFase = Convert.ToInt32(idFase),
+                        IdUsuario = Convert.ToInt32(idUsuario)
+                    });
+                    Mensaje("Aviso", "Estado de la actividad actualizado con éxito", true);
+                    CargarGridActividades();
                 }
                 else if (e.CommandName == "Finalizar")
                 {
-                    ActividadLogica.MantActividad(new ActividadEntidad { Id = Convert.ToInt32(id), Opcion = 0, Esquema = "dbo", Fecha_Finalizacion = DateTime.Now.ToString() });
+                    ActividadLogica.MantActividad(new ActividadEntidad { 
+                        Id = Convert.ToInt32(id),
+                        Descripcion = descripcion,
+                        Fecha_Inicio = fecha_inicio,
+                        Fecha_Estimada = fecha_estimada,
+                        IdEstado = nombreEstado == "Activo" ? 2 : 1,
+                        IdFase = Convert.ToInt32(idFase),
+                        IdUsuario = Convert.ToInt32(idUsuario),
+                        Opcion = 0, 
+                        Esquema = "dbo", 
+                        Fecha_Finalizacion = DateTime.Now.ToString() 
+                    });
+                    Mensaje("Aviso", "Actividad finalizada con éxito", true);
                     CargarGridActividades();
                 }
             }

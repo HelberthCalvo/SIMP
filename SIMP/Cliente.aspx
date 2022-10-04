@@ -43,7 +43,7 @@
                     <div class="mb-4">
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-                                <asp:LinkButton ID="btnGuardar" class="btn btn-success rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
+                                <asp:LinkButton ID="btnGuardar" class="btn btn-primary rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
@@ -78,7 +78,6 @@
                                 <asp:BoundField DataField="Correo_Electronico" HeaderText="Correo Electronico" />
                                 <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
                                 <asp:ButtonField CommandName="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
-                                <asp:ButtonField CommandName="Eliminar" ControlStyle-CssClass="text-danger"  Text="<i class='fas fa-xl fa-trash-alt'></i>" />
                             </Columns>
                         </asp:GridView>
                     </div>

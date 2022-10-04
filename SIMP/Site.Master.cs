@@ -44,5 +44,11 @@ namespace SIMP
         {
             Response.Redirect("~/Seguridad.aspx");
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session["UsuarioSistema"] = null;
+            Response.Redirect("Login.aspx");
+        }
     }
 }

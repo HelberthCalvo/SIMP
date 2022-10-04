@@ -34,7 +34,7 @@
                     <div class="mb-4">
                         <label class="form-label">Fecha Inicio:</label>
                         <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha de inicio" ID="txbFechaInicio" CssClass="form-control"></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server"
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd/MM/yyyy"
                             TargetControlID="txbFechaInicio" PopupButtonID="txbFechaInicio"></ajaxToolkit:CalendarExtender>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <div class="mb-4">
                         <label class="form-label">Fecha Finalización:</label>
                         <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha estimada de finalización" ID="txbFechaEstimada" CssClass="form-control"></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server"
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd/MM/yyyy"
                             TargetControlID="txbFechaEstimada" PopupButtonID="txbFechaEstimada"></ajaxToolkit:CalendarExtender>
                     </div>
                 </div>
@@ -90,7 +90,6 @@
                                 <asp:BoundField DataField="Fecha_Estimada" HeaderText="Fecha Estimada" />
                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
                                 <asp:ButtonField CommandName="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
-                                <asp:ButtonField CommandName="Eliminar" ControlStyle-CssClass="text-danger" Text="<i class='fas fa-xl fa-trash-alt'></i>" />
                                 <asp:ButtonField CommandName="CambiarEstado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
                                 <asp:ButtonField CommandName="Finalizar" ControlStyle-CssClass="text-success" Text="<i class='fa-sharp fa-xl fa-solid fa-circle-check'></i>" />
                             </Columns>
