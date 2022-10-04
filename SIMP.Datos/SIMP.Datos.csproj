@@ -65,6 +65,8 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="EstadoDatos.cs" />
     <Compile Include="FaseDatos.cs" />
+    <Compile Include="MenuDatos.cs" />
+    <Compile Include="PrivilegioDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoDatos.cs" />
     <Compile Include="PerfilDatos.cs" />

@@ -48,6 +48,7 @@
     <Compile Include="FaseEntidad.cs" />
     <Compile Include="MenuEntidad.cs" />
     <Compile Include="PerfilEntidad.cs" />
+    <Compile Include="PrivilegioEntidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoEntidad.cs" />
     <Compile Include="UsuarioEntidad.cs" />

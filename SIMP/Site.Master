@@ -118,6 +118,8 @@
             </div>
         </div>
         <script src="Scripts/dashboard/scripts.js"></script>
+        <asp:ContentPlaceHolder ID="scriptsPersonalizados" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

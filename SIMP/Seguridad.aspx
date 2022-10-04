@@ -46,7 +46,7 @@
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <h3 id="example-manipulation-h-0" tabindex="-1" class="title current" style="color:black !important">Perfiles</h3>
+                            <h3 id="example-manipulation-h-0" tabindex="-1" class="title current" style="color: black !important">Perfiles</h3>
 
                             <section id="example-manipulation-p-0" role="tabpanel" aria-labelledby="example-manipulation-h-0" class="body current" aria-hidden="false">
                                 <asp:UpdatePanel runat="server">
@@ -55,23 +55,23 @@
 
                                             <div class="col-sm-12 col-md-6 ">
                                                 <div class="mb-3">
-                                                    <label for="title-3" style="color:black !important">Descripción</label>
-                                                    <asp:TextBox ID="txtDescripcionPerfil" style="color:black !important; border:3px solid #d8eeef !important;" placeholder="Ejemplo: perfil 01" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <label for="title-3" style="color: black !important">Descripción</label>
+                                                    <asp:TextBox ID="txtDescripcionPerfil" Style="color: black !important; border: 3px solid #d8eeef !important;" placeholder="Ejemplo: perfil 01" CssClass="form-control" runat="server"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-6">
 
                                                 <div class="mb-3">
-                                                    <label style="color:black !important">Estado</label>
+                                                    <label style="color: black !important">Estado</label>
                                                     <br />
                                                     <div class="form-check">
-                                                        <asp:RadioButton ID="rdbActivoPerfil" style="color:black !important; background:white !important" Checked="true" class="form-check-input" GroupName="groupEstadoPerfil" runat="server" />
+                                                        <asp:RadioButton ID="rdbActivoPerfil" Style="color: black !important; background: white !important" Checked="true" class="form-check-input" GroupName="groupEstadoPerfil" runat="server" />
 
-                                                        <label class="form-check-label" style="color:black !important">Activo</label>
+                                                        <label class="form-check-label" style="color: black !important">Activo</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <asp:RadioButton ID="rdbInactivoPerfil" style="color:black !important; background:white !important" class="form-check-input" GroupName="groupEstadoPerfil" runat="server" />
-                                                        <label class="form-check-label" style="color:black !important" for="customRadio22">Inactivo</label>
+                                                        <asp:RadioButton ID="rdbInactivoPerfil" Style="color: black !important; background: white !important" class="form-check-input" GroupName="groupEstadoPerfil" runat="server" />
+                                                        <label class="form-check-label" style="color: black !important" for="customRadio22">Inactivo</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,22 +118,22 @@
                         </div>
 
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                            <h3 tabindex="-1" class="title current" style="color:black !important;">Usuarios</h3>
+                            <h3 tabindex="-1" class="title current" style="color: black !important;">Usuarios</h3>
                             <section role="tabpanel" aria-labelledby="example-manipulation-h-0" class="body current" aria-hidden="false">
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="mb-3">
-                                                    <label class="control-label" style="color:black !important;">Usuario</label>
-                                                    <asp:TextBox ID="txtUsuario" style="color:black !important; border:3px solid #d8eeef !important;" placeholder="Ejemplo: admin" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <label class="control-label" style="color: black !important;">Usuario</label>
+                                                    <asp:TextBox ID="txtUsuario" Style="color: black !important; border: 3px solid #d8eeef !important;" placeholder="Ejemplo: admin" CssClass="form-control" runat="server"></asp:TextBox>
 
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="mb-3">
-                                                    <label class="control-label" style="color:black !important;">Nombre</label>
-                                                    <asp:TextBox ID="txtNombre" style="color:black !important; border:3px solid #d8eeef !important;" placeholder="Ejemplo: usuario 01" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <label class="control-label" style="color: black !important;">Nombre</label>
+                                                    <asp:TextBox ID="txtNombre" Style="color: black !important; border: 3px solid #d8eeef !important;" placeholder="Ejemplo: usuario 01" CssClass="form-control" runat="server"></asp:TextBox>
 
                                                 </div>
                                             </div>
@@ -141,14 +141,14 @@
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="mb-3">
-                                                    <label class="control-label" style="color:black !important;">Correo</label>
-                                                    <asp:TextBox ID="txtCorreo" style="color:black !important; border:3px solid #d8eeef !important;" placeholder="Ejemplo: admin@mail.com" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <label class="control-label" style="color: black !important;">Correo</label>
+                                                    <asp:TextBox ID="txtCorreo" Style="color: black !important; border: 3px solid #d8eeef !important;" placeholder="Ejemplo: admin@mail.com" CssClass="form-control" runat="server"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="mb-3">
-                                                    <label class="control-label" style="color:black !important;">Perfil</label>
-                                                    <asp:DropDownList ID="ddlPerfil" DataValueField="ID" style="color:black !important; border:3px solid #d8eeef !important;" DataTextField="Descripcion" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                    <label class="control-label" style="color: black !important;">Perfil</label>
+                                                    <asp:DropDownList ID="ddlPerfil" DataValueField="ID" Style="color: black !important; border: 3px solid #d8eeef !important;" DataTextField="Descripcion" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
@@ -161,16 +161,16 @@
                                             </div>--%>
                                             <div class="col-sm-12 col-md-6">
                                                 <div class="mb-3">
-                                                    <label style="color:black !important;">Estado</label>
+                                                    <label style="color: black !important;">Estado</label>
                                                     <br />
                                                     <div class="form-check">
-                                                        <asp:RadioButton Checked="true" style="color:black !important; background:white !important" ID="rdbActivoUsuario" class="form-check-input" GroupName="groupEstadoUsuario" runat="server" />
+                                                        <asp:RadioButton Checked="true" Style="color: black !important; background: white !important" ID="rdbActivoUsuario" class="form-check-input" GroupName="groupEstadoUsuario" runat="server" />
 
-                                                        <label class="form-check-label" style="color:black !important;">Activo</label>
+                                                        <label class="form-check-label" style="color: black !important;">Activo</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <asp:RadioButton ID="rdbInactivoUsuario" style="color:black !important; background:white !important" class="form-check-input" GroupName="groupEstadoUsuario" runat="server" />
-                                                        <label class="form-check-label" for="customRadio22" style="color:black !important;">Inactivo</label>
+                                                        <asp:RadioButton ID="rdbInactivoUsuario" Style="color: black !important; background: white !important" class="form-check-input" GroupName="groupEstadoUsuario" runat="server" />
+                                                        <label class="form-check-label" for="customRadio22" style="color: black !important;">Inactivo</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -221,7 +221,7 @@
 
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <h3 tabindex="-1" class="title current" style="color:black !important;">Permisos</h3>
+                            <h3 tabindex="-1" class="title current" style="color: black !important;">Permisos</h3>
                             <section role="tabpanel" aria-labelledby="example-manipulation-h-0" class="body current" aria-hidden="false">
 
 
@@ -229,8 +229,8 @@
                                     <ContentTemplate>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="mb-3">
-                                                <label class="control-label" style="color:black !important;">Perfil</label>
-                                                <asp:DropDownList ID="ddlPerfilPermisos" style="color:black !important; border:3px solid #d8eeef !important;" AutoPostBack="true" OnSelectedIndexChanged="ddlPerfilPermisos_SelectedIndexChanged" DataValueField="ID" DataTextField="Descripcion" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <label class="control-label" style="color: black !important;">Perfil</label>
+                                                <asp:DropDownList ID="ddlPerfilPermisos" Style="color: black !important; border: 3px solid #d8eeef !important;" AutoPostBack="true" OnSelectedIndexChanged="ddlPerfilPermisos_SelectedIndexChanged" DataValueField="ID" DataTextField="Descripcion" CssClass="form-control" runat="server"></asp:DropDownList>
                                             </div>
                                         </div>
                                     </ContentTemplate>
