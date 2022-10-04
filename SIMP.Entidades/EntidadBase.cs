@@ -11,7 +11,7 @@ namespace SIMP.Entidades
     public string Usuario { get; set; }
     public int Opcion { get; set; }
     public string Estado { get; set; }
-    public string NombreEstado { get {  return Estado == "0"? "Inactivo" : "Activo"; } }
+    public string NombreEstado { get; set; }
     public string Esquema { get; set; }
   }
 }

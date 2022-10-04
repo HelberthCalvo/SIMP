@@ -65,7 +65,6 @@
                                 <asp:BoundField DataField="NombreProyecto" HeaderText="Proyecto" />
                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
                                 <asp:ButtonField CommandName="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
-                                <asp:ButtonField CommandName="Eliminar" ControlStyle-CssClass="text-danger" Text="<i class='fas fa-xl fa-trash-alt'></i>" />
                                 <asp:ButtonField CommandName="CambiarEstado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
                             </Columns>
                         </asp:GridView>

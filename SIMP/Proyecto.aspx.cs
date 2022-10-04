@@ -13,7 +13,6 @@ namespace SIMP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UsuarioSistema"] = "hcalvo";
             if (Session["UsuarioSistema"] == null)
             {
                 Response.Redirect("Login.aspx");
@@ -83,6 +82,7 @@ namespace SIMP
                     x.Fecha_Inicio = FormatoFechaGridView(x.Fecha_Inicio);
                     x.Fecha_Estimada = FormatoFechaGridView(x.Fecha_Estimada);
                 });
+                lstProyetos.ForEach(x => { x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo"; });
                 gvProyectos.DataSource = lstProyetos;
                 gvProyectos.DataBind();
             }
@@ -105,8 +105,8 @@ namespace SIMP
                 {
                     Nombre = txbNombre.Text,
                     Descripcion = txbDescripcion.Text,
-                    Fecha_Inicio = txbFechaInicio.Text,
-                    Fecha_Estimada = txbFechaEstimada.Text,
+                    Fecha_Inicio = FormatoFecha(txbFechaInicio.Text),
+                    Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text),
                     IdCliente = Convert.ToInt32(ddlClientes.SelectedValue),
                     IdEstado = 1,
                     Usuario = "hcalvo",
@@ -118,11 +118,11 @@ namespace SIMP
                     proyecto.Id = Convert.ToInt32(hdnIdProyecto.Value);
                     proyecto.Fecha_Inicio = FormatoFecha(txbFechaInicio.Text);
                     proyecto.Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text);
-                    hdnIdProyecto.Value = "";
+                    
                 }
                 ProyectoLogica.MantProyecto(proyecto);
                 Mensaje("Aviso", "El proyecto se guardó correctamente", true);
-
+                hdnIdProyecto.Value = "";
                 LimpiarCampos();
                 CargarGridProyectos();
             }
@@ -177,32 +177,64 @@ namespace SIMP
 
         protected void gvProyectos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
 
-            var id = gvProyectos.Rows[index].Cells[0].Text;
-            var idCliente = gvProyectos.Rows[index].Cells[1].Text;
-            var nombre = gvProyectos.Rows[index].Cells[2].Text;
-            var descripcion = gvProyectos.Rows[index].Cells[4].Text;
-            var fecha_inicio = gvProyectos.Rows[index].Cells[5].Text;
-            var fecha_estimada = gvProyectos.Rows[index].Cells[6].Text;
+                var id = gvProyectos.Rows[index].Cells[0].Text;
+                var idCliente = gvProyectos.Rows[index].Cells[1].Text;
+                var nombre = gvProyectos.Rows[index].Cells[2].Text;
+                var descripcion = gvProyectos.Rows[index].Cells[4].Text;
+                var fecha_inicio = gvProyectos.Rows[index].Cells[5].Text;
+                var fecha_estimada = gvProyectos.Rows[index].Cells[6].Text;
+                var nombreEstado = gvProyectos.Rows[index].Cells[7].Text;
 
-            if (e.CommandName == "Editar")
-            {
-                hdnIdProyecto.Value = Convert.ToInt32(id).ToString();
-                txbNombre.Text = nombre;
-                txbDescripcion.Text = descripcion;
-                ddlClientes.SelectedValue = idCliente;
-                txbFechaInicio.Text = fecha_inicio;
-                txbFechaEstimada.Text = fecha_estimada;
+                if (e.CommandName == "Editar")
+                {
+                    hdnIdProyecto.Value = Convert.ToInt32(id).ToString();
+                    txbNombre.Text = nombre;
+                    txbDescripcion.Text = descripcion;
+                    ddlClientes.SelectedValue = idCliente;
+                    txbFechaInicio.Text = fecha_inicio;
+                    txbFechaEstimada.Text = fecha_estimada;
+                }
+                else if (e.CommandName == "CambiarEstado")
+                {
+                    ProyectoLogica.MantProyecto(new ProyectoEntidad
+                    {
+                        Id = Convert.ToInt32(id),
+                        Descripcion = descripcion,
+                        Nombre = nombre,
+                        Opcion = 0,
+                        Fecha_Inicio = fecha_inicio,
+                        Fecha_Estimada = fecha_estimada,
+                        Esquema = "dbo",
+                        IdEstado = nombreEstado == "Activo" ? 2 : 1,
+                        IdCliente = Convert.ToInt32(idCliente)
+                    });
+                    Mensaje("Aviso", "Estado del proyecto actualizado con éxito", true);
+                    CargarGridProyectos();
+                }
+                else if (e.CommandName == "Finalizar")
+                {
+                    ProyectoLogica.MantProyecto(new ProyectoEntidad { 
+                        Id = Convert.ToInt32(id), 
+                        Opcion = 0, 
+                        Esquema = "dbo", 
+                        Descripcion = descripcion,
+                        Nombre = nombre,
+                        Fecha_Inicio = fecha_inicio,
+                        Fecha_Estimada = fecha_estimada,
+                        IdCliente = Convert.ToInt32(idCliente), 
+                        IdEstado = nombreEstado == "Activo" ? 1 : 2,
+                        Fecha_Finalizacion = DateTime.Now.ToString() });;
+                    Mensaje("Aviso", "Proyecto finalizado con éxito", true);
+                    CargarGridProyectos();
+                }
             }
-            else if (e.CommandName == "Eliminar")
+            catch (Exception ex)
             {
-                //ClienteLogica.MantCliente(new ClienteEntidad { Id = Convert.ToInt32(id), Opcion = 1, Esquema = "dbo" });
-            }
-            else if (e.CommandName == "Finalizar")
-            {
-                ProyectoLogica.MantProyecto(new ProyectoEntidad { Id = Convert.ToInt32(id), Opcion = 0, Esquema = "dbo", IdEstado = 2, IdCliente = Convert.ToInt32(idCliente) });
-                CargarGridProyectos();
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
     }

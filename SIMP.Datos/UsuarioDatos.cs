@@ -26,11 +26,13 @@ namespace SIMP.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@P_USUARIO", usuario.Usuario);
+                cmd.Parameters.AddWithValue("@P_USUARIO_SISTEMA", usuario.Usuario);
                 cmd.Parameters.AddWithValue("@P_OPCION", usuario.Opcion);
                 cmd.Parameters.AddWithValue("@P_ID", usuario.Id);
                 cmd.Parameters.AddWithValue("@P_USUARIO_SISTEMA", usuario.Usuario_Sistema);
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", usuario.Esquema);
+                cmd.Parameters.AddWithValue("@P_CONTRASENA", usuario.Contrasena);
 
                 myConexion.Open();
                 reader = cmd.ExecuteReader();

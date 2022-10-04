@@ -12,6 +12,8 @@ namespace SIMP.Entidades
         public int IdFase { get; set; }
         public int IdUsuario { get; set; }
         public int IdEstado { get; set; }
+        public string NombreFase { get; set; }
+        public string NombreUsuario { get; set; }
         public string Descripcion { get; set; }
         public string Fecha_Inicio { get; set; }
         public string Fecha_Estimada { get; set; }

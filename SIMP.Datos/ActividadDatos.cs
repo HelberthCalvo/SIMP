@@ -54,6 +54,8 @@ namespace SIMP.Datos
                     obj.Fecha_Inicio = UtilitarioSQL.ObtieneString(reader, "FECHA_INICIO");
                     obj.Fecha_Estimada = UtilitarioSQL.ObtieneString(reader, "FECHA_ESTIMADA");
                     obj.Fecha_Finalizacion = UtilitarioSQL.ObtieneString(reader, "FECHA_FINALIZACION");
+                    obj.NombreFase = UtilitarioSQL.ObtieneString(reader, "NOMBRE_FASE");
+                    obj.NombreUsuario = UtilitarioSQL.ObtieneString(reader, "NOMBRE_USUARIO");
                     lista.Add(obj);
                 }
                 reader.Dispose();
