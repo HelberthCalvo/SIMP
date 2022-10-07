@@ -23,7 +23,7 @@ namespace SIMP
         {
             if (Session["UsuarioSistema"] == null)
             {
-                //Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx");
             }
             if (!IsPostBack)
             {
@@ -167,7 +167,7 @@ namespace SIMP
                 perfil.Id = !string.IsNullOrEmpty(hfIdPerfil.Value.ToString()) ? Convert.ToInt32(hfIdPerfil.Value) : 0;
                 perfil.Descripcion = txtDescripcionPerfil.Text;
                 perfil.Estado = rdbActivoPerfil.Checked ? "1" : "0";
-                perfil.Esquema = Session["Compañia"].ToString();
+                perfil.Esquema = "dbo";
                 perfil.Usuario = Session["UsuarioSistema"].ToString();
                 new PerfilLogica().MantPerfil(perfil);
 
@@ -297,14 +297,14 @@ namespace SIMP
                     int index = Convert.ToInt32(e.CommandArgument);
                     UsuarioEntidad usuario = new UsuarioEntidad();
                     usuario.Id = Convert.ToInt32(gvUsuario.DataKeys[index].Values[0]);
-                    usuario.Usuario1 = gvUsuario.DataKeys[index].Values[1].ToString();
+                    usuario.Usuario_Sistema = gvUsuario.DataKeys[index].Values[1].ToString();
                     usuario.Nombre = gvUsuario.DataKeys[index].Values[2].ToString();
-                    //usuario.Correo = gvUsuario.DataKeys[index].Values[3].ToString();
+                    usuario.Correo = gvUsuario.DataKeys[index].Values[3].ToString();
                     usuario.Perfil = Convert.ToInt32(gvUsuario.DataKeys[index].Values[4]);
                     usuario.Estado = 0;
                     usuario.Esquema = Session["Compañia"].ToString();
                     usuario.Usuario = Session["UsuarioSistema"].ToString();
-                    //usuario.CambioClave = gvUsuario.DataKeys[index].Values[7].ToString();
+                    usuario.Cambio_Clave = gvUsuario.DataKeys[index].Values[7].ToString();
 
                     new UsuarioLogica().MantUsuario(usuario);
 
@@ -317,15 +317,15 @@ namespace SIMP
                     int index = Convert.ToInt32(e.CommandArgument);
                     UsuarioEntidad usuario = new UsuarioEntidad();
                     usuario.Id = Convert.ToInt32(gvUsuario.DataKeys[index].Values[0]);
-                    usuario.Usuario1 = gvUsuario.DataKeys[index].Values[1].ToString();
+                    usuario.Usuario_Sistema = gvUsuario.DataKeys[index].Values[1].ToString();
                     usuario.Nombre = gvUsuario.DataKeys[index].Values[2].ToString();
-                    //usuario.Correo = gvUsuario.DataKeys[index].Values[3].ToString();
+                    usuario.Correo = gvUsuario.DataKeys[index].Values[3].ToString();
                     usuario.Perfil = Convert.ToInt32(gvUsuario.DataKeys[index].Values[4]);
-                    //usuario.FkPerfilNombre = gvUsuario.DataKeys[index].Values[8].ToString();
+                    usuario.PerfilNombre = gvUsuario.DataKeys[index].Values[8].ToString();
                     usuario.Opcion = 1;
                     usuario.Esquema = Session["Compañia"].ToString();
                     usuario.Usuario = Session["UsuarioSistema"].ToString();
-                    //usuario.CambioClave = "1";
+                    usuario.Cambio_Clave = "1";
                     usuario.Contrasena = contraseniaAlfanumerica(5);
 
                     new UsuarioLogica().MantUsuario(usuario);
@@ -398,10 +398,10 @@ namespace SIMP
                 UsuarioEntidad usuario = new UsuarioEntidad();
                 usuario.Id = !string.IsNullOrEmpty(hfIdUsuario.Value.ToString()) ? Convert.ToInt32(hfIdUsuario.Value) : 0;
 
-                usuario.Esquema = Session["Compañia"].ToString();
+                usuario.Esquema = "dbo";
                 usuario.Usuario = Session["UsuarioSistema"].ToString();
 
-                usuario.Usuario1 = txtUsuario.Text;
+                usuario.Usuario_Sistema = txtUsuario.Text;
                 if (usuario.Id == 0)
                 {
                     usuario.Opcion = 1;
@@ -414,12 +414,12 @@ namespace SIMP
 
                 usuario.Opcion = 0;
                 usuario.Nombre = txtNombre.Text;
-                //usuario.Correo = txtCorreo.Text;
+                usuario.Correo = txtCorreo.Text;
                 usuario.Perfil = Convert.ToInt32(ddlPerfil.SelectedValue);
-                //usuario.FkPerfilNombre = ddlPerfil.SelectedItem.Text;
+                usuario.PerfilNombre = ddlPerfil.SelectedItem.Text;
                 //usuario.Contrasena = txtContraseña.Text;
                 usuario.Estado = rdbActivoUsuario.Checked ? 1 : 0;
-                //usuario.CambioClave = "1";
+                usuario.Cambio_Clave = "1";
 
                 if (usuario.Id == 0)
                 {
@@ -479,7 +479,7 @@ namespace SIMP
                   "<p><b> Estimado(a) Usuario: </b>" + pUsuario.Nombre.ToUpper() + "</p>" +
                     "<p> Se ha registrado su Usuario el día " + DateTime.Now.ToString("dd/MM/yyyy") + "</p>" +
                     "<p>Datos del Usuario:</p>" +
-                    "<p>Código: " + pUsuario.Usuario1 + "</p>" +
+                    "<p>Código: " + pUsuario.Usuario_Sistema + "</p>" +
                     "<p>Nombre: " + pUsuario.Nombre + "</p>" +
                     "<p>Contraseña: " + pUsuario.Contrasena + "</p>" +
                     "<p>Perfil: " + pUsuario.Perfil + "</p>" +
@@ -608,9 +608,6 @@ namespace SIMP
 
             return false;
         }
-
-
-
 
 
         #endregion
@@ -1035,6 +1032,5 @@ namespace SIMP
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
-
     }
 }

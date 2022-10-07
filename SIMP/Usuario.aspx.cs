@@ -83,9 +83,7 @@ namespace SIMP
             usuario.Estado = 1;
             usuario.Estado = rdbActivo.Checked? 1:2;
             usuario.Nombre = txtNombre.Text;
-            usuario.Primer_Apellido = txtPrimer_Apellido.Text;
-            usuario.Segundo_Apellido = txtSegundo_Apellido.Text;
-            usuario.Usuario1 = txtUsuario.Text;
+            usuario.Usuario_Sistema = txtUsuario.Text;
             usuario.Contrasena = txtContrasena.Text;
             usuario.Esquema = "dbo";
             usuario.Usuario = "hcalvo";
@@ -99,14 +97,6 @@ namespace SIMP
         private bool ValidarCampos()
         {
             if (string.IsNullOrEmpty(txtNombre.Text))
-            {
-                return true;
-            }
-            else if (string.IsNullOrEmpty(txtPrimer_Apellido.Text))
-            {
-                return true;
-            }
-            else if (string.IsNullOrEmpty(txtSegundo_Apellido.Text))
             {
                 return true;
             }
@@ -134,8 +124,7 @@ namespace SIMP
             txtId.Value = string.Empty;
             //txtEstado.Text = string.Empty;
             txtNombre.Text = string.Empty;
-            txtPrimer_Apellido.Text = string.Empty;
-            txtSegundo_Apellido.Text = string.Empty;
+
             txtUsuario.Text = string.Empty;
             txtContrasena.Attributes["value"] = string.Empty;
             ddlPerfil.SelectedIndex = 0;
@@ -147,6 +136,10 @@ namespace SIMP
             {
                 List<UsuarioEntidad> lstUsuario = new List<UsuarioEntidad>();
                 lstUsuario = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" });
+                lstUsuario.ForEach(x =>
+                {
+                    x.NombreEstado = x.Estado == 1 ? "Activo" : "Inactivo";
+                });
                 gvUsuarios.DataSource = lstUsuario;
                 gvUsuarios.DataBind();
             }
@@ -199,8 +192,6 @@ namespace SIMP
                     int index = Convert.ToInt32(e.CommandArgument);
                     txtId.Value = gvUsuarios.DataKeys[index].Values[0].ToString();
                     txtNombre.Text = gvUsuarios.DataKeys[index].Values[1].ToString();
-                    txtPrimer_Apellido.Text = gvUsuarios.DataKeys[index].Values[2].ToString();
-                    txtSegundo_Apellido.Text = gvUsuarios.DataKeys[index].Values[3].ToString();
                     txtUsuario.Text = gvUsuarios.DataKeys[index].Values[4].ToString();
                     txtContrasena.Attributes["value"] = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" }).FirstOrDefault().Contrasena;
                     ddlPerfil.SelectedValue = gvUsuarios.DataKeys[index].Values[5].ToString();

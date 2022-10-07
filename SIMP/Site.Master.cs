@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIMP.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,14 @@ namespace SIMP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UsuarioSistema"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Usuario_Sistema.Text = ((UsuarioEntidad)Session["UsuarioSistema"]).Usuario_Sistema;
+            }
         }
 
         protected void linkBtnCliente_Click(object sender, EventArgs e)

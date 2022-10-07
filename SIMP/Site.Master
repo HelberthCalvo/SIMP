@@ -16,12 +16,31 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="Content/bootstrap.css" />
-
     <%--    Estilos personalizados--%>
     <link href="Content/css/TreeView.css" rel="stylesheet" />
     <link href="Content/css/Site.css" rel="stylesheet" />
     <link href="Content/css/MiEstilo.css" rel="stylesheet" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- ============================================================== -->
+    <!-- Scripts -->
+    <!-- ============================================================== -->
+    <script src="Content/plantilla/js/jquery/jquery.min.js"></script>
+    <script src="Content/plantilla/js/bootstrap.min.js"></script>
+    <script src="Content/plantilla/js/bootstrap.bundle.min.js"></script>
+    <script src="Content/plantilla/js/app.js"></script>
+    <script src="Content/plantilla/js/init.js"></script>
+    <script src="Content/plantilla/js/app-style-switcher.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="Content/plantilla/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="Content/plantilla/libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="Content/plantilla/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="Content/plantilla/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="Content/plantilla/js/feather.min.js"></script>
+    <script src="Content/plantilla/js/custom.init.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -88,12 +107,7 @@
                                 </div>
                                 Actividades
                             </asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="linkBtnUsuario" CssClass="nav-link" OnClick="linkBtnUsuario_Click">
-                                <div class="sb-nav-link-icon">
-                                    <img src="../icons/usuario.png" />
-                                </div>
-                                Usuarios
-                            </asp:LinkButton>
+   
                             <asp:LinkButton runat="server" ID="linkBtnCliente" CssClass="nav-link" OnClick="linkBtnCliente_Click">
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/hombre-de-traje-y-corbata.png" />
@@ -104,7 +118,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Se inició sesión como:</div>
-                        Esteban Navarro
+                        <asp:Label ID="Usuario_Sistema" runat="server"></asp:Label>
                     </div>
                 </nav>
             </div>

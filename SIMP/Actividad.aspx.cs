@@ -298,8 +298,8 @@ namespace SIMP
                         Opcion = 0,
                         Esquema = "dbo",
                         Descripcion = descripcion,
-                        Fecha_Inicio = fecha_inicio,
-                        Fecha_Estimada = fecha_estimada,
+                        Fecha_Inicio = FormatoFecha(fecha_inicio),
+                        Fecha_Estimada = FormatoFecha(fecha_estimada),
                         IdEstado = nombreEstado == "Activo" ? 2 : 1,
                         IdFase = Convert.ToInt32(idFase),
                         IdUsuario = Convert.ToInt32(idUsuario)

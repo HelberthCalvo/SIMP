@@ -19,14 +19,14 @@ namespace SIMP.Datos
             try
             {
                 myConexion = new SqlConnection(Conexion.CadenaDeConexion());
-                string Sql = menu.Esquema + ".PA_CON_TBL_FLOW_MENU";
+                string Sql = menu.Esquema + ".PA_CON_TBL_SIMP_SEG_MENU";
                 cmd = new SqlCommand(Sql, myConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@P_USUARIO", menu.Usuario);
                 cmd.Parameters.AddWithValue("@P_OPCION", menu.Opcion);
                 cmd.Parameters.AddWithValue("@P_PK_TBL_SIMP_SEG_MENU", menu.Id);
-                cmd.Parameters.AddWithValue("@P_FK_TBL_FLOW_PERFIL", menu.IdPerfil);
+                cmd.Parameters.AddWithValue("@P_FK_TBL_SIMP_SEG_PERFIL", menu.IdPerfil);
                 cmd.Parameters.AddWithValue("@P_ESTADO_MENU", menu.EstadoMenu);
                 cmd.Parameters.AddWithValue("@P_ESTADO_PERMISO", menu.EstadoPermiso);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", menu.Esquema);

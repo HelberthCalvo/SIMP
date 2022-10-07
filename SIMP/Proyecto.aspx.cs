@@ -206,8 +206,8 @@ namespace SIMP
                         Descripcion = descripcion,
                         Nombre = nombre,
                         Opcion = 0,
-                        Fecha_Inicio = fecha_inicio,
-                        Fecha_Estimada = fecha_estimada,
+                        Fecha_Inicio = FormatoFecha(fecha_inicio),
+                        Fecha_Estimada = FormatoFecha(fecha_estimada),
                         Esquema = "dbo",
                         IdEstado = nombreEstado == "Activo" ? 2 : 1,
                         IdCliente = Convert.ToInt32(idCliente)

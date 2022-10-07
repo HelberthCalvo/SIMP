@@ -10,7 +10,7 @@
     </asp:UpdatePanel>
     <div class="col-12">
         <div class="card">
-            <div class="card-header bg-info">
+            <div class="card-header bg-light">
                 <h3 class="mb-0 text-white">Seguridad</h3>
             </div>
 
@@ -195,16 +195,16 @@
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
                                         <asp:GridView ID="gvUsuario" CssClass="table-responsive table customize-table v-middle" Style="width: 100%!important"
-                                            DataKeyNames="ID, UsuarioSistema, Nombre,Correo, IDPerfil,Contrasenna, Estado, CambioClave,FkPerfilNombre" OnPreRender="gvUsuario_PreRender"
+                                            DataKeyNames="ID,Usuario_Sistema,Nombre,Correo,Perfil,Contrasena,Estado,Cambio_Clave,PerfilNombre,NombreEstado" OnPreRender="gvUsuario_PreRender"
                                             OnRowCommand="gvUsuario_RowCommand"
                                             AutoGenerateColumns="false"
                                             HeaderStyle-CssClass="table-dark"
                                             runat="server">
                                             <Columns>
-                                                <asp:BoundField DataField="UsuarioSistema" HeaderText="Usuario" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
+                                                <asp:BoundField DataField="Usuario_Sistema" HeaderText="Usuario" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:BoundField DataField="Correo" HeaderText="Correo" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:BoundField DataField="FkPerfilNombre" HeaderText="Perfil" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
+                                                <asp:BoundField DataField="PerfilNombre" HeaderText="Perfil" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                                 <%--<asp:BoundField DataField="Contrasenna" HeaderText="Contraseña" />--%>
                                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:ButtonField HeaderText="Modificar" CommandName="editar" Text="<i class='fas fa-2x fa-edit'></i>" ItemStyle-HorizontalAlign="Center" />
@@ -268,6 +268,7 @@
                 </div>
 
             </div>
+
         </div>
     </div>
 
@@ -276,11 +277,11 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptsPersonalizados" runat="server">
 
     <script type="text/javascript">
-
+        quitarEventoSobreTextoTreeViewNode();
         document.addEventListener("DOMContentLoaded", function (event) {
             LoadTables();
             quitarEventoSobreTextoTreeViewNode();
-            chosenSelect();
+            //chosenSelect();
         });
 
         //On UpdatePanel Refresh
@@ -290,13 +291,13 @@
             prm.add_beginRequest(function (sender, e) {
                 $(".loading-panel").attr("style", "display:block");
                 quitarEventoSobreTextoTreeViewNode();
-                chosenSelect();
+                //chosenSelect();
             });
             prm.add_endRequest(function (sender, e) {
                 LoadTables();
                 $(".loading-panel").attr("style", "display:none");
                 quitarEventoSobreTextoTreeViewNode();
-                chosenSelect();
+                //chosenSelect();
 
             });
         }
@@ -305,10 +306,6 @@
             InitializeDataTableWithParameter('<%= gvPerfil.ClientID %>');
             InitializeDataTableWithParameter('<%= gvUsuario.ClientID %>');
         }
-
-
-
-
 
         /*FUNCIONAMIENTO PARA EL TREEVIEW */
         function postBackByObject() {
@@ -331,12 +328,10 @@
         }
 
 
-        function chosenSelect() {
-            $(".chosen-select").chosen();
-            $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-        }
-
-
+        //function chosenSelect() {
+        //    $(".chosen-select").chosen();
+        //    $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+        //}
     </script>
 
 </asp:Content>

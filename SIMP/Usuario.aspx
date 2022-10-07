@@ -16,18 +16,6 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Primer Apellido:</label>
-                        <asp:TextBox runat="server" ID="txtPrimer_Apellido" CssClass="form-control" placeholder="Primer Apellido"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="mb-4">
-                        <label class="form-label">Segundo Apellido:</label>
-                        <asp:TextBox runat="server" ID="txtSegundo_Apellido" CssClass="form-control" placeholder="Segundo Apellido"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="mb-4">
                         <label class="form-label">Usuario:</label>
                         <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control"></asp:TextBox>
                     </div>
@@ -75,7 +63,7 @@
                     <div class="col-sm-12">
                         <div class="table-responsive">
                             <asp:GridView ID="gvUsuarios" CssClass="table-responsive table customize-table v-middle"
-                                DataKeyNames="Id, Nombre, Primer_Apellido, Segundo_Apellido, Usuario, Perfil, Estado"
+                                DataKeyNames="Id, Nombre, Usuario_Sistema, Perfil, Estado"
                                 OnPreRender="gvUsuarios_PreRender"
                                 OnRowCommand="gvUsuarios_RowCommand"
                                 OnRowDataBound="gvUsuarios_RowDataBound"
@@ -86,9 +74,7 @@
                                 <Columns>
                                     <asp:BoundField DataField="Id" HeaderText="Id" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                                    <asp:BoundField DataField="Primer_Apellido" HeaderText="Primer Apellido" />
-                                    <asp:BoundField DataField="Segundo_Apellido" HeaderText="Segundo Apellido" />
-                                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" />
+                                    <asp:BoundField DataField="Usuario_Sistema" HeaderText="Usuario" />
                                     <asp:BoundField DataField="Perfil" HeaderText="Perfil" />
                                     <asp:BoundField DataField="Estado" HeaderText="Estado" />
                                     <asp:ButtonField CommandName="editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />

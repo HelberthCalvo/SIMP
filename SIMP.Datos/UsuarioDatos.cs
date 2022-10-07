@@ -29,7 +29,6 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_USUARIO_SISTEMA", usuario.Usuario);
                 cmd.Parameters.AddWithValue("@P_OPCION", usuario.Opcion);
                 cmd.Parameters.AddWithValue("@P_ID", usuario.Id);
-                cmd.Parameters.AddWithValue("@P_USUARIO_SISTEMA", usuario.Usuario_Sistema);
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", usuario.Esquema);
                 cmd.Parameters.AddWithValue("@P_CONTRASENA", usuario.Contrasena);
@@ -76,7 +75,7 @@ namespace SIMP.Datos
                 cmd = new SqlCommand(Sql, myConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@P_USUARIO", usuario.Usuario);
+                cmd.Parameters.AddWithValue("@P_USUARIO", usuario.Usuario_Sistema);
                 cmd.Parameters.AddWithValue("@P_OPCION", usuario.Opcion);
                 cmd.Parameters.AddWithValue("@P_ID", usuario.Id);
                 cmd.Parameters.AddWithValue("@P_USUARIO_SISTEMA", usuario.Usuario_Sistema);
@@ -86,7 +85,7 @@ namespace SIMP.Datos
                 if (!string.IsNullOrEmpty(usuario.Contrasena))
                 {
                     string encriptada = EncriptarString(usuario.Contrasena);
-                    cmd.Parameters.AddWithValue("@P_CONTRASENNA", encriptada);
+                    cmd.Parameters.AddWithValue("@P_CONTRASENA", encriptada);
                 }
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
                 cmd.Parameters.AddWithValue("@P_CAMBIO_CLAVE", usuario.Cambio_Clave);               
