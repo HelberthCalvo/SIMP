@@ -31,7 +31,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_ID", usuario.Id);
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", usuario.Esquema);
-                cmd.Parameters.AddWithValue("@P_CONTRASENA", usuario.Contrasena);
+                cmd.Parameters.AddWithValue("@P_CONTRASENA", EncriptarString(usuario.Contrasena));
 
                 myConexion.Open();
                 reader = cmd.ExecuteReader();
@@ -45,8 +45,8 @@ namespace SIMP.Datos
                     obj.Usuario_Sistema = UtilitarioSQL.ObtieneString(reader, "USUARIO_SISTEMA");
                     obj.Nombre = UtilitarioSQL.ObtieneString(reader, "NOMBRE");
                     obj.Correo = UtilitarioSQL.ObtieneString(reader, "CORREO");
-                    obj.Perfil = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_SEG_PERFIL");
-                    obj.Contrasena = UtilitarioSQL.ObtieneString(reader, "CONTRASENA");
+                    obj.Perfil = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_SEG_PERFIL");                  
+                    obj.Contrasena = DesencriptarString(UtilitarioSQL.ObtieneString(reader, "CONTRASENA"));
                     obj.Estado = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_ESTADO");
                     obj.Cambio_Clave = UtilitarioSQL.ObtieneString(reader, "CAMBIO_CLAVE");
                     obj.PerfilNombre = UtilitarioSQL.ObtieneString(reader, "FK_TBL_SIMP_SEG_PERFIL_NOMBRE");

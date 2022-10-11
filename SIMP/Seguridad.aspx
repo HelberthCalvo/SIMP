@@ -1,5 +1,16 @@
 ﻿<%@ Page Title="Seguridad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Seguridad.aspx.cs" Inherits="SIMP.Seguridad" %>
 
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">--%>
+    <%
+//if (Session["Compañia"] == null || Session["UsuarioSistema"].ToString() == null)
+//{
+//    Response.Redirect("Login.aspx", false);
+//}
+    %>
+</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
@@ -97,7 +108,7 @@
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
                                         <asp:GridView ID="gvPerfil" CssClass="table-responsive table customize-table v-middle" Style="width: 100%!important"
-                                            DataKeyNames="ID, Descripcion, Estado" OnPreRender="gvPerfil_PreRender"
+                                            DataKeyNames="ID, Descripcion, NombreEstado" OnPreRender="gvPerfil_PreRender"
                                             OnRowCommand="gvPerfil_RowCommand"
                                             AutoGenerateColumns="false"
                                             HeaderStyle-CssClass="table-dark"
@@ -281,7 +292,7 @@
         document.addEventListener("DOMContentLoaded", function (event) {
             LoadTables();
             quitarEventoSobreTextoTreeViewNode();
-            //chosenSelect();
+            chosenSelect();
         });
 
         //On UpdatePanel Refresh
@@ -291,13 +302,13 @@
             prm.add_beginRequest(function (sender, e) {
                 $(".loading-panel").attr("style", "display:block");
                 quitarEventoSobreTextoTreeViewNode();
-                //chosenSelect();
+                chosenSelect();
             });
             prm.add_endRequest(function (sender, e) {
                 LoadTables();
                 $(".loading-panel").attr("style", "display:none");
                 quitarEventoSobreTextoTreeViewNode();
-                //chosenSelect();
+                chosenSelect();
 
             });
         }
@@ -328,10 +339,10 @@
         }
 
 
-        //function chosenSelect() {
-        //    $(".chosen-select").chosen();
-        //    $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-        //}
+        function chosenSelect() {
+            $(".chosen-select").chosen();
+            $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+        }
     </script>
 
 </asp:Content>

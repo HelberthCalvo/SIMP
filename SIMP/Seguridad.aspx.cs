@@ -106,7 +106,7 @@ namespace SIMP
                     hfIdPerfil.Value = gvPerfil.DataKeys[index].Values[0].ToString();
                     txtDescripcionPerfil.Text = gvPerfil.DataKeys[index].Values[1].ToString();
                     string estado = gvPerfil.DataKeys[index].Values[2].ToString();
-                    if (estado == "1")
+                    if (estado == "Activo")
                     {
                         rdbInactivoPerfil.Checked = false;
                         rdbActivoPerfil.Checked = true;
@@ -168,7 +168,7 @@ namespace SIMP
                 perfil.Descripcion = txtDescripcionPerfil.Text;
                 perfil.Estado = rdbActivoPerfil.Checked ? "1" : "0";
                 perfil.Esquema = "dbo";
-                perfil.Usuario = Session["UsuarioSistema"].ToString();
+                perfil.Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
                 new PerfilLogica().MantPerfil(perfil);
 
                 LimpiarCamposPerfil();
@@ -191,18 +191,17 @@ namespace SIMP
             {
                 List<PerfilEntidad> lstPerfil = new List<PerfilEntidad>();
                 lstPerfil = new PerfilLogica().GetPerfiles(new PerfilEntidad() { Id = 0, Opcion = 0, Usuario = "hcalvo", Estado = "1", Esquema = "dbo" });
+                lstPerfil.ForEach(x => { x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo"; });
                 gvPerfil.DataSource = lstPerfil;
                 gvPerfil.DataBind();
 
                 if (lstPerfil.Count > 0)
-                {
-
+                {                   
                     ddlPerfil.DataSource = lstPerfil;
                     ddlPerfil.DataValueField = "ID";
                     ddlPerfil.DataTextField = "Descripcion";
                     ddlPerfil.DataBind();
-                    ddlPerfil.Items.Insert(0, new ListItem() { Text = "-- SELECCIONE EL PERFIL --", Value = "0" });
-
+                    ddlPerfil.Items.Insert(0, new ListItem() { Text = "-- SELECCIONE EL PERFIL --", Value = "0" });                  
                     ddlPerfilPermisos.DataSource = lstPerfil;
                     ddlPerfilPermisos.DataValueField = "ID";
                     ddlPerfilPermisos.DataTextField = "Descripcion";
@@ -237,7 +236,8 @@ namespace SIMP
             try
             {
                 List<UsuarioEntidad> lstUsuario = new List<UsuarioEntidad>();
-                lstUsuario = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Usuario = "hcalvo", Estado = 1, Esquema = "dbo" });
+                lstUsuario = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Usuario = "hcalvo", Estado = 1, Esquema = "dbo", Contrasena = "" });
+                lstUsuario.ForEach(x => { x.NombreEstado = x.Estado == 1 ? "Activo" : "Inactivo"; });
                 gvUsuario.DataSource = lstUsuario;
                 gvUsuario.DataBind();
             }
@@ -392,9 +392,6 @@ namespace SIMP
                     return;
                 }
 
-
-
-
                 UsuarioEntidad usuario = new UsuarioEntidad();
                 usuario.Id = !string.IsNullOrEmpty(hfIdUsuario.Value.ToString()) ? Convert.ToInt32(hfIdUsuario.Value) : 0;
 
@@ -418,7 +415,7 @@ namespace SIMP
                 usuario.Perfil = Convert.ToInt32(ddlPerfil.SelectedValue);
                 usuario.PerfilNombre = ddlPerfil.SelectedItem.Text;
                 //usuario.Contrasena = txtContraseña.Text;
-                usuario.Estado = rdbActivoUsuario.Checked ? 1 : 0;
+                usuario.Estado = rdbActivoUsuario.Checked ? 1 : 2;
                 usuario.Cambio_Clave = "1";
 
                 if (usuario.Id == 0)
@@ -608,11 +605,7 @@ namespace SIMP
 
             return false;
         }
-
-
         #endregion
-
-
 
         private void CargarTreeViewPermisos()
         {

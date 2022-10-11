@@ -12,7 +12,6 @@ namespace SIMP.Entidades
         public int IdCliente { get; set; }
         public string Nombre_Cliente { get; set; }
         public int IdEstado { get; set; }
-        public string NombreEstado { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Fecha_Inicio { get; set; }

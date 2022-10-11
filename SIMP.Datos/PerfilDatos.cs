@@ -73,6 +73,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_OPCION", perfil.Opcion);
                 cmd.Parameters.AddWithValue("@P_ID", perfil.Id);
                 cmd.Parameters.AddWithValue("@P_DESCRIPCION", perfil.Descripcion);
+                cmd.Parameters.AddWithValue("@P_ESTADO", perfil.Estado);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", perfil.Esquema);
 
                 myConexion.Open();

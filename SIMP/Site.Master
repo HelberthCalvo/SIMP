@@ -21,11 +21,27 @@
     <link href="Content/css/Site.css" rel="stylesheet" />
     <link href="Content/css/MiEstilo.css" rel="stylesheet" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <%--  ESTILOS PARA LAS DATATABLES--%>
+    <link href="Content/DataTables/Buttons-2.2.2/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+    <link href="Content/DataTables/Buttons-2.2.2/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="Content/DataTables/Buttons-2.2.2/css/buttons.foundation.min.css" rel="stylesheet" />
+    <link href="Content/DataTables/DataTables-1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="Content/DataTables/Responsive-2.2.9/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+    <link href="Content/css/TreeView.css" rel="stylesheet" />
 
+    <link href="Content/Combo/fSelect.css" rel="stylesheet" />
+    <link href="Content/Combo/chosenSelect.css" rel="stylesheet" />
+
+    <link href="Content/css/Site.css" rel="stylesheet" />
+    <link href="Content/css/MiEstilo.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="Style" runat="server">
+    </asp:ContentPlaceHolder>
     <!-- ============================================================== -->
     <!-- Scripts -->
     <!-- ============================================================== -->
     <script src="Content/plantilla/js/jquery/jquery.min.js"></script>
+
     <script src="Content/plantilla/js/bootstrap.min.js"></script>
     <script src="Content/plantilla/js/bootstrap.bundle.min.js"></script>
     <script src="Content/plantilla/js/app.js"></script>
@@ -42,6 +58,23 @@
     <script src="Content/plantilla/js/feather.min.js"></script>
     <script src="Content/plantilla/js/custom.init.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <%--SCRIPTS PARA LAS DATATABLE--%>
+    <script src="Content/DataTables/DataTables-1.11.5/js/jquery.dataTables.js" defer></script>
+    <script src="Content/DataTables/DataTables-1.11.5/js/dataTables.bootstrap5.min.js" defer></script>
+    <script src="Content/DataTables/Responsive-2.2.9/js/dataTables.responsive.min.js" defer></script>
+    <script src="Content/DataTables/Responsive-2.2.9/js/responsive.bootstrap5.min.js" defer></script>
+    <script src="Content/DataTables/Buttons-2.2.2/js/dataTables.buttons.min.js" defer></script>
+    <script src="Content/DataTables/JSZip-2.5.0/jszip.min.js" defer></script>
+    <script src="Content/DataTables/pdfmake-0.1.36/pdfmake.min.js" defer></script>
+    <script src="Content/DataTables/pdfmake-0.1.36/vfs_fonts.js" defer></script>
+    <script src="Content/DataTables/Buttons-2.2.2/js/buttons.html5.min.js" defer></script>
+    <script src="Content/DataTables/Buttons-2.2.2/js/buttons.print.min.js" defer></script>
+    <script src="Content/DataTables/Buttons-2.2.2/js/buttons.colVis.min.js" defer></script>
+    <script src="Content/DataTables/init.js" defer></script>
+
+    <script src="Content/Combo/fSelect.js"></script>
+    <script src="Content/Combo/chosenSelect.js" defer></script>
 </head>
 <body class="sb-nav-fixed">
     <form runat="server">
@@ -71,7 +104,7 @@
                     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                         <li class="nav-item dropdown">
-                            <asp:Button ID="btnCerrarSesion" CssClass="btn btn-dark" Text="Cerrar Sesión" runat="server" OnClick="btnCerrarSesion_Click"/>
+                            <asp:Button ID="btnCerrarSesion" CssClass="btn btn-dark" Text="Cerrar Sesión" runat="server" OnClick="btnCerrarSesion_Click" />
                         </li>
                     </ul>
                 </div>
@@ -107,7 +140,7 @@
                                 </div>
                                 Actividades
                             </asp:LinkButton>
-   
+
                             <asp:LinkButton runat="server" ID="linkBtnCliente" CssClass="nav-link" OnClick="linkBtnCliente_Click">
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/hombre-de-traje-y-corbata.png" />
@@ -135,5 +168,6 @@
         <asp:ContentPlaceHolder ID="scriptsPersonalizados" runat="server">
         </asp:ContentPlaceHolder>
     </form>
+    <script src="Content/plantilla/js/bootstrap.js"></script>
 </body>
 </html>
