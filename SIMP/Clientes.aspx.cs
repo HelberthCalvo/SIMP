@@ -15,7 +15,7 @@ namespace SIMP
         {
             if (Session["UsuarioSistema"] == null)
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("~/Login.aspx");
             }
             if (!IsPostBack)
             {
@@ -26,7 +26,11 @@ namespace SIMP
 
         protected void gvClientes_PreRender(object sender, EventArgs e)
         {
-
+            if (gvClientes.Rows.Count > 0)
+            {
+                gvClientes.UseAccessibleHeader = true;
+                gvClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)

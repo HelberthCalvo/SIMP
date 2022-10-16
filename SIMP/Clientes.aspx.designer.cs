@@ -11,26 +11,17 @@ namespace SIMP
 {
 
 
-    public partial class Fase
+    public partial class Cliente
     {
 
         /// <summary>
-        /// Control hdnIdFase.
+        /// Control idCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnIdFase;
-
-        /// <summary>
-        /// Control hdnIdProyecto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnIdProyecto;
+        protected global::System.Web.UI.WebControls.HiddenField idCliente;
 
         /// <summary>
         /// Control txbNombre.
@@ -42,22 +33,40 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.TextBox txbNombre;
 
         /// <summary>
-        /// Control txbDescripcion.
+        /// Control txbApellido1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbDescripcion;
+        protected global::System.Web.UI.WebControls.TextBox txbApellido1;
 
         /// <summary>
-        /// Control ddlProyectos.
+        /// Control txbApellido2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProyectos;
+        protected global::System.Web.UI.WebControls.TextBox txbApellido2;
+
+        /// <summary>
+        /// Control txbEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbEmail;
+
+        /// <summary>
+        /// Control txbTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbTelefono;
 
         /// <summary>
         /// Control btnGuardar.
@@ -69,12 +78,12 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
 
         /// <summary>
-        /// Control gvFases.
+        /// Control gvClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFases;
+        protected global::System.Web.UI.WebControls.GridView gvClientes;
     }
 }

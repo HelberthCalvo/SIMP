@@ -172,7 +172,11 @@ namespace SIMP
 
         protected void gvProyectos_PreRender(object sender, EventArgs e)
         {
-
+            if (gvProyectos.Rows.Count > 0)
+            {
+                gvProyectos.UseAccessibleHeader = true;
+                gvProyectos.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void gvProyectos_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -179,7 +179,11 @@ namespace SIMP
 
         protected void gvFases_PreRender(object sender, EventArgs e)
         {
-
+            if (gvFases.Rows.Count > 0)
+            {
+                gvFases.UseAccessibleHeader = true;
+                gvFases.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
     }

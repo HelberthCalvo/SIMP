@@ -262,7 +262,11 @@ namespace SIMP
 
         protected void gvActividad_PreRender(object sender, EventArgs e)
         {
-
+            if (gvActividad.Rows.Count > 0)
+            {
+                gvActividad.UseAccessibleHeader = true;
+                gvActividad.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void gvActividad_RowCommand(object sender, GridViewCommandEventArgs e)

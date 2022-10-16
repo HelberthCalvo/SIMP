@@ -38,6 +38,7 @@ namespace SIMP
                 if (usuarioBusqueda.Count > 0)
                 {
                     Session["UsuarioSistema"] = usuarioBusqueda[0];
+                    Session["Compañia"] = "dbo";
                     Response.Redirect("Proyecto.aspx",false);
                 }
                 else

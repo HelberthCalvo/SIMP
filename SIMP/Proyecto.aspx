@@ -92,3 +92,53 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="scriptsPersonalizados" runat="server">
+
+    <script type="text/javascript">
+        quitarEventoSobreTextoTreeViewNode();
+        document.addEventListener("DOMContentLoaded", function (event) {
+            LoadTables();
+            quitarEventoSobreTextoTreeViewNode();
+            chosenSelect();
+        });
+
+        //On UpdatePanel Refresh
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+
+        if (prm != null) {
+            prm.add_beginRequest(function (sender, e) {
+                $(".loading-panel").attr("style", "display:block");
+                quitarEventoSobreTextoTreeViewNode();
+                chosenSelect();
+            });
+            prm.add_endRequest(function (sender, e) {
+                LoadTables();
+                $(".loading-panel").attr("style", "display:none");
+                quitarEventoSobreTextoTreeViewNode();
+                chosenSelect();
+
+            });
+        }
+
+        let LoadTables = () => {
+            InitializeDataTableWithParameter('<%= gvProyectos.ClientID %>');
+        }
+
+
+
+        function quitarEventoSobreTextoTreeViewNode() {
+            $("[id *= 'tvPermisos'] table a[id *= tvPermisost]").removeAttr("onclick");
+            $("[id *= 'tvPermisos'] table a[id *= tvPermisost]").removeAttr("href");
+            $("[id *= 'tvPermisos'] table a[id *= tvPermisost]").css("color", "black");
+            $("[id *= 'tvPermisos'] table a[id *= tvPermisost]").css("text-decoration", "none");
+            $("[id *= 'tvPermisos'] table a[id *= tvPermisost]").css("font-size", "1.2em");
+        }
+
+
+        function chosenSelect() {
+            $(".chosen-select").chosen();
+            $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+        }
+    </script>
+
+</asp:Content>

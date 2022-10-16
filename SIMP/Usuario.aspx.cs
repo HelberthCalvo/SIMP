@@ -301,7 +301,7 @@ namespace SIMP
         //            Opcion = 1,
         //            Estado = "0",
         //            Esquema = Session["Compañia"].ToString(),
-        //            Usuario = Session["UsuarioSistema"].ToString()
+        //            Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema
         //        };
 
         //        new OperacionBancariasL().MantOperacionBancaria(operacionBancaria);

@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Style" runat="server">
     <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">--%>
     <%
-//if (Session["Compañia"] == null || Session["UsuarioSistema"].ToString() == null)
+//if (Session["Compañia"] == null || ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema; == null)
 //{
 //    Response.Redirect("Login.aspx", false);
 //}
@@ -164,12 +164,12 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <%--<div class="col-sm-12 col-md-6 col-lg-6">
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="control-label">Contraseña</label>
                                                     <asp:TextBox ID="txtContraseña" type="password" placeholder="Contraseña" CssClass="form-control" runat="server"></asp:TextBox>
                                                 </div>
-                                            </div>--%>
+                                            </div>
                                             <div class="col-sm-12 col-md-6">
                                                 <div class="mb-3">
                                                     <label style="color: black !important;">Estado</label>
@@ -216,10 +216,10 @@
                                                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:BoundField DataField="Correo" HeaderText="Correo" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:BoundField DataField="PerfilNombre" HeaderText="Perfil" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                                <%--<asp:BoundField DataField="Contrasenna" HeaderText="Contraseña" />--%>
+                                                <%--<asp:BoundField DataField="Contrasena" HeaderText="Contraseña" />--%>
                                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:ButtonField HeaderText="Modificar" CommandName="editar" Text="<i class='fas fa-2x fa-edit'></i>" ItemStyle-HorizontalAlign="Center" />
-                                                <asp:ButtonField HeaderText="Cambiar Contraseña" CommandName="cambiarContrasenna" Text="<i class='fas fa-2x fa-retweet'></i>" ItemStyle-HorizontalAlign="Center" />
+                                                <asp:ButtonField HeaderText="Cambiar Contraseña" CommandName="cambiarContrasena" Text="<i class='fas fa-2x fa-retweet'></i>" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:ButtonField HeaderText="Eliminar" CommandName="eliminar" Text="<i class='fas fa-2x fa-trash-alt'></i>" ItemStyle-HorizontalAlign="Center" />
                                             </Columns>
                                             <HeaderStyle CssClass="headerColor" BackColor="#4285f4" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" BorderStyle="Solid" BorderColor="Black" />

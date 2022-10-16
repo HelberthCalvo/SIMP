@@ -125,7 +125,7 @@ namespace SIMP
                     perfil.Descripcion = gvPerfil.DataKeys[index].Values[1].ToString();
                     perfil.Estado = "0";
                     perfil.Esquema = Session["Compañia"].ToString();
-                    perfil.Usuario = Session["UsuarioSistema"].ToString();
+                    perfil.Usuario = ((UsuarioEntidad)Session["UsuarioSistema"]).Usuario_Sistema;
 
                     new PerfilLogica().MantPerfil(perfil);
 
@@ -275,7 +275,7 @@ namespace SIMP
                     txtNombre.Text = gvUsuario.DataKeys[index].Values[2].ToString();
                     txtCorreo.Text = gvUsuario.DataKeys[index].Values[3].ToString();
                     ddlPerfil.SelectedValue = gvUsuario.DataKeys[index].Values[4].ToString();
-                    //txtContraseña.Text = gvUsuario.DataKeys[index].Values[5].ToString();
+                    txtContraseña.Text = gvUsuario.DataKeys[index].Values[5].ToString();
 
                     string estado = gvUsuario.DataKeys[index].Values[6].ToString();
                     string cambioClave = gvUsuario.DataKeys[index].Values[7].ToString();
@@ -301,9 +301,10 @@ namespace SIMP
                     usuario.Nombre = gvUsuario.DataKeys[index].Values[2].ToString();
                     usuario.Correo = gvUsuario.DataKeys[index].Values[3].ToString();
                     usuario.Perfil = Convert.ToInt32(gvUsuario.DataKeys[index].Values[4]);
-                    usuario.Estado = 0;
+                    usuario.Contrasena = gvUsuario.DataKeys[index].Values[5].ToString();
+                    usuario.Estado = 2;
                     usuario.Esquema = Session["Compañia"].ToString();
-                    usuario.Usuario = Session["UsuarioSistema"].ToString();
+                    usuario.Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
                     usuario.Cambio_Clave = gvUsuario.DataKeys[index].Values[7].ToString();
 
                     new UsuarioLogica().MantUsuario(usuario);
@@ -324,7 +325,7 @@ namespace SIMP
                     usuario.PerfilNombre = gvUsuario.DataKeys[index].Values[8].ToString();
                     usuario.Opcion = 1;
                     usuario.Esquema = Session["Compañia"].ToString();
-                    usuario.Usuario = Session["UsuarioSistema"].ToString();
+                    usuario.Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
                     usuario.Cambio_Clave = "1";
                     usuario.Contrasena = contraseniaAlfanumerica(5);
 
@@ -396,7 +397,7 @@ namespace SIMP
                 usuario.Id = !string.IsNullOrEmpty(hfIdUsuario.Value.ToString()) ? Convert.ToInt32(hfIdUsuario.Value) : 0;
 
                 usuario.Esquema = "dbo";
-                usuario.Usuario = Session["UsuarioSistema"].ToString();
+                usuario.Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
 
                 usuario.Usuario_Sistema = txtUsuario.Text;
                 if (usuario.Id == 0)
@@ -414,9 +415,9 @@ namespace SIMP
                 usuario.Correo = txtCorreo.Text;
                 usuario.Perfil = Convert.ToInt32(ddlPerfil.SelectedValue);
                 usuario.PerfilNombre = ddlPerfil.SelectedItem.Text;
-                //usuario.Contrasena = txtContraseña.Text;
+                usuario.Contrasena = txtContraseña.Text;
                 usuario.Estado = rdbActivoUsuario.Checked ? 1 : 2;
-                usuario.Cambio_Clave = "1";
+                usuario.Cambio_Clave = "0";
 
                 if (usuario.Id == 0)
                 {
@@ -924,7 +925,7 @@ namespace SIMP
 
                 PrivilegioEntidad obPrivilegiosE = new PrivilegioEntidad();
                 PrivilegioLogica obPrivilegiosL = new PrivilegioLogica();
-                string usuarioLogin = Session["UsuarioSistema"].ToString();
+                string usuarioLogin = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
                 string Compania = Session["Compañia"].ToString();
                 string result = "";
 

@@ -14,7 +14,7 @@ namespace SIMP
         {
             if (Session["UsuarioSistema"] == null)
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("~/Login.aspx");
             }
             else
             {
@@ -25,7 +25,7 @@ namespace SIMP
         protected void linkBtnCliente_Click(object sender, EventArgs e)
         {
             //Response.Redirect("~/Pages/Cliente/Index.aspx");
-            Response.Redirect("~/Cliente.aspx");
+            Response.Redirect("~/Clientes.aspx");
         }
 
         protected void linkBtnUsuario_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace SIMP
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             Session["UsuarioSistema"] = null;
-            Response.Redirect("Login.aspx");
+            Response.Redirect("~/Login.aspx");
         }
     }
 }
