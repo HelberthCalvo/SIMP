@@ -635,7 +635,7 @@ namespace SIMP
 
                     nodoMenu.Value = "menu-" + iMenu.Id; // valor para identificar que el nodo pertenece a un menu
                     nodoMenu.ShowCheckBox = true;
-                    nodoMenu.Checked = iMenu.Estado == "1" ? true : false;
+                    nodoMenu.Checked = iMenu.EstadoMenu == "1" ? true : false;
 
                     ObtenerPermisos(nodoMenu,
                       iMenu.CrearMenu,
