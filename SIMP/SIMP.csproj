@@ -294,7 +294,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bg-login.jpg" />
     <Content Include="Content\img\logo-sitsa.png" />
-    <Content Include="Content\img\logo-sitsa2.jpg" />
     <Content Include="Content\plantilla\css\bootstrap.css" />
     <Content Include="Content\plantilla\css\bootstrap.min.css" />
     <Content Include="Content\plantilla\css\icons\crypto-icons\cryptocoins-colors.css" />
