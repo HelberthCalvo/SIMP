@@ -49,6 +49,7 @@ namespace SIMP.Datos
                     obj.EditarMenu = UtilitarioSQL.ObtieneBool(reader, "EDITAR_MENU");
                     obj.VerMenu = UtilitarioSQL.ObtieneBool(reader, "VER_MENU");
                     obj.EnviarMenu = UtilitarioSQL.ObtieneBool(reader, "ENVIAR_MENU");
+                    obj.Estado = UtilitarioSQL.ObtieneString(reader, "ESTADO_PERMISO");
                     obj.EstadoPermiso = UtilitarioSQL.ObtieneString(reader, "ESTADO_PERMISO");
                     obj.CrearPermiso = UtilitarioSQL.ObtieneBool(reader, "CREAR_PERMISO");
                     obj.EditarPermiso = UtilitarioSQL.ObtieneBool(reader, "EDITAR_PERMISO");
