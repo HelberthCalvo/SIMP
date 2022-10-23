@@ -4,26 +4,31 @@
         <ContentTemplate>
             <asp:HiddenField ID="hdnIdFase" runat="server" />
             <asp:HiddenField ID="hdnIdProyecto" runat="server" />
-            <h2 class="fs-4">Mantenimiento de Fases</h2>
+            <h2 class="fs-4">Fases</h2>
             <hr />
             <div class="row">
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Nombre</label>
+                        <label class="form-label">Nombre *</label>
                         <asp:TextBox runat="server" ID="txbNombre" CssClass="form-control" placeholder="Nombre del proyecto"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Descripción:</label>
+                        <label class="form-label">Descripción *</label>
                         <asp:TextBox runat="server" ID="txbDescripcion" CssClass="form-control" placeholder="Descripción"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Proyecto:</label>
+                        <label class="form-label">Proyecto</label>
                         <asp:DropDownList runat="server" ID="ddlProyectos" CssClass="form-control"></asp:DropDownList>
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <label class="lead fs-6">Campos requeridos *</label>
+                     </div>
                 </div>
             </div>
             <div class="row text-center mt-3 mb-5">
@@ -57,15 +62,15 @@
                             Width="100%"
                             runat="server">
                             <Columns>
-                                <asp:BoundField DataField="Id" HeaderText="Id" />
+                                <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                 <asp:BoundField DataField="IdProyecto" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdProyecto" />
                                 <asp:BoundField DataField="IdEstado" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdEstado" />
                                 <asp:BoundField DataField="Nombre" HeaderText="Fase" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                                 <asp:BoundField DataField="NombreProyecto" HeaderText="Proyecto" />
                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
-                                <asp:ButtonField CommandName="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
-                                <asp:ButtonField CommandName="CambiarEstado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
+                                <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
+                                <asp:ButtonField CommandName="CambiarEstado" HeaderText="Estado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
                             </Columns>
                         </asp:GridView>
                     </div>

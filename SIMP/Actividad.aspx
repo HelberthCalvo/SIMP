@@ -3,36 +3,36 @@
     <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <asp:HiddenField ID="hdnIdActividad" runat="server" />
-            <h2 class="fs-4">Mantenimiento de Actividades</h2>
+            <h2 class="fs-4">Actividades</h2>
             <hr />
             <div class="row">
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Descripción:</label>
+                        <label class="form-label">Descripción *</label>
                         <asp:TextBox runat="server" ID="txbDescripcion" CssClass="form-control" placeholder="Descripción"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Proyecto:</label>
+                        <label class="form-label">Proyecto</label>
                         <asp:DropDownList runat="server" ID="ddlProyecto" OnSelectedIndexChanged="ddlProyecto_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Fase:</label>
+                        <label class="form-label">Fase</label>
                         <asp:DropDownList runat="server" ID="ddlFase" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Usuario:</label>
+                        <label class="form-label">Usuario</label>
                         <asp:DropDownList runat="server" ID="ddlUsuario" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Fecha Inicio:</label>
+                        <label class="form-label">Fecha Inicio *</label>
                         <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha de inicio" ID="txbFechaInicio" CssClass="form-control"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd/MM/yyyy"
                             TargetControlID="txbFechaInicio" PopupButtonID="txbFechaInicio"></ajaxToolkit:CalendarExtender>
@@ -40,11 +40,16 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Fecha Finalización:</label>
+                        <label class="form-label">Fecha Finalización *</label>
                         <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha estimada de finalización" ID="txbFechaEstimada" CssClass="form-control"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd/MM/yyyy"
                             TargetControlID="txbFechaEstimada" PopupButtonID="txbFechaEstimada"></ajaxToolkit:CalendarExtender>
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <label class="lead fs-6">Campos requeridos *</label>
+                     </div>
                 </div>
             </div>
             <div class="row text-center mt-3 mb-5">
@@ -80,18 +85,18 @@
                             Width="100%"
                             runat="server">
                             <Columns>
-                                <asp:BoundField DataField="Id" HeaderText="Id" />
+                                <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none"/>
                                 <asp:BoundField DataField="IdFase" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdFase" />
                                 <asp:BoundField DataField="IdUsuario" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdUsuario" />
                                 <asp:BoundField DataField="NombreFase"  HeaderText="Fase" />
                                 <asp:BoundField DataField="NombreUsuario" HeaderText="Usuario" />
-                                <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                                <asp:BoundField DataField="Descripcion" HeaderText="Actividad" />
                                 <asp:BoundField DataField="Fecha_Inicio" HeaderText="Fecha Inicio" />
                                 <asp:BoundField DataField="Fecha_Estimada" HeaderText="Fecha Estimada" />
                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
-                                <asp:ButtonField CommandName="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
-                                <asp:ButtonField CommandName="CambiarEstado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
-                                <asp:ButtonField CommandName="Finalizar" ControlStyle-CssClass="text-success" Text="<i class='fa-sharp fa-xl fa-solid fa-circle-check'></i>" />
+                                <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
+                                <asp:ButtonField CommandName="CambiarEstado" HeaderText="Estado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
+                                <asp:ButtonField CommandName="Finalizar" HeaderText="Finalizar" ControlStyle-CssClass="text-success" Text="<i class='fa-sharp fa-xl fa-solid fa-circle-check'></i>" />
                             </Columns>
                         </asp:GridView>
                     </div>

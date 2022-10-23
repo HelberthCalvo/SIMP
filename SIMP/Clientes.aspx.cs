@@ -21,6 +21,22 @@ namespace SIMP
             {
                 //HabilitaOpcionesPermisos();
                 CargarGridCliente();
+                CargarTooltips();
+            }
+        }
+
+        private void CargarTooltips()
+        {
+            try
+            {
+                foreach (GridViewRow item in gvClientes.Rows)
+                {
+                    item.Cells[6].ToolTip = "Editar";
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 

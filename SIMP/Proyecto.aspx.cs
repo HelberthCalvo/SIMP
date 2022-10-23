@@ -22,6 +22,24 @@ namespace SIMP
                 //HabilitaOpcionesPermisos();
                 CargarGridProyectos();
                 CargarClientes();
+                CargarTooltips();
+            }
+        }
+
+        private void CargarTooltips()
+        {
+            try
+            {
+                foreach (GridViewRow item in gvProyectos.Rows)
+                {
+                    item.Cells[8].ToolTip = "Editar";
+                    item.Cells[9].ToolTip = "Cambiar estado";
+                    item.Cells[10].ToolTip = "Marcar como finalizado";
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -88,7 +106,7 @@ namespace SIMP
             }
             catch (Exception ex)
             {
-                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+                Mensaje("Error", ex.Message, false);
             }
         }
 
@@ -201,6 +219,7 @@ namespace SIMP
                     ddlClientes.SelectedValue = idCliente;
                     txbFechaInicio.Text = fecha_inicio;
                     txbFechaEstimada.Text = fecha_estimada;
+                    
                 }
                 else if (e.CommandName == "CambiarEstado")
                 {

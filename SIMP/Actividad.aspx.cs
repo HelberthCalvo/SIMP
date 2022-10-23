@@ -24,6 +24,24 @@ namespace SIMP
                 CargarProyectos();
                 CargarUsuarios();
                 CargarFases(0);
+                CargarTooltips();
+            }
+        }
+
+        private void CargarTooltips()
+        {
+            try
+            {
+                foreach (GridViewRow item in gvActividad.Rows)
+                {
+                    item.Cells[9].ToolTip = "Editar";
+                    item.Cells[10].ToolTip = "Cambiar estado";
+                    item.Cells[11].ToolTip = "Marcar como finalizado";
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 

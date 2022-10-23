@@ -5,38 +5,43 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <asp:HiddenField ID="idCliente" runat="server" />
-            <h2 class="fs-4">Mantenimiento de Clientes</h2>
+            <h2 class="fs-4">Clientes</h2>
             <hr />
             <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Nombre:</label>
+                        <label class="form-label">Nombre *</label>
                         <asp:TextBox runat="server" ID="txbNombre" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Primer Apellido:</label>
+                        <label class="form-label">Primer Apellido *</label>
                         <asp:TextBox runat="server" ID="txbApellido1" CssClass="form-control" placeholder="Primer Apellido"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Segundo Apellido:</label>
+                        <label class="form-label">Segundo Apellido *</label>
                         <asp:TextBox runat="server" ID="txbApellido2" CssClass="form-control" placeholder="Segundo Apellido"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Email:</label>
+                        <label class="form-label">Email *</label>
                         <asp:TextBox runat="server" TextMode="Email" ID="txbEmail" CssClass="form-control" placeholder="ejemplo@gmail.com"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Teléfono:</label>
+                        <label class="form-label">Teléfono *</label>
                         <asp:TextBox runat="server" TextMode="Phone" ID="txbTelefono" CssClass="form-control" placeholder="88554466"></asp:TextBox>
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <label class="lead fs-6">Campos requeridos *</label>
+                     </div>
                 </div>
             </div>
             <div class="row text-center">
@@ -69,13 +74,13 @@
                 Width="100%"
                 runat="server">
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="Id" />
+                    <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                     <asp:BoundField DataField="Primer_Apellido" HeaderText="Primer Apellido" />
                     <asp:BoundField DataField="Segundo_Apellido" HeaderText="Segundo Apellido" />
                     <asp:BoundField DataField="Correo_Electronico" HeaderText="Correo Electronico" />
                     <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
-                    <asp:ButtonField CommandName="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
+                    <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                 </Columns>
             </asp:GridView>
 

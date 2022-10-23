@@ -3,6 +3,7 @@ using SIMP.Logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,7 +21,7 @@ namespace SIMP
         {
             try
             {
-                if (CamposVacios())
+                if (CamposInvalidos())
                 {
                     return;
                 }
@@ -39,7 +40,7 @@ namespace SIMP
                 {
                     Session["UsuarioSistema"] = usuarioBusqueda[0];
                     Session["Compañia"] = "dbo";
-                    Response.Redirect("Proyecto.aspx",false);
+                    Response.Redirect("Proyecto.aspx", false);
                 }
                 else
                 {
@@ -52,17 +53,37 @@ namespace SIMP
             }
         }
 
-        private bool CamposVacios()
+        private bool CamposInvalidos()
         {
-
+            Regex regex = new Regex(@"^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{9,15}$");
             if (string.IsNullOrEmpty(txtNombreUsuario.Text))
             {
-                Mensaje("Aviso", "Debe ingresar un nombre", false);
+                Mensaje("Aviso", "Debe ingresar un nombre de usuario", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txtContrasena.Text))
             {
                 Mensaje("Aviso", "Debe ingresar una contraseña", false);
+                return true;
+            }
+            else if (txtContrasena.Text.Length < 9)
+            {
+                Mensaje("Aviso", "La contraseña debe poseer 9 caracteres como mínimo", false);
+                return true;
+            }
+            else if (txtContrasena.Text.Length > 15)
+            {
+                Mensaje("Aviso", "La contraseña debe poseer 15 caracteres como máximo", false);
+                return true;
+            }
+            else if (!regex.IsMatch(txtContrasena.Text))
+            {
+                string msj = "La contraseña debe cumplir con los siguientes parámetros: " +
+                    "- Al menos una letra mayúscula" +
+                    "- Al menos una letra minúscula" +
+                    "- Al menos un número" +
+                    "- Al menos un caracter especial ($%#@!&*?)";
+                Mensaje("Aviso", msj, false);
                 return true;
             }
             return false;

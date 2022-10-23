@@ -4311,7 +4311,7 @@ textarea.form-control-lg {
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
         color: #fff;
-        background-color: #0d6efd;
+        background-color: black !important;
     }
 
 .nav-fill > .nav-link,
@@ -12367,50 +12367,4 @@ body {
     width: 20px !important;
     font-size: 0.75rem;
     border-radius: 0.25rem !important;
-}
-
-/*LOGIN*/
-
-.login-style {
-    padding-top: 12rem;
-}
-
-.login-font {
-    font-family: 'Montserrat', sans-serif !important;
-}
-
-    .login-font h1 {
-        font-size: 1.8rem;
-        font-weight: 300;
-    }
-    
-
-.login-form {
-    font-weight: 400;
-    border-left: 1px solid #E9E9E9;
-    padding-left: 4.5rem;
-}
-
-.login-btn {
-    background-color: #740DE3;
-    color: white;
-}
-
-@media (max-width: 992px) {
-
-    .login-form {
-        border-left: 0;
-        padding-left: 0;
-    }
-
-    .login-title {
-        padding-left: 0px;
-    }
-}
-
-@media (max-width: 580px) {
-
-    .login-style {
-        padding: 3rem;
-    }
 }

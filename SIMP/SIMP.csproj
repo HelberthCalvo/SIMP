@@ -105,10 +105,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Actividad.aspx" />
     <Content Include="Clientes.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -130,6 +128,7 @@
     <Content Include="Content\Combo\chosenSelect.js" />
     <Content Include="Content\Combo\fSelect.css" />
     <Content Include="Content\Combo\fSelect.js" />
+    <Content Include="Content\css\LoginStyle.css" />
     <Content Include="Content\css\MiEstilo.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\css\TreeView.css" />
@@ -293,6 +292,9 @@
     <Content Include="Content\DataTables\Scroller-2.0.5\js\scroller.semanticui.js" />
     <Content Include="Content\DataTables\Scroller-2.0.5\js\scroller.semanticui.min.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\bg-login.jpg" />
+    <Content Include="Content\img\logo-sitsa.png" />
+    <Content Include="Content\img\logo-sitsa2.jpg" />
     <Content Include="Content\plantilla\css\bootstrap.css" />
     <Content Include="Content\plantilla\css\bootstrap.min.css" />
     <Content Include="Content\plantilla\css\icons\crypto-icons\cryptocoins-colors.css" />
@@ -773,7 +775,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css" />
-    <Content Include="Default.aspx" />
     <Content Include="Fase.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -1014,13 +1015,6 @@
       <DependentUpon>Actividad.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
@@ -1028,20 +1022,6 @@
     </Compile>
     <Compile Include="Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Fase.aspx.cs">
       <DependentUpon>Fase.aspx</DependentUpon>

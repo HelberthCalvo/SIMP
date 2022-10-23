@@ -4,31 +4,31 @@
 
     <asp:UpdatePanel ID="form" runat="server">
         <ContentTemplate>
-            <h2 class="fs-4">Mantenimiento de Usuario</h2>
+            <h2 class="fs-4">Usuarios</h2>
             <hr />
             <div class="row">
                 <asp:HiddenField runat="server" ID="txtId" />
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Nombre:</label>
+                        <label class="form-label">Nombre *</label>
                         <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Usuario:</label>
+                        <label class="form-label">Usuario *</label>
                         <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Contraseña:</label>
+                        <label class="form-label">Contraseña *</label>
                         <asp:TextBox runat="server" TextMode="Password" ID="txtContrasena" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Perfil:</label>
+                        <label class="form-label">Perfil</label>
                         <asp:DropDownList runat="server" ID="ddlPerfil" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
@@ -45,6 +45,11 @@
                             <label class="form-check-label" style="color: black !important" for="MainContent_rdbInactivo">Inactivo</label>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <label class="lead fs-6">Campos requeridos *</label>
+                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
