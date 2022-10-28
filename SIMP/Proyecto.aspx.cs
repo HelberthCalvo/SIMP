@@ -21,7 +21,6 @@ namespace SIMP
             {
                 //HabilitaOpcionesPermisos();
                 CargarGridProyectos();
-                CargarClientes();
                 CargarTooltips();
             }
         }
@@ -43,9 +42,9 @@ namespace SIMP
             }
         }
 
-        private string NombreCompleto(string nombre, string primer_apellido)
+        private string NombreCompleto(string nombre, string primer_apellido, string segundo_apellido)
         {
-            return nombre + " " + primer_apellido;
+            return nombre + " " + primer_apellido + " " + segundo_apellido;
         }
 
         private void CargarClientes()
@@ -54,13 +53,10 @@ namespace SIMP
             {
                 List<ClienteEntidad> lstClientes = new List<ClienteEntidad>();
                 lstClientes = ClienteLogica.GetClientes(new ClienteEntidad { Esquema = "dbo" });
-                lstClientes.ForEach(x => { x.Nombre = NombreCompleto(x.Nombre, x.Primer_Apellido); });
+                lstClientes.ForEach(x => { x.Nombre = NombreCompleto(x.Nombre, x.Primer_Apellido, x.Segundo_Apellido); });
 
-                ddlClientes.DataSource = lstClientes;
-
-                ddlClientes.DataTextField = "Nombre";
-                ddlClientes.DataValueField = "Id";
-                ddlClientes.DataBind();
+                gvModalCliente.DataSource = lstClientes;
+                gvModalCliente.DataBind();
             }
             catch (Exception ex)
             {
@@ -125,7 +121,7 @@ namespace SIMP
                     Descripcion = txbDescripcion.Text,
                     Fecha_Inicio = FormatoFecha(txbFechaInicio.Text),
                     Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text),
-                    IdCliente = Convert.ToInt32(ddlClientes.SelectedValue),
+                    IdCliente = Convert.ToInt32(hdnIdCliente.Value),
                     IdEstado = 1,
                     Usuario = "hcalvo",
                     Esquema = "dbo",
@@ -136,7 +132,6 @@ namespace SIMP
                     proyecto.Id = Convert.ToInt32(hdnIdProyecto.Value);
                     proyecto.Fecha_Inicio = FormatoFecha(txbFechaInicio.Text);
                     proyecto.Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text);
-                    
                 }
                 ProyectoLogica.MantProyecto(proyecto);
                 Mensaje("Aviso", "El proyecto se guardó correctamente", true);
@@ -152,12 +147,7 @@ namespace SIMP
 
         private bool CamposVacios()
         {
-            if (ddlClientes.Items.Count <= 0)
-            {
-                Mensaje("Aviso", "No hay clientes disponibles. Por favor agregue uno para continuar", false);
-                return true;
-            }
-            else if (string.IsNullOrEmpty(txbNombre.Text))
+            if (string.IsNullOrEmpty(txbNombre.Text))
             {
                 Mensaje("Aviso", "Debe ingresar un nombre", false);
                 return true;
@@ -165,6 +155,11 @@ namespace SIMP
             else if (string.IsNullOrEmpty(txbDescripcion.Text))
             {
                 Mensaje("Aviso", "Debe ingresar una descripción", false);
+                return true;
+            }
+            else if (string.IsNullOrEmpty(hdnIdCliente.Value))
+            {
+                Mensaje("Aviso", "Debe seleccionar un cliente", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txbFechaInicio.Text))
@@ -186,6 +181,9 @@ namespace SIMP
             txbDescripcion.Text = string.Empty;
             txbFechaInicio.Text = string.Empty;
             txbFechaEstimada.Text = string.Empty;
+            txtNombreCliente.Text = string.Empty;
+            hdnIdProyecto.Value = string.Empty;
+            hdnIdCliente.Value = string.Empty;
         }
 
         protected void gvProyectos_PreRender(object sender, EventArgs e)
@@ -206,6 +204,7 @@ namespace SIMP
                 var id = gvProyectos.Rows[index].Cells[0].Text;
                 var idCliente = gvProyectos.Rows[index].Cells[1].Text;
                 var nombre = gvProyectos.Rows[index].Cells[2].Text;
+                var nombreCliente = gvProyectos.Rows[index].Cells[3].Text;
                 var descripcion = gvProyectos.Rows[index].Cells[4].Text;
                 var fecha_inicio = gvProyectos.Rows[index].Cells[5].Text;
                 var fecha_estimada = gvProyectos.Rows[index].Cells[6].Text;
@@ -216,10 +215,10 @@ namespace SIMP
                     hdnIdProyecto.Value = Convert.ToInt32(id).ToString();
                     txbNombre.Text = nombre;
                     txbDescripcion.Text = descripcion;
-                    ddlClientes.SelectedValue = idCliente;
+                    hdnIdCliente.Value = idCliente;
                     txbFechaInicio.Text = fecha_inicio;
                     txbFechaEstimada.Text = fecha_estimada;
-                    
+                    txtNombreCliente.Text = nombreCliente;
                 }
                 else if (e.CommandName == "CambiarEstado")
                 {
@@ -246,13 +245,44 @@ namespace SIMP
                         Esquema = "dbo", 
                         Descripcion = descripcion,
                         Nombre = nombre,
-                        Fecha_Inicio = fecha_inicio,
-                        Fecha_Estimada = fecha_estimada,
+                        Fecha_Inicio = FormatoFecha(fecha_inicio),
+                        Fecha_Estimada = FormatoFecha(fecha_estimada),
                         IdCliente = Convert.ToInt32(idCliente), 
-                        IdEstado = nombreEstado == "Activo" ? 1 : 2,
-                        Fecha_Finalizacion = DateTime.Now.ToString() });;
+                        IdEstado = 2,
+                        Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString()) 
+                    });
                     Mensaje("Aviso", "Proyecto finalizado con éxito", true);
                     CargarGridProyectos();
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        protected void btnModalCliente_Click(object sender, EventArgs e)
+        {
+            CargarClientes();
+            ScriptManager.RegisterStartupScript(this, GetType(), "modalCliente", "$('#modalCliente').modal('show')", true);           
+        }
+
+        protected void gvModalCliente_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                if (e.CommandName == "Seleccionar")
+                {
+                    hdnIdCliente.Value = gvModalCliente.Rows[index].Cells[0].Text;
+                    txtNombreCliente.Text = gvModalCliente.Rows[index].Cells[1].Text;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modalCliente", "$('#modalCliente').modal('hide')", true);
                 }
             }
             catch (Exception ex)

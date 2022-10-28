@@ -51,13 +51,22 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.TextBox txbDescripcion;
 
         /// <summary>
-        /// ddlProyectos control.
+        /// txtNombreProyecto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProyectos;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreProyecto;
+
+        /// <summary>
+        /// btnModalProyecto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnModalProyecto;
 
         /// <summary>
         /// btnGuardar control.
@@ -69,6 +78,15 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
 
         /// <summary>
+        /// btnCancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
+
+        /// <summary>
         /// gvFases control.
         /// </summary>
         /// <remarks>
@@ -76,5 +94,14 @@ namespace SIMP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvFases;
+
+        /// <summary>
+        /// gvModalProyecto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvModalProyecto;
     }
 }

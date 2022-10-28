@@ -22,7 +22,14 @@
                 <div class="col-lg-4">
                     <div class="mb-4">
                         <label class="form-label">Proyecto</label>
-                        <asp:DropDownList runat="server" ID="ddlProyectos" CssClass="form-control"></asp:DropDownList>
+                        <div class="input-group">
+                            <asp:TextBox ID="txtNombreProyecto" CssClass="form-control" runat="server" placeholder="Seleccione un proyecto" Enabled="false"/>
+                            <div class="input-group-append">
+                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalProyecto" OnClick="btnModalProyecto_Click" runat="server" >
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </asp:LinkButton>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -36,6 +43,7 @@
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>
                             <asp:LinkButton ID="btnGuardar" class="btn btn-primary rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
+                            <asp:LinkButton ID="btnCancelar" class="btn btn-danger rounded-pill px-4" runat="server" OnClick="btnCancelar_Click">Cancelar</asp:LinkButton>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -78,6 +86,48 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    
+    <!-- Modal Proyecto -->
+    <div class="modal fade" id="modalProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Seleccione un proyecto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <asp:UpdatePanel runat="server" UpdateMode="Always">
+                        <ContentTemplate>
+                            <div class="row pb-4">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <asp:GridView ID="gvModalProyecto" CssClass="table-responsive table customize-table v-middle"
+                                            DataKeyNames="Id, Nombre"
+                                            OnRowCommand="gvModalProyecto_RowCommand"
+                                            AutoGenerateColumns="false"
+                                            HeaderStyle-CssClass="table-dark"
+                                            Width="100%"
+                                            runat="server">
+                                            <Columns>
+                                                <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
+                                                <asp:BoundField DataField="Nombre" HeaderText="Cliente" />
+                                                <asp:ButtonField CommandName="Seleccionar" HeaderText="Seleccionar" ControlStyle-CssClass="btn btn-primary" Text="Seleccionar" />
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptsPersonalizados" runat="server">
 

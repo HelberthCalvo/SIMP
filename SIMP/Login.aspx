@@ -32,7 +32,7 @@
                             <div class="login-wrapper">
                                 <h2 class="login-title text-center">Iniciar Sesión</h2>
                                 <div class="form-group">
-                                    <asp:TextBox runat="server" ID="txtNombreUsuario" CssClass="form-control" placeholder="Nombre de usuario" ToolTip="Por favor rellene este campo."></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtNombreUsuario" CssClass="form-control" placeholder="Nombre de usuario o correo electrónico" ToolTip="Por favor rellene este campo."></asp:TextBox>
                                 </div>
                                 <div class="form-group mb-3">
                                     <asp:TextBox runat="server" TextMode="Password" ID="txtContrasena" CssClass="form-control" placeholder="Contraseña" ToolTip="Por favor rellene este campo."></asp:TextBox>

@@ -50,6 +50,7 @@
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
                                 <asp:LinkButton ID="btnGuardar" class="btn btn-primary rounded-pill px-4" runat="server" OnClick="btnGuardar_Click">Guardar</asp:LinkButton>
+                                <asp:LinkButton ID="btnCancelar" class="btn btn-danger rounded-pill px-4" runat="server" OnClick="btnCancelar_Click">Cancelar</asp:LinkButton>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>

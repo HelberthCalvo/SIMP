@@ -32,6 +32,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_IDESTADO", usuario.Estado);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", usuario.Esquema);
                 cmd.Parameters.AddWithValue("@P_CONTRASENA", EncriptarString(usuario.Contrasena));
+                cmd.Parameters.AddWithValue("@P_CORREO", usuario.Correo);
 
                 myConexion.Open();
                 reader = cmd.ExecuteReader();

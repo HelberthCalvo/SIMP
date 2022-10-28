@@ -24,6 +24,15 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.HiddenField hdnIdProyecto;
 
         /// <summary>
+        /// hdnIdCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnIdCliente;
+
+        /// <summary>
         /// txbNombre control.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,22 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.TextBox txbDescripcion;
 
         /// <summary>
-        /// ddlClientes control.
+        /// txtNombreCliente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClientes;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreCliente;
+
+        /// <summary>
+        /// btnModalCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnModalCliente;
 
         /// <summary>
         /// txbFechaInicio control.
@@ -96,6 +114,15 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
 
         /// <summary>
+        /// btnCancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
+
+        /// <summary>
         /// gvProyectos control.
         /// </summary>
         /// <remarks>
@@ -103,5 +130,14 @@ namespace SIMP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProyectos;
+
+        /// <summary>
+        /// gvModalCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvModalCliente;
     }
 }

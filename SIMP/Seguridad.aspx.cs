@@ -176,7 +176,7 @@ namespace SIMP
 
                 if (string.IsNullOrEmpty(txtDescripcionPerfil.Text))
                 {
-                    Mensaje("Perfil", "Debe ingresar todos los datos", false);
+                    Mensaje("Perfil", "Debe ingresar una descripción", false);
                     return;
                 }
                 PerfilEntidad perfil = new PerfilEntidad();
@@ -399,7 +399,6 @@ namespace SIMP
 
                 if (ValidarUsuarioCampos())
                 {
-                    Mensaje("Usuario", "Debe ingresar todos los datos", false);
                     return;
                 }
 
@@ -603,23 +602,36 @@ namespace SIMP
         }
         private bool ValidarUsuarioCampos()
         {
+            Regex regex = new Regex(@"^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{9,15}$");
             if (string.IsNullOrEmpty(txtUsuario.Text))
             {
+                Mensaje("Aviso", "Debe digitar un usuario", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txtNombre.Text))
             {
+                Mensaje("Aviso", "Debe digitar un nombre", false);
                 return true;
             }
             else if (string.IsNullOrEmpty(txtCorreo.Text))
             {
+                Mensaje("Aviso", "Debe digitar un correo electrónico", false);
                 return true;
             }
             else if (rdbActivoUsuario.Checked == false && rdbInactivoUsuario.Checked == false)
             {
                 return true;
             }
-
+            else if (!regex.IsMatch(txtContraseña.Text))
+            {
+                string msj = "La contraseña debe cumplir con los siguientes parámetros: " +
+                    "- Al menos una letra mayúscula" +
+                    "- Al menos una letra minúscula" +
+                    "- Al menos un número" +
+                    "- Al menos un caracter especial ($%#@!&*?)";
+                Mensaje("Aviso", msj, false);
+                return true;
+            }
             return false;
         }
         #endregion

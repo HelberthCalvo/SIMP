@@ -29,9 +29,10 @@ namespace SIMP
                 UsuarioEntidad usuario = new UsuarioEntidad()
                 {
                     Esquema = "dbo",
-                    Usuario = txtNombreUsuario.Text,
+                    Correo = txtNombreUsuario.Text.Trim(),
+                    Usuario = txtNombreUsuario.Text.Trim(),
                     Contrasena = txtContrasena.Text,
-                    Opcion = 1,
+                    Opcion = 2,
                     Estado = 1
                 };
                 UsuarioLogica usuario1 = new UsuarioLogica();

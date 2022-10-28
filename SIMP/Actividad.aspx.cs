@@ -21,9 +21,7 @@ namespace SIMP
             {
                 //HabilitaOpcionesPermisos();
                 CargarGridActividades();
-                CargarProyectos();
                 CargarUsuarios();
-                CargarFases(0);
                 CargarTooltips();
             }
         }
@@ -74,9 +72,9 @@ namespace SIMP
             }
         }
 
-        private string NombreCompleto(string nombre, string primer_apellido)
+        private string NombreCompleto(string nombre, string primer_apellido, string segundo_apellido)
         {
-            return nombre + " " + primer_apellido;
+            return nombre + " " + primer_apellido + " " + segundo_apellido;
         }
 
         private void CargarProyectos()
@@ -89,10 +87,8 @@ namespace SIMP
                     Esquema = "dbo"
                 });
 
-                ddlProyecto.DataSource = lstProyetos;
-                ddlProyecto.DataTextField = "Nombre";
-                ddlProyecto.DataValueField = "Id";
-                ddlProyecto.DataBind();
+                gvModalProyecto.DataSource = lstProyetos;
+                gvModalProyecto.DataBind();
             }
             catch (Exception ex)
             {
@@ -100,53 +96,36 @@ namespace SIMP
             }
         }
 
-        private void CargarFases(int idProyecto)
+        private bool CargarFases()
         {
             try
             {
-                List<ProyectoEntidad> lstProyetos = new List<ProyectoEntidad>();
-                List<FaseEntidad> lstFases = new List<FaseEntidad>();
-
-                if (idProyecto == 0)
+                if (!string.IsNullOrEmpty(hdnIdProyecto.Value))
                 {
-                    lstProyetos = ProyectoLogica.GetProyectos(new ProyectoEntidad()
-                    {
-                        Esquema = "dbo"
-                    });
-
-                    if (lstProyetos.Count > 0)
-                    {
-                        lstFases = FaseLogica.GetFases(new FaseEntidad()
-                        {
-                            Esquema = "dbo",
-                            IdProyecto = lstProyetos[0].Id,
-                            Opcion = 1
-                        });
-
-                        ddlFase.DataSource = lstFases;
-                        ddlFase.DataTextField = "Nombre";
-                        ddlFase.DataValueField = "Id";
-                        ddlFase.DataBind();
-                    }
-                }
-                else
-                {
-                    lstFases = FaseLogica.GetFases(new FaseEntidad()
+                    List<FaseEntidad> lstFases = FaseLogica.GetFases(new FaseEntidad()
                     {
                         Esquema = "dbo",
-                        IdProyecto = idProyecto,
+                        IdProyecto = Convert.ToInt32(hdnIdProyecto.Value),
                         Opcion = 1
                     });
-                    ddlFase.DataSource = lstFases;
-                    ddlFase.DataTextField = "Nombre";
-                    ddlFase.DataValueField = "Id";
-                    ddlFase.DataBind();
+
+                    if (lstFases.Count > 0)
+                    {
+                        gvModalFase.DataSource = lstFases;
+                        gvModalFase.DataBind();
+                        return true;
+                    }
+                    else
+                    {
+                        Mensaje("Error", "No existen fases para este proyecto", false);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
+            return false;
         }
 
         private void CargarUsuarios()
@@ -155,27 +134,15 @@ namespace SIMP
             {
                 UsuarioLogica usuarioLogica = new UsuarioLogica();
                 List<UsuarioEntidad> lstUsuarios = new List<UsuarioEntidad>();
-                lstUsuarios = usuarioLogica.GetUsuarios(new UsuarioEntidad()
-                {
-                    Esquema = "dbo",
-                    Opcion = 1,
-                    Estado = 1
-                });
-                ddlUsuario.DataSource = lstUsuarios;
-                ddlUsuario.DataTextField = "Nombre";
-                ddlUsuario.DataValueField = "Id";
-                ddlUsuario.DataBind();
+                lstUsuarios = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Usuario = "hcalvo", Estado = 1, Esquema = "dbo", Contrasena = "" });
+                
+                gvModalUsuario.DataSource = lstUsuarios;
+                gvModalUsuario.DataBind();
             }
             catch (Exception ex)
             {
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
-        }
-
-        protected void ddlProyecto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idProyecto = Convert.ToInt32(ddlProyecto.SelectedValue);
-            CargarFases(idProyecto);
         }
 
         private void Mensaje(string titulo, string msg, bool esCorrecto, string textoBoton = "Ok")
@@ -206,8 +173,8 @@ namespace SIMP
                     Descripcion = txbDescripcion.Text,
                     Fecha_Inicio = FormatoFecha(txbFechaInicio.Text),
                     Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text),
-                    IdFase = Convert.ToInt32(ddlFase.SelectedValue),
-                    IdUsuario = Convert.ToInt32(ddlUsuario.SelectedValue),
+                    IdFase = Convert.ToInt32(hdnIdFase.Value),
+                    IdUsuario = Convert.ToInt32(hdnIdUsuario.Value),
                     IdEstado = 1,
                     Usuario = "hcalvo",
                     Esquema = "dbo",
@@ -237,30 +204,17 @@ namespace SIMP
             txbDescripcion.Text = string.Empty;
             txbFechaInicio.Text = string.Empty;
             txbFechaEstimada.Text = string.Empty;
-            ddlProyecto.Enabled = true;
-            ddlFase.Enabled = true;
-            //ddlProyecto.SelectedIndex = 0;
-            //CargarFases(0);
+            btnModalProyecto.Enabled = true;
+            btnModalFase.Enabled = true;
+            hdnIdProyecto.Value = string.Empty;
+            hdnIdFase.Value = string.Empty;
+            hdnIdUsuario.Value = string.Empty;
+            hdnIdActividad.Value = string.Empty;
         }
 
         private bool CamposVacios()
         {
-            if (ddlProyecto.Items.Count <= 0)
-            {
-                Mensaje("Aviso", "No hay proyectos disponibles. Por favor agregue uno para continuar", false);
-                return true;
-            }
-            else if (ddlUsuario.Items.Count <= 0)
-            {
-                Mensaje("Aviso", "No hay usuarios disponibles. Por favor agregue uno para continuar", false);
-                return true;
-            }
-            else if (ddlFase.Items.Count <= 0)
-            {
-                Mensaje("Aviso", "No hay fases disponibles. Por favor agregue una para continuar", false);
-                return true;
-            }
-            else if (string.IsNullOrEmpty(txbDescripcion.Text))
+            if (string.IsNullOrEmpty(txbDescripcion.Text))
             {
                 Mensaje("Aviso", "Debe ingresar una descripción", false);
                 return true;
@@ -273,6 +227,21 @@ namespace SIMP
             else if (string.IsNullOrEmpty(txbFechaEstimada.Text))
             {
                 Mensaje("Aviso", "Debe ingresar una fecha de finalización", false);
+                return true;
+            }
+            else if (string.IsNullOrEmpty(hdnIdProyecto.Value))
+            {
+                Mensaje("Aviso", "Debe seleccionar un proyecto", false);
+                return true;
+            }
+            else if (string.IsNullOrEmpty(hdnIdFase.Value))
+            {
+                Mensaje("Aviso", "Debe seleccionar una fase", false);
+                return true;
+            }
+            else if (string.IsNullOrEmpty(hdnIdUsuario.Value))
+            {
+                Mensaje("Aviso", "Debe seleccionar un usuario", false);
                 return true;
             }
             return false;
@@ -296,6 +265,7 @@ namespace SIMP
                 var id = gvActividad.Rows[index].Cells[0].Text;
                 var idFase = gvActividad.Rows[index].Cells[1].Text;
                 var idUsuario = gvActividad.Rows[index].Cells[2].Text;
+                var nombreUsuario = gvActividad.Rows[index].Cells[4].Text;
                 var descripcion = gvActividad.Rows[index].Cells[5].Text;
                 var fecha_inicio = gvActividad.Rows[index].Cells[6].Text;
                 var fecha_estimada = gvActividad.Rows[index].Cells[7].Text;
@@ -304,13 +274,14 @@ namespace SIMP
                 if (e.CommandName == "Editar")
                 {
                     hdnIdActividad.Value = Convert.ToInt32(id).ToString();
-                    ddlFase.SelectedValue = idFase;
-                    ddlProyecto.Enabled = false;
-                    ddlFase.Enabled = false;
-                    ddlUsuario.SelectedValue = idUsuario;
+                    hdnIdFase.Value = idFase;
+                    btnModalProyecto.Enabled = false;
+                    btnModalFase.Enabled = false;
+                    hdnIdUsuario.Value = idUsuario;
                     txbDescripcion.Text = descripcion;
                     txbFechaInicio.Text = fecha_inicio;
                     txbFechaEstimada.Text = fecha_estimada;
+                    txtNombreUsuario.Text = nombreUsuario;
                 }
                 else if (e.CommandName == "CambiarEstado")
                 {
@@ -334,14 +305,14 @@ namespace SIMP
                     ActividadLogica.MantActividad(new ActividadEntidad { 
                         Id = Convert.ToInt32(id),
                         Descripcion = descripcion,
-                        Fecha_Inicio = fecha_inicio,
-                        Fecha_Estimada = fecha_estimada,
-                        IdEstado = nombreEstado == "Activo" ? 2 : 1,
+                        Fecha_Inicio = FormatoFecha(fecha_inicio),
+                        Fecha_Estimada = FormatoFecha(fecha_estimada),
+                        IdEstado = 2,
                         IdFase = Convert.ToInt32(idFase),
                         IdUsuario = Convert.ToInt32(idUsuario),
                         Opcion = 0, 
                         Esquema = "dbo", 
-                        Fecha_Finalizacion = DateTime.Now.ToString() 
+                        Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString()) 
                     });
                     Mensaje("Aviso", "Actividad finalizada con éxito", true);
                     CargarGridActividades();
@@ -354,5 +325,90 @@ namespace SIMP
             
         }
 
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        protected void gvModalProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                if (e.CommandName == "Seleccionar")
+                {
+                    hdnIdProyecto.Value = gvModalProyecto.Rows[index].Cells[0].Text;
+                    txtNombreProyecto.Text = gvModalProyecto.Rows[index].Cells[1].Text;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modalProyecto", "$('#modalProyecto').modal('hide')", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
+
+        protected void btnModalProyecto_Click(object sender, EventArgs e)
+        {
+            CargarProyectos();
+            ScriptManager.RegisterStartupScript(this, GetType(), "modalProyecto", "$('#modalProyecto').modal('show')", true);
+        }
+
+        protected void gvModalFase_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                if (e.CommandName == "Seleccionar")
+                {
+                    hdnIdFase.Value = gvModalFase.Rows[index].Cells[0].Text;
+                    txtNombreFase.Text = gvModalFase.Rows[index].Cells[1].Text;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modalFase", "$('#modalFase').modal('hide')", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
+
+        protected void btnModalFase_Click(object sender, EventArgs e)
+        {
+            if (CargarFases())
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "modalFase", "$('#modalFase').modal('show')", true);
+            }
+            else
+            {
+                Mensaje("Error", "Debe seleccionar un proyecto primero", false);
+            }
+        }
+
+        protected void btnModalUsuario_Click(object sender, EventArgs e)
+        {
+            CargarUsuarios();
+            ScriptManager.RegisterStartupScript(this, GetType(), "modalUsuario", "$('#modalUsuario').modal('show')", true);
+        }
+
+        protected void gvModalUsuario_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                if (e.CommandName == "Seleccionar")
+                {
+                    hdnIdUsuario.Value = gvModalUsuario.Rows[index].Cells[0].Text;
+                    txtNombreUsuario.Text = gvModalUsuario.Rows[index].Cells[1].Text;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modalUsuario", "$('#modalUsuario').modal('hide')", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
     }
 }

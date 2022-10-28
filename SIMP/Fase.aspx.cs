@@ -21,7 +21,6 @@ namespace SIMP
             {
                 //HabilitaOpcionesPermisos();
                 CargarGridFases();
-                CargarProyectos();
                 CargarTooltips();
             }
         }
@@ -49,11 +48,9 @@ namespace SIMP
                 List<ProyectoEntidad> lstProyectos = new List<ProyectoEntidad>();
                 lstProyectos = ProyectoLogica.GetProyectos(new ProyectoEntidad { Esquema = "dbo", IdEstado = 1 });
 
-                ddlProyectos.DataSource = lstProyectos;
+                gvModalProyecto.DataSource = lstProyectos;
 
-                ddlProyectos.DataTextField = "Nombre";
-                ddlProyectos.DataValueField = "Id";
-                ddlProyectos.DataBind();
+                gvModalProyecto.DataBind();
             }
             catch (Exception ex)
             {
@@ -99,7 +96,7 @@ namespace SIMP
                 {
                     Nombre = txbNombre.Text,
                     Descripcion = txbDescripcion.Text,
-                    IdProyecto = Convert.ToInt32(ddlProyectos.SelectedValue),
+                    IdProyecto = Convert.ToInt32(hdnIdProyecto.Value),
                     IdEstado = 1,
                     Usuario = "hcalvo",
                     Esquema = "dbo",
@@ -132,6 +129,7 @@ namespace SIMP
 
                 var id = gvFases.Rows[index].Cells[0].Text;
                 var idProyecto = gvFases.Rows[index].Cells[1].Text;
+                var nombreProyecto = gvFases.Rows[index].Cells[5].Text;
                 var nombreEstado = gvFases.Rows[index].Cells[6].Text;
                 var nombre = gvFases.Rows[index].Cells[3].Text;
                 var descripcion = gvFases.Rows[index].Cells[4].Text;
@@ -142,8 +140,8 @@ namespace SIMP
                     hdnIdProyecto.Value = Convert.ToInt32(idProyecto).ToString();
                     txbNombre.Text = nombre;
                     txbDescripcion.Text = descripcion;
-                    ddlProyectos.SelectedValue = idProyecto;
-                    ddlProyectos.Enabled = false;
+                    txtNombreProyecto.Text = nombreProyecto;
+                    btnModalProyecto.Enabled = false;
                 }
                 else if (e.CommandName == "CambiarEstado")
                 {
@@ -169,12 +167,7 @@ namespace SIMP
 
         private bool CamposVacios()
         {
-            if (ddlProyectos.Items.Count <= 0)
-            {
-                Mensaje("Aviso", "No hay proyectos disponibles. Por favor agregue uno para continuar", false);
-                return true;
-            }
-            else if (string.IsNullOrEmpty(txbNombre.Text))
+             if (string.IsNullOrEmpty(txbNombre.Text))
             {
                 Mensaje("Aviso", "Debe ingresar un nombre", false);
                 return true;
@@ -184,6 +177,11 @@ namespace SIMP
                 Mensaje("Aviso", "Debe ingresar una descripción", false);
                 return true;
             }
+            else if (string.IsNullOrEmpty(hdnIdProyecto.Value))
+            {
+                Mensaje("Aviso", "Debe selecionar un proyecto", false);
+                return true;
+            }
             return false;
         }
 
@@ -191,7 +189,10 @@ namespace SIMP
         {
             txbNombre.Text = string.Empty;
             txbDescripcion.Text = string.Empty;
-            ddlProyectos.Enabled = true;
+            txtNombreProyecto.Text = string.Empty;
+            btnModalProyecto.Enabled = true;
+            hdnIdFase.Value = string.Empty;
+            hdnIdProyecto.Value = string.Empty;
         }
 
         protected void gvFases_PreRender(object sender, EventArgs e)
@@ -203,5 +204,34 @@ namespace SIMP
             }
         }
 
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        protected void gvModalProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                if (e.CommandName == "Seleccionar")
+                {
+                    hdnIdProyecto.Value = gvModalProyecto.Rows[index].Cells[0].Text;
+                    txtNombreProyecto.Text = gvModalProyecto.Rows[index].Cells[1].Text;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "modalProyecto", "$('#modalProyecto').modal('hide')", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
+
+        protected void btnModalProyecto_Click(object sender, EventArgs e)
+        {
+            CargarProyectos();
+            ScriptManager.RegisterStartupScript(this, GetType(), "modalProyecto", "$('#modalProyecto').modal('show')", true);
+        }
     }
 }

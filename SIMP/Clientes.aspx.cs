@@ -156,6 +156,12 @@ namespace SIMP
             txbApellido2.Text = string.Empty;
             txbEmail.Text = string.Empty;
             txbTelefono.Text = string.Empty;
+            idCliente.Value = "";
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 }
