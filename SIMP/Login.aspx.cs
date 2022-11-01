@@ -41,6 +41,7 @@ namespace SIMP
                 {
                     Session["UsuarioSistema"] = usuarioBusqueda[0];
                     Session["Compañia"] = "dbo";
+                    llenarParametrosCatConfiguracion();
                     Response.Redirect("Proyecto.aspx", false);
                 }
                 else
@@ -53,7 +54,43 @@ namespace SIMP
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
+        public void llenarParametrosCatConfiguracion()
+        {
+            try
+            {
 
+                CatConfiguracionL obCatConfiguracionL = new CatConfiguracionL();
+
+                CatConfiguracionE obCatConfiguracion = new CatConfiguracionE();
+
+                string usuarioLogin = Session["UsuarioSistema"].ToString();
+                string Compania = Session["Compañia"].ToString();
+                obCatConfiguracion.Usuario = usuarioLogin;
+                obCatConfiguracion.Opcion = 0;
+                obCatConfiguracion.Esquema = Compania;
+                obCatConfiguracion.Llave01 = "SIMP";
+                obCatConfiguracion.Llave02 = "CORREO";
+                obCatConfiguracion.Llave03 = "ENVIO_CORREO";
+                obCatConfiguracion.Llave05 = "";
+                obCatConfiguracion.Llave06 = "";
+
+                obCatConfiguracion.Llave04 = "CORREO_SALIDA";
+                GlobalesE.CorreoSalida = obCatConfiguracionL.ObtenerCatConfiguracion(obCatConfiguracion).ToList().FirstOrDefault().Valor;
+
+                obCatConfiguracion.Llave04 = "CONTRASENNA_CORREO";
+                GlobalesE.ContrasennaCorreoSalida = obCatConfiguracionL.ObtenerCatConfiguracion(obCatConfiguracion).ToList().FirstOrDefault().Valor;
+
+                obCatConfiguracion.Llave04 = "SMTP_CORREO";
+                GlobalesE.SMTPCorreo = obCatConfiguracionL.ObtenerCatConfiguracion(obCatConfiguracion).ToList().FirstOrDefault().Valor;
+
+                obCatConfiguracion.Llave04 = "PUERTO_CORREO";
+                GlobalesE.PuertoCorreo = obCatConfiguracionL.ObtenerCatConfiguracion(obCatConfiguracion).ToList().FirstOrDefault().Valor;
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
         private bool CamposInvalidos()
         {
             Regex regex = new Regex(@"^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{9,15}$");

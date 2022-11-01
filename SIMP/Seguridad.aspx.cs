@@ -343,7 +343,7 @@ namespace SIMP
                     usuario.Esquema = Session["Compañia"].ToString();
                     usuario.Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
                     usuario.Cambio_Clave = "1";
-                    usuario.Contrasena = contraseniaAlfanumerica(5);
+                    usuario.Contrasena = contraseniaAlfanumerica(8);
 
                     new UsuarioLogica().MantUsuario(usuario);
 
@@ -436,7 +436,7 @@ namespace SIMP
 
                 if (usuario.Id == 0)
                 {
-                    usuario.Contrasena = contraseniaAlfanumerica(5);
+                    usuario.Contrasena = contraseniaAlfanumerica(8);
                 }
                 new UsuarioLogica().MantUsuario(usuario);
 
@@ -460,7 +460,7 @@ namespace SIMP
         {
 
 
-            string rutaImgLogo = @"~\Content\img\Secure-text.jpg";
+            string rutaImgLogo = @"~\Content\img\logo-sitsa.png";
             string contentID1 = "logoEmpresa";
             //Creamos un nuevo Objeto de mensaje
             System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
@@ -477,7 +477,7 @@ namespace SIMP
 
 
                 //Direccion de correo electronico a la que queremos enviar el mensaje
-                //mmsg.To.Add(pUsuario.Correo);
+                mmsg.To.Add(pUsuario.Correo);
 
                 //Nota: La propiedad To es una colección que permite enviar el mensaje a más de un destinatario
 
@@ -495,7 +495,7 @@ namespace SIMP
                     "<p>Código: " + pUsuario.Usuario_Sistema + "</p>" +
                     "<p>Nombre: " + pUsuario.Nombre + "</p>" +
                     "<p>Contraseña: " + pUsuario.Contrasena + "</p>" +
-                    "<p>Perfil: " + pUsuario.Perfil + "</p>" +
+                    "<p>Perfil: " + pUsuario.PerfilNombre + "</p>" +
                     "<p><em>No responder este correo, ya que se generó de forma automática por el sistema SIMP<em></p>" +
                        "<p>Gracias.</p>" +
                        "<p>&nbsp;</p> " +
@@ -511,7 +511,7 @@ namespace SIMP
 
                 string CorreoAlias = string.Empty;
 
-                //CorreoAlias = GlobalesE.CorreoSalida;
+                CorreoAlias = GlobalesE.CorreoSalida;
 
 
                 string NombreUsuario = "Sistema SIMP";
@@ -527,23 +527,23 @@ namespace SIMP
                 /*-------------------------CLIENTE DE CORREO----------------------*/
 
                 //Hay que crear las credenciales del correo emisor
-                //cliente.Credentials = new System.Net.NetworkCredential(GlobalesE.CorreoSalida, GlobalesE.ContrasenaCorreoSalida);
+                cliente.Credentials = new System.Net.NetworkCredential(GlobalesE.CorreoSalida, GlobalesE.ContrasennaCorreoSalida);
 
                 /*-------------------------CLIENTE DE CORREO----------------------*/
 
 
                 //Hay que crear las credenciales del correo emisor
-                //cliente.Credentials =
-                //new System.Net.NetworkCredential("taxisirazu@curlingtech.com", "Ir@ZuTaxi$2018");
-                //new System.Net.NetworkCredential(GlobalesE.CorreoSalida, GlobalesE.ContrasenaCorreoSalida);
+                cliente.Credentials =
+                    //new System.Net.NetworkCredential("taxisirazu@curlingtech.com", "Ir@ZuTaxi$2018");
+                    new System.Net.NetworkCredential(GlobalesE.CorreoSalida, GlobalesE.ContrasennaCorreoSalida);
 
                 /*-------------------------ENVIO DE CORREO----------------------*/
                 // mail.servidordominio.com
                 //Para Gmail "smtp.gmail.com";
-                //cliente.Host = GlobalesE.SMTPCorreo;
+                cliente.Host = GlobalesE.SMTPCorreo;
 
                 //Lo siguiente es obligatorio si enviamos el mensaje desde Gmail
-                //cliente.Port = Convert.ToInt32(GlobalesE.PuertoCorreo);
+                cliente.Port = Convert.ToInt32(GlobalesE.PuertoCorreo);
                 cliente.EnableSsl = false;
 
                 //Enviamos el mensaje      
