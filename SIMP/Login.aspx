@@ -40,7 +40,16 @@
                                 <div class="d-flex justify-content-between align-items-center mb-5 mt-5">
                                     <asp:LinkButton ID="btnIniciarSesion" class="btn login-btn w-100" runat="server" OnClick="btnIniciarSesion_Click">Iniciar Sesión</asp:LinkButton>
                                 </div>
-                                <p class="login-wrapper-footer-text">Olvidó su contraseña? <a href="#!" class="text-reset">Recuperar contraseña</a></p>
+                                <p class="login-wrapper-footer-text">Olvidó su contraseña? <a id="linkRecuperarContrasena" href="#!" class="text-reset" onclick="ocultar()">Recuperar contraseña</a></p>
+                                <div id="divRecuperarContrasena" style="display:none">
+                                    <div class="form-group">
+                                        <asp:TextBox runat="server" ID="txtUsuarioRecuperar" CssClass="form-control" placeholder="Usuario o correo para recuperar" ToolTip="Por favor rellene este campo."></asp:TextBox>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-5 mt-5">
+                                        <asp:LinkButton ID="btnRecuperarContrasena" class="btn login-btn w-100" runat="server" OnClick="btnRecuperarContrasena_Click">Recuperar Contraseña</asp:LinkButton>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -49,4 +58,14 @@
         </asp:UpdatePanel>
     </form>
 </body>
+<script>
+    function ocultar() {
+        var x = document.getElementById("divRecuperarContrasena");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 </html>
