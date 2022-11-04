@@ -28,14 +28,14 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Email *</label>
-                        <asp:TextBox runat="server" TextMode="Email" ID="txbEmail" CssClass="form-control" placeholder="ejemplo@gmail.com"></asp:TextBox>
+                        <label class="form-label">Correo Electrónico *</label>
+                        <asp:TextBox runat="server" TextMode="Email" ID="txbEmail" CssClass="form-control" placeholder="Correo Electrónico"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Teléfono *</label>
-                        <asp:TextBox runat="server" TextMode="Phone" ID="txbTelefono" CssClass="form-control" placeholder="88554466"></asp:TextBox>
+                        <asp:TextBox runat="server" TextMode="Phone" ID="txbTelefono" CssClass="form-control" onkeydown="javascript:return solonumeros(event)" placeholder="Número de teléfono" MaxLength="15"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -123,7 +123,19 @@
             InitializeDataTableWithParameter('<%= gvClientes.ClientID %>');
         }
 
+        function solonumeros(e) {
 
+            var charCode = (e.which) ? e.which : e.keyCode
+            if (((charCode == 8) || (charCode == 46)
+                || (charCode >= 35 && charCode <= 40)
+                || (charCode >= 48 && charCode <= 57)
+                || (charCode >= 96 && charCode <= 105) || (charCode == 9))) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
 
         function quitarEventoSobreTextoTreeViewNode() {
             $("[id *= 'tvPermisos'] table a[id *= tvPermisost]").removeAttr("onclick");

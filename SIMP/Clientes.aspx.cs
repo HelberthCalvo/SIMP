@@ -3,6 +3,7 @@ using SIMP.Logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -90,10 +91,43 @@ namespace SIMP
             ScriptManager.RegisterStartupScript(this, GetType(), "script", script, true);
         }
 
+        public bool ValidarEmailMultiple(string email)
+        {
+            try
+            {
+                string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+                foreach (string correo in email.Split(';'))
+                {
+                    if (Regex.IsMatch(correo.Trim(), expresion))
+                    {
+                        if (Regex.Replace(correo.Trim(), expresion, String.Empty).Length == 0)
+                        {
+                            //return true;
+                        }
+                        else
+                        { return false; }
+                    }
+                    else
+                    { return false; }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+                return false;
+            }
+        }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (CamposVacios())
             {
+                return;
+            }
+            else if (!ValidarEmailMultiple(txbEmail.Text))
+            {
+                Mensaje("Aviso", "Debe ingresar un correo con formato correcto", false);
                 return;
             }
 

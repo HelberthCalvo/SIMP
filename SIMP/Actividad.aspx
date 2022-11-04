@@ -18,27 +18,17 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Fecha Inicio *</label>
-                        <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha de inicio" ID="txbFechaInicio" CssClass="form-control"></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd/MM/yyyy"
-                            TargetControlID="txbFechaInicio" PopupButtonID="txbFechaInicio"></ajaxToolkit:CalendarExtender>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mb-4">
-                        <label class="form-label">Fecha Estimada *</label>
-                        <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha estimada de finalización" ID="txbFechaEstimada" CssClass="form-control"></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd/MM/yyyy"
-                            TargetControlID="txbFechaEstimada" PopupButtonID="txbFechaEstimada"></ajaxToolkit:CalendarExtender>
+                        <label class="form-label">Tiempo estimado finalización *</label>
+                        <asp:TextBox runat="server" placeholder="Horas para completar la actividad" onkeypress="return solonumeros(event)" ID="txtHorasEstimadas" CssClass="form-control" MaxLength="3"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
                         <label class="form-label">Proyecto</label>
                         <div class="input-group">
-                            <asp:TextBox ID="txtNombreProyecto" CssClass="form-control" runat="server" placeholder="Seleccione un proyecto" Enabled="false"/>
+                            <asp:TextBox ID="txtNombreProyecto" CssClass="form-control" runat="server" placeholder="Seleccione un proyecto" Enabled="false" />
                             <div class="input-group-append">
-                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalProyecto" OnClick="btnModalProyecto_Click" runat="server" >
+                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalProyecto" OnClick="btnModalProyecto_Click" runat="server">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </asp:LinkButton>
                             </div>
@@ -49,9 +39,9 @@
                     <div class="mb-4">
                         <label class="form-label">Fase</label>
                         <div class="input-group">
-                            <asp:TextBox ID="txtNombreFase" CssClass="form-control" runat="server" placeholder="Seleccione una fase" Enabled="false"/>
+                            <asp:TextBox ID="txtNombreFase" CssClass="form-control" runat="server" placeholder="Seleccione una fase" Enabled="false" />
                             <div class="input-group-append">
-                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalFase" OnClick="btnModalFase_Click" runat="server" >
+                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalFase" OnClick="btnModalFase_Click" runat="server">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </asp:LinkButton>
                             </div>
@@ -62,16 +52,20 @@
                     <div class="mb-4">
                         <label class="form-label">Usuario</label>
                         <div class="input-group">
-                            <asp:TextBox ID="txtNombreUsuario" CssClass="form-control" runat="server" placeholder="Seleccione un usuario" Enabled="false"/>
+                            <asp:TextBox ID="txtNombreUsuario" CssClass="form-control" runat="server" placeholder="Seleccione un usuario" Enabled="false" />
                             <div class="input-group-append">
-                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalUsuario" OnClick="btnModalUsuario_Click" runat="server" >
+                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalUsuario" OnClick="btnModalUsuario_Click" runat="server">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </asp:LinkButton>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <label class="lead fs-6">Campos requeridos *</label>
+                    </div>
+                </div>
             </div>
             <div class="row text-center mt-3 mb-5">
                 <div class="col-lg-12">
@@ -92,13 +86,15 @@
                     <div class="table-responsive">
                         <asp:GridView ID="gvActividad" CssClass="table-responsive table customize-table v-middle"
                             DataKeyNames="Id,
+                                          IdProyecto,
                                           IdFase,
                                           IdUsuario,
+                                          NombreProyecto,
                                           NombreFase,
                                           NombreUsuario,
                                           Descripcion,
-                                          Fecha_Inicio,
-                                          Fecha_Estimada,
+                                          HorasEstimadas,
+                                          HorasReales,
                                           NombreEstado"
                             OnPreRender="gvActividad_PreRender"
                             OnRowCommand="gvActividad_RowCommand"
@@ -108,13 +104,15 @@
                             runat="server">
                             <Columns>
                                 <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
+                                <asp:BoundField DataField="IdProyecto" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdFase" />
                                 <asp:BoundField DataField="IdFase" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdFase" />
                                 <asp:BoundField DataField="IdUsuario" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" HeaderText="IdUsuario" />
+                                <asp:BoundField DataField="NombreProyecto" HeaderText="Proyecto" />
                                 <asp:BoundField DataField="NombreFase" HeaderText="Fase" />
                                 <asp:BoundField DataField="NombreUsuario" HeaderText="Usuario" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Actividad" />
-                                <asp:BoundField DataField="Fecha_Inicio" HeaderText="Fecha Inicio" />
-                                <asp:BoundField DataField="Fecha_Estimada" HeaderText="Fecha Estimada" />
+                                <asp:BoundField DataField="HorasEstimadas" HeaderText="Horas Estimadas" />
+                                <asp:BoundField DataField="HorasReales" HeaderText="Horas Reales" />
                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
                                 <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                                 <asp:ButtonField CommandName="CambiarEstado" HeaderText="Estado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
@@ -126,6 +124,14 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    <h3 class="fs-5 text-center">Cargar actividad desde archivo .xls</h3>
+
+    <div class="text-center">
+        <asp:FileUpload ID="FileUpload2" CssClass="m-4"
+            runat="server"></asp:FileUpload>
+        <asp:Button ID="UploadButton" Text="Cargar Excel" OnClick="UploadButton_Click" runat="server" CssClass="btn btn-success rounded-pill px-4 m-4"></asp:Button>
+    </div>
 
     <!-- Modal Proyecto -->
     <div class="modal fade" id="modalProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -247,6 +253,26 @@
         </div>
     </div>
 
+    <!-- Modal Fase -->
+    <div class="modal fade" id="modalHorasReales" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregue las horas estimadas:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label">Horas Reales *</label>
+                    <asp:TextBox ID="txtHorasReales" CssClass="form-control" onkeypress="return solonumeros(event)" runat="server" />
+                </div>
+                <div class="modal-footer">
+                    <asp:Button class="btn btn-primary" ID="btnFinalizar" Text="Finalizar" OnClick="btnFinalizar_Click" runat="server" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptsPersonalizados" runat="server">
 
@@ -290,11 +316,32 @@
             $("[id *= 'tvPermisos'] table a[id *= tvPermisost]").css("font-size", "1.2em");
         }
 
+        function solonumeros(e) {
+
+            /*if (e.keyCode === 45 || e.keyCode === 46) {
+                return false;
+            }*/
+
+            //alert(e.keyCode);
+
+            var charCode = (e.which) ? e.which : e.keyCode
+            if (((charCode == 8) || (charCode == 44)
+                || (charCode >= 35 && charCode <= 40)
+                || (charCode >= 48 && charCode <= 57)
+                || (charCode == 9))) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
 
         function chosenSelect() {
             $(".chosen-select").chosen();
             $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
         }
+
     </script>
 
 </asp:Content>

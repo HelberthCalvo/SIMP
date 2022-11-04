@@ -60,40 +60,13 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.TextBox txbDescripcion;
 
         /// <summary>
-        /// txbFechaInicio control.
+        /// txtHorasEstimadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbFechaInicio;
-
-        /// <summary>
-        /// CalendarExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
-
-        /// <summary>
-        /// txbFechaEstimada control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbFechaEstimada;
-
-        /// <summary>
-        /// CalendarExtender2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        protected global::System.Web.UI.WebControls.TextBox txtHorasEstimadas;
 
         /// <summary>
         /// txtNombreProyecto control.
@@ -177,6 +150,24 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.GridView gvActividad;
 
         /// <summary>
+        /// FileUpload2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload2;
+
+        /// <summary>
+        /// UploadButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UploadButton;
+
+        /// <summary>
         /// gvModalProyecto control.
         /// </summary>
         /// <remarks>
@@ -202,5 +193,23 @@ namespace SIMP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvModalUsuario;
+
+        /// <summary>
+        /// txtHorasReales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHorasReales;
+
+        /// <summary>
+        /// btnFinalizar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFinalizar;
     }
 }
