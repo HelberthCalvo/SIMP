@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadDatos.cs" />
+    <Compile Include="CatConfiguracionDatos.cs" />
     <Compile Include="ClienteDatos.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="EstadoDatos.cs" />

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadLogica.cs" />
+    <Compile Include="CatConfiguracionL.cs" />
     <Compile Include="ClienteLogica.cs" />
     <Compile Include="FaseLogica.cs" />
     <Compile Include="MenuLogica.cs" />
