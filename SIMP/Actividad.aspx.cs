@@ -17,6 +17,8 @@ namespace SIMP
         private static bool esIndefinidoStatic = false;
         private static string descripcionStatic = "";
         private static double horasEstimadasStatic = 0;
+        private static string FechaInicioStatic = "";
+        private static string FechaFinalizacionStatic = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -156,7 +158,11 @@ namespace SIMP
         private string FormatoFecha(string fecha)
         {
             var lstFecha = fecha.Split('/');
-            string formato = lstFecha[1] + "/" + lstFecha[0] + "/" + lstFecha[2];
+            string formato = DateTime.Now.ToString();
+            if (lstFecha.Length > 1)
+            {
+                formato = lstFecha[1] + "/" + lstFecha[0] + "/" + lstFecha[2];
+            }
             return formato;
         }
 
@@ -178,7 +184,9 @@ namespace SIMP
                     IdEstado = 1,
                     Usuario = "hcalvo",
                     Esquema = "dbo",
-                    Opcion = 0
+                    Opcion = 0,
+                    Fecha_Inicio = FormatoFecha(FechaInicioStatic),
+                    Fecha_Finalizacion = FormatoFecha(FechaFinalizacionStatic)
                 };
                 //Si esta editando
                 if (!string.IsNullOrEmpty(hdnIdActividad.Value))
@@ -224,8 +232,11 @@ namespace SIMP
             txtNombreProyecto.Text = string.Empty;
             txtNombreUsuario.Text = string.Empty;
             txtHorasEstimadas.Text = string.Empty;
+            txtHorasReales.Text = string.Empty;
             descripcionStatic = string.Empty;
             esIndefinidoStatic = false;
+            FechaInicioStatic = string.Empty;
+            FechaFinalizacionStatic = string.Empty;
         }
 
         private bool CamposValidos()
@@ -284,6 +295,8 @@ namespace SIMP
                 var horasEstimadas = gvActividad.Rows[index].Cells[8].Text;
                 var horasReales = gvActividad.Rows[index].Cells[9].Text;
                 var nombreEstado = gvActividad.Rows[index].Cells[10].Text;
+                var fecha_inicio = gvActividad.Rows[index].Cells[11].Text;
+                var fecha_finalizacion = gvActividad.Rows[index].Cells[12].Text;
 
                 if (e.CommandName == "Editar")
                 {
@@ -291,6 +304,8 @@ namespace SIMP
                     hdnIdProyecto.Value = idProyecto;
                     hdnIdFase.Value = idFase;
                     hdnIdUsuario.Value = idUsuario;
+                    FechaInicioStatic = fecha_inicio;
+                    FechaFinalizacionStatic = fecha_finalizacion;
                     txbDescripcion.Text = descripcion;
                     txtHorasEstimadas.Text = horasEstimadas;
                     txtNombreUsuario.Text = nombreUsuario;
@@ -311,7 +326,9 @@ namespace SIMP
                         IdUsuario = Convert.ToInt32(idUsuario),
                         IdFase = Convert.ToInt32(idFase),
                         HorasEstimadas = Convert.ToDouble(horasEstimadas),
-                        HorasReales = Convert.ToDouble(horasReales)
+                        HorasReales = Convert.ToDouble(horasReales),
+                        Fecha_Inicio = FormatoFecha(fecha_inicio),
+                        Fecha_Finalizacion = FormatoFecha(fecha_finalizacion)
                     });
                     Mensaje("Aviso", "Estado de la actividad actualizado con éxito", true);
                     CargarGridActividades();
@@ -323,6 +340,7 @@ namespace SIMP
                     horasEstimadasStatic = Convert.ToDouble(horasEstimadas);
                     hdnIdActividad.Value = id;
                     hdnIdFase.Value = idFase;
+                    FechaInicioStatic = FormatoFecha(fecha_inicio);
                     hdnIdUsuario.Value = idUsuario;
                     ScriptManager.RegisterStartupScript(this, GetType(), "modalHorasReales", "$('#modalHorasReales').modal('show')", true);
                 }
@@ -519,7 +537,9 @@ namespace SIMP
                     Esquema = "dbo",
                     IdFase = Convert.ToInt32(hdnIdFase.Value),
                     IdUsuario = Convert.ToInt32(hdnIdUsuario.Value),
-                    Descripcion = descripcionStatic
+                    Descripcion = descripcionStatic,
+                    Fecha_Inicio = FormatoFecha(FechaInicioStatic),
+                    Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString())
                 });
                 Mensaje("Aviso", "Actividad finalizada con éxito", true);
                 LimpiarDatos();

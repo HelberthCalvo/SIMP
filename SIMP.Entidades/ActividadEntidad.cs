@@ -19,5 +19,7 @@ namespace SIMP.Entidades
         public string Descripcion { get; set; }
         public double HorasEstimadas { get; set; }
         public double HorasReales { get; set; }
+        public string Fecha_Inicio { get; set; }
+        public string Fecha_Finalizacion { get; set; }
     }
 }
