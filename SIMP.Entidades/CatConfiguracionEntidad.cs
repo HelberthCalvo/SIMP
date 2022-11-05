@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SIMP.Entidades
 {
-    public class CatConfiguracionE:EntidadBase
+    public class CatConfiguracionEntidad:EntidadBase
     {
         public int ID { get; set; }
         public string Descripcion { get; set; }

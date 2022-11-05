@@ -11,7 +11,7 @@ namespace SIMP.Datos
 {
     public class CatConfiguracionDatos
     {
-        public List<CatConfiguracionE> ObtieneCatConfiguracion(CatConfiguracionE CatConfiguracion)
+        public List<CatConfiguracionEntidad> ObtieneCatConfiguracion(CatConfiguracionEntidad CatConfiguracion)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;
@@ -37,11 +37,11 @@ namespace SIMP.Datos
                 myConexion.Open();
                 reader = cmd.ExecuteReader();
 
-                List<CatConfiguracionE> lista = new List<CatConfiguracionE>();
+                List<CatConfiguracionEntidad> lista = new List<CatConfiguracionEntidad>();
 
                 while (reader.Read())
                 {
-                    CatConfiguracionE obj = new CatConfiguracionE();
+                    CatConfiguracionEntidad obj = new CatConfiguracionEntidad();
                     obj.ID = UtilitarioSQL.ObtieneInt(reader, "PK_TBL_SIMP_CAT_CONFIGURACION");
                     obj.Descripcion = UtilitarioSQL.ObtieneString(reader, "DESCRIPCION");
                     obj.Llave01 = UtilitarioSQL.ObtieneString(reader, "LLAVE01");
@@ -66,7 +66,7 @@ namespace SIMP.Datos
             }
         }
 
-        public void Mantenimiento(CatConfiguracionE CatConfiguracion)
+        public void Mantenimiento(CatConfiguracionEntidad CatConfiguracion)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;

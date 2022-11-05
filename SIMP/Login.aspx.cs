@@ -66,7 +66,7 @@ namespace SIMP
 
                 CatConfiguracionL obCatConfiguracionL = new CatConfiguracionL();
 
-                CatConfiguracionE obCatConfiguracion = new CatConfiguracionE();
+                CatConfiguracionEntidad obCatConfiguracion = new CatConfiguracionEntidad();
 
                 string usuarioLogin = Session["UsuarioSistema"].ToString();
                 string Compania = Session["Compañia"].ToString();
@@ -131,7 +131,6 @@ namespace SIMP
             }
             return false;
         }
-
         private void Mensaje(string titulo, string msg, bool esCorrecto, string textoBoton = "Ok")
         {
             string icono = esCorrecto ? "success" : "error";
@@ -296,6 +295,7 @@ namespace SIMP
                 mmsg.Dispose();
             }
         }
+
 
     }
 }

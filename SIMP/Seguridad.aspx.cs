@@ -27,7 +27,7 @@ namespace SIMP
             }
             if (!IsPostBack)
             {
-                //HabilitaOpcionesPermisos();
+                HabilitaOpcionesPermisos();
                 CargarGridPerfil();
                 CargarGridUsuario();
                 CargarTreeViewPermisos();
@@ -38,9 +38,9 @@ namespace SIMP
 
         private void CargarTooltips()
         {
-           /* try
+            try
             {
-                foreach (GridViewRow item in gvClientes.Rows)
+                foreach (GridViewRow item in gvUsuario.Rows)
                 {
                     item.Cells[6].ToolTip = "Editar";
                 }
@@ -48,68 +48,68 @@ namespace SIMP
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }*/
+            }
         }
 
 
-        //private void HabilitaOpcionesPermisos()
-        //{
-        //    try
-        //    {
-        //        string nombreUrl = Request.Url.Segments[Request.Url.Segments.Length - 1].ToString();
-        //        if (Session["Permiso_" + nombreUrl] != null)
-        //        {
-        //            MenuEntidad obMenu = (Session["Permiso_" + nombreUrl] as MenuEntidad);
-        //            string permisos = string.Empty;
+        private void HabilitaOpcionesPermisos()
+        {
+            try
+            {
+                string nombreUrl = Request.Url.Segments[Request.Url.Segments.Length - 1].ToString();
+                if (Session["Permiso_" + nombreUrl] != null)
+                {
+                    MenuEntidad obMenu = (Session["Permiso_" + nombreUrl] as MenuEntidad);
+                    string permisos = string.Empty;
 
-        //            if (!obMenu.CrearPermiso)
-        //            {
-        //                btnGuardarUsuario.Visible = false;
-        //                btnGuardarPerfil.Visible = false;
-        //                btnGuardarPermisos.Visible = false;
-        //                permisos += "- Crear ";
-        //            }
+                    if (!obMenu.CrearPermiso)
+                    {
+                        btnGuardarUsuario.Visible = false;
+                        btnGuardarPerfil.Visible = false;
+                        btnGuardarPermisos.Visible = false;
+                        permisos += "- Crear ";
+                    }
 
-        //            if (!obMenu.EditarPermiso)
-        //            {
-        //                gvPerfil.Columns[2].Visible = false;
-        //                gvPerfil.Columns[3].Visible = false;
-        //                gvUsuario.Columns[5].Visible = false;
-        //                gvUsuario.Columns[6].Visible = false;
-        //                gvUsuario.Columns[7].Visible = false;
-        //                permisos += "- Editar ";
-        //            }
+                    if (!obMenu.EditarPermiso)
+                    {
+                        gvPerfil.Columns[2].Visible = false;
+                        gvPerfil.Columns[3].Visible = false;
+                        gvUsuario.Columns[5].Visible = false;
+                        gvUsuario.Columns[6].Visible = false;
+                        gvUsuario.Columns[7].Visible = false;
+                        permisos += "- Editar ";
+                    }
 
-        //            if (!obMenu.VerPermiso)
-        //            {
-        //                gvUsuario.Visible = false;
-        //                gvPerfil.Visible = false;
-        //                ddlPerfilPermisos.Enabled = false;
-        //                permisos += "- Consultar ";
-        //            }
+                    if (!obMenu.VerPermiso)
+                    {
+                        gvUsuario.Visible = false;
+                        gvPerfil.Visible = false;
+                        ddlPerfilPermisos.Enabled = false;
+                        permisos += "- Consultar ";
+                    }
 
-        //            if (obMenu.EnviarPermiso)
-        //            {
-        //                hdfPermisoEnviarCorreos.Value = "1";
-        //            }
-        //            else
-        //            {
-        //                hdfPermisoEnviarCorreos.Value = "0";
-        //                permisos += "- Enviar Correos";
-        //            }
+                    if (obMenu.EnviarPermiso)
+                    {
+                        hdfPermisoEnviarCorreos.Value = "1";
+                    }
+                    else
+                    {
+                        hdfPermisoEnviarCorreos.Value = "0";
+                        permisos += "- Enviar Correos";
+                    }
 
-        //            if (!string.IsNullOrEmpty(permisos))
-        //            {
-        //                mensajePermiso.Visible = true;
-        //                lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
-        //    }
-        //}
+                    if (!string.IsNullOrEmpty(permisos))
+                    {
+                        mensajePermiso.Visible = true;
+                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
 
         #region PerfilEntidads
         protected void gvPerfil_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -212,12 +212,12 @@ namespace SIMP
                 gvPerfil.DataBind();
 
                 if (lstPerfil.Count > 0)
-                {                   
+                {
                     ddlPerfil.DataSource = lstPerfil;
                     ddlPerfil.DataValueField = "ID";
                     ddlPerfil.DataTextField = "Descripcion";
                     ddlPerfil.DataBind();
-                    ddlPerfil.Items.Insert(0, new ListItem() { Text = "-- SELECCIONE EL PERFIL --", Value = "0" });                  
+                    ddlPerfil.Items.Insert(0, new ListItem() { Text = "-- SELECCIONE EL PERFIL --", Value = "0" });
                     ddlPerfilPermisos.DataSource = lstPerfil;
                     ddlPerfilPermisos.DataValueField = "ID";
                     ddlPerfilPermisos.DataTextField = "Descripcion";

@@ -115,25 +115,25 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <asp:LinkButton runat="server" ID="linkBtnSeguridad" CssClass="nav-link" OnClick="linkBtnSeguridad_Click">
+                            <asp:LinkButton runat="server" ID="linkBtnSeguridad" CssClass="nav-link" OnClick="linkBtnSeguridad_Click" Visible="false">
                             <div class="sb-nav-link-icon">
                                     <img src="../icons/seguridad.png" />
                                 </div>
                                 Seguridad
                             </asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="linkBtnProyecto" CssClass="nav-link" OnClick="linkBtnProyecto_Click">
+                            <asp:LinkButton runat="server" ID="linkBtnProyecto" CssClass="nav-link" OnClick="linkBtnProyecto_Click"  Visible="false">
                             <div class="sb-nav-link-icon">
                                     <img src="../icons/space-rocket-launch.png" />
                                 </div>
                                 Proyectos
                             </asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="linkBtnFase" CssClass="nav-link" OnClick="linkBtnFase_Click">
+                            <asp:LinkButton runat="server" ID="linkBtnFase" CssClass="nav-link" OnClick="linkBtnFase_Click"  Visible="false">
                             <div class="sb-nav-link-icon">
                                     <img src="../icons/etapas.png" />
                                 </div>
                                 Fases
                             </asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="linkBtnActividad" CssClass="nav-link" OnClick="linkBtnActividad_Click">
+                            <asp:LinkButton runat="server" ID="linkBtnActividad" CssClass="nav-link" OnClick="linkBtnActividad_Click"  Visible="false">
                             
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/portapapeles.png" />
@@ -141,7 +141,7 @@
                                 Actividades
                             </asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="linkBtnCliente" CssClass="nav-link" OnClick="linkBtnCliente_Click">
+                            <asp:LinkButton runat="server" ID="linkBtnCliente" CssClass="nav-link" OnClick="linkBtnCliente_Click" Visible="false">
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/hombre-de-traje-y-corbata.png" />
                                 </div>

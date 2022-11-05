@@ -2,6 +2,16 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel24" runat="server">
+        <ContentTemplate>
+            <div class=" row pt-4 pb-4" runat="server" id="mensajePermiso" visible="false">
+                <div class="alert alert-danger col-lg-10 col-md-10 col-sm-10 col-xs-10 text-center offset-1 " role="alert">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                  <asp:Label ID="lblMensajePermisos" runat="server"></asp:Label>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <asp:HiddenField ID="idCliente" runat="server" />
@@ -41,7 +51,7 @@
                 <div class="col-lg-12">
                     <div class="mb-4">
                         <label class="lead fs-6">Campos requeridos *</label>
-                     </div>
+                    </div>
                 </div>
             </div>
             <div class="row text-center">

@@ -11,14 +11,14 @@ namespace SIMP.Logica
     public class CatConfiguracionL
     {
         CatConfiguracionDatos CatConfiguracionD = new CatConfiguracionDatos();
-        public List<CatConfiguracionE> ObtenerCatConfiguracion(CatConfiguracionE CatConfiguracion)
+        public List<CatConfiguracionEntidad> ObtenerCatConfiguracion(CatConfiguracionEntidad CatConfiguracion)
         {
             return CatConfiguracionD.ObtieneCatConfiguracion(CatConfiguracion);
 
         }
 
 
-        public void Mantenimiento(CatConfiguracionE CatConfiguracion)
+        public void Mantenimiento(CatConfiguracionEntidad CatConfiguracion)
         {
             CatConfiguracionD.Mantenimiento(CatConfiguracion);
         }

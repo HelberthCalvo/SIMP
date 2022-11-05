@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadEntidad.cs" />
-    <Compile Include="CatConfiguracionE.cs" />
+    <Compile Include="CatConfiguracionEntidad.cs" />
+    <Compile Include="ConfiguracionEntidad.cs" />
     <Compile Include="ClienteEntidad.cs" />
     <Compile Include="EntidadBase.cs" />
+    <Compile Include="Entorno.cs" />
     <Compile Include="EstadoEntidad.cs" />
     <Compile Include="FaseEntidad.cs" />
     <Compile Include="GlobalesE.cs" />

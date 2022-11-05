@@ -19,13 +19,66 @@ namespace SIMP
             }
             if (!IsPostBack)
             {
-                //HabilitaOpcionesPermisos();
+                HabilitaOpcionesPermisos();
                 CargarGridActividades();
                 CargarUsuarios();
                 CargarTooltips();
             }
         }
+        private void HabilitaOpcionesPermisos()
+        {
+            try
+            {
+                string nombreUrl = Request.Url.Segments[Request.Url.Segments.Length - 1].ToString();
+                if (Session["Permiso_" + nombreUrl] != null)
+                {
+                    MenuEntidad obMenu = (Session["Permiso_" + nombreUrl] as MenuEntidad);
+                    string permisos = string.Empty;
 
+                    if (!obMenu.CrearPermiso)
+                    {
+                        btnGuardar.Visible = false;
+
+                        permisos += "- Crear ";
+                    }
+
+                    if (!obMenu.EditarPermiso)
+                    {
+                        gvActividad.Columns[9].Visible = false;
+                        gvActividad.Columns[10].Visible = false;
+                        gvActividad.Columns[11].Visible = false;
+                        permisos += "- Editar ";
+                    }
+
+                    if (!obMenu.VerPermiso)
+                    {
+                        gvActividad.Visible = false;
+
+                        permisos += "- Consultar ";
+                    }
+
+                    if (obMenu.EnviarPermiso)
+                    {
+                        //hdfPermisoEnviarCorreos.Value = "1";
+                    }
+                    else
+                    {
+                        //hdfPermisoEnviarCorreos.Value = "0";
+                        permisos += "- Enviar Correos";
+                    }
+
+                    if (!string.IsNullOrEmpty(permisos))
+                    {
+                        mensajePermiso.Visible = true;
+                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
         private void CargarTooltips()
         {
             try
@@ -135,7 +188,7 @@ namespace SIMP
                 UsuarioLogica usuarioLogica = new UsuarioLogica();
                 List<UsuarioEntidad> lstUsuarios = new List<UsuarioEntidad>();
                 lstUsuarios = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Usuario = "hcalvo", Estado = 1, Esquema = "dbo", Contrasena = "" });
-                
+
                 gvModalUsuario.DataSource = lstUsuarios;
                 gvModalUsuario.DataBind();
             }
@@ -185,7 +238,7 @@ namespace SIMP
                     actividad.Id = Convert.ToInt32(hdnIdActividad.Value);
                     actividad.Fecha_Inicio = FormatoFecha(txbFechaInicio.Text);
                     actividad.Fecha_Estimada = FormatoFecha(txbFechaEstimada.Text);
-                    
+
                 }
                 ActividadLogica.MantActividad(actividad);
                 Mensaje("Aviso", "La actividad se guardó correctamente", true);
@@ -302,7 +355,8 @@ namespace SIMP
                 }
                 else if (e.CommandName == "Finalizar")
                 {
-                    ActividadLogica.MantActividad(new ActividadEntidad { 
+                    ActividadLogica.MantActividad(new ActividadEntidad
+                    {
                         Id = Convert.ToInt32(id),
                         Descripcion = descripcion,
                         Fecha_Inicio = FormatoFecha(fecha_inicio),
@@ -310,9 +364,9 @@ namespace SIMP
                         IdEstado = 2,
                         IdFase = Convert.ToInt32(idFase),
                         IdUsuario = Convert.ToInt32(idUsuario),
-                        Opcion = 0, 
-                        Esquema = "dbo", 
-                        Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString()) 
+                        Opcion = 0,
+                        Esquema = "dbo",
+                        Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString())
                     });
                     Mensaje("Aviso", "Actividad finalizada con éxito", true);
                     CargarGridActividades();
@@ -322,7 +376,7 @@ namespace SIMP
             {
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
-            
+
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

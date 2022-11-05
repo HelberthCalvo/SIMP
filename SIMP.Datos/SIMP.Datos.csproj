@@ -64,6 +64,7 @@
     <Compile Include="CatConfiguracionDatos.cs" />
     <Compile Include="ClienteDatos.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="ConfiguracionDatos.cs" />
     <Compile Include="EstadoDatos.cs" />
     <Compile Include="FaseDatos.cs" />
     <Compile Include="MenuDatos.cs" />

@@ -1,5 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Fase.aspx.cs" Inherits="SIMP.Fase" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel24" runat="server">
+        <ContentTemplate>
+            <div class=" row pt-4 pb-4" runat="server" id="mensajePermiso" visible="false">
+                <div class="alert alert-danger col-lg-10 col-md-10 col-sm-10 col-xs-10 text-center offset-1 " role="alert">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                  <asp:Label ID="lblMensajePermisos" runat="server"></asp:Label>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <asp:HiddenField ID="hdnIdFase" runat="server" />
@@ -23,9 +34,9 @@
                     <div class="mb-4">
                         <label class="form-label">Proyecto</label>
                         <div class="input-group">
-                            <asp:TextBox ID="txtNombreProyecto" CssClass="form-control" runat="server" placeholder="Seleccione un proyecto" Enabled="false"/>
+                            <asp:TextBox ID="txtNombreProyecto" CssClass="form-control" runat="server" placeholder="Seleccione un proyecto" Enabled="false" />
                             <div class="input-group-append">
-                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalProyecto" OnClick="btnModalProyecto_Click" runat="server" >
+                                <asp:LinkButton CssClass="btn btn-secondary" ID="btnModalProyecto" OnClick="btnModalProyecto_Click" runat="server">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </asp:LinkButton>
                             </div>
@@ -35,7 +46,7 @@
                 <div class="col-lg-12">
                     <div class="mb-4">
                         <label class="lead fs-6">Campos requeridos *</label>
-                     </div>
+                    </div>
                 </div>
             </div>
             <div class="row text-center mt-3 mb-5">
@@ -87,7 +98,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    
+
     <!-- Modal Proyecto -->
     <div class="modal fade" id="modalProyecto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

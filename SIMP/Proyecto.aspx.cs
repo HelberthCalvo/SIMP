@@ -19,7 +19,7 @@ namespace SIMP
             }
             if (!IsPostBack)
             {
-                //HabilitaOpcionesPermisos();
+                HabilitaOpcionesPermisos();
                 CargarGridProyectos();
                 CargarTooltips();
             }
@@ -41,7 +41,59 @@ namespace SIMP
                 Console.WriteLine(ex.Message);
             }
         }
+        private void HabilitaOpcionesPermisos()
+        {
+            try
+            {
+                string nombreUrl = Request.Url.Segments[Request.Url.Segments.Length - 1].ToString();
+                if (Session["Permiso_" + nombreUrl] != null)
+                {
+                    MenuEntidad obMenu = (Session["Permiso_" + nombreUrl] as MenuEntidad);
+                    string permisos = string.Empty;
 
+                    if (!obMenu.CrearPermiso)
+                    {
+                        btnGuardar.Visible = false;
+
+                        permisos += "- Crear ";
+                    }
+
+                    if (!obMenu.EditarPermiso)
+                    {
+                        gvProyectos.Columns[8].Visible = false;
+                        gvProyectos.Columns[9].Visible = false;
+                        gvProyectos.Columns[10].Visible = false;
+                        permisos += "- Editar ";
+                    }
+
+                    if (!obMenu.VerPermiso)
+                    {
+                        gvProyectos.Visible = false;
+                        permisos += "- Consultar ";
+                    }
+
+                    if (obMenu.EnviarPermiso)
+                    {
+                        //hdfPermisoEnviarCorreos.Value = "1";
+                    }
+                    else
+                    {
+                        //hdfPermisoEnviarCorreos.Value = "0";
+                        permisos += "- Enviar Correos";
+                    }
+
+                    if (!string.IsNullOrEmpty(permisos))
+                    {
+                        mensajePermiso.Visible = true;
+                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
+        }
         private string NombreCompleto(string nombre, string primer_apellido, string segundo_apellido)
         {
             return nombre + " " + primer_apellido + " " + segundo_apellido;
