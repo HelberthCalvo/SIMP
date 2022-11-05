@@ -33,8 +33,9 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_IDESTADO", actividad.IdEstado);
                 cmd.Parameters.AddWithValue("@P_DESCRIPCION", actividad.Descripcion);
                 cmd.Parameters.AddWithValue("@P_FECHA_INICIO", actividad.Fecha_Inicio);
-                cmd.Parameters.AddWithValue("@P_FECHA_ESTIMADA", actividad.Fecha_Estimada);
                 cmd.Parameters.AddWithValue("@P_FECHA_FINALIZACION", actividad.Fecha_Finalizacion);
+                cmd.Parameters.AddWithValue("@P_HORAS_ESTIMADAS", actividad.HorasEstimadas);
+                cmd.Parameters.AddWithValue("@P_HORAS_REALES", actividad.HorasEstimadas);
 
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", actividad.Esquema);
 
@@ -51,11 +52,14 @@ namespace SIMP.Datos
                     obj.IdUsuario = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_USUARIO");
                     obj.IdEstado = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_ESTADO");
                     obj.Descripcion = UtilitarioSQL.ObtieneString(reader, "DESCRIPCION");
-                    obj.Fecha_Inicio = UtilitarioSQL.ObtieneString(reader, "FECHA_INICIO");
-                    obj.Fecha_Estimada = UtilitarioSQL.ObtieneString(reader, "FECHA_ESTIMADA");
-                    obj.Fecha_Finalizacion = UtilitarioSQL.ObtieneString(reader, "FECHA_FINALIZACION");
+                    obj.HorasReales = UtilitarioSQL.ObtieneDouble(reader, "HORAS_REALES");
+                    obj.HorasEstimadas = UtilitarioSQL.ObtieneDouble(reader, "HORAS_ESTIMADAS");
                     obj.NombreFase = UtilitarioSQL.ObtieneString(reader, "NOMBRE_FASE");
                     obj.NombreUsuario = UtilitarioSQL.ObtieneString(reader, "NOMBRE_USUARIO");
+                    obj.IdProyecto = UtilitarioSQL.ObtieneInt(reader, "FK_TBL_SIMP_PY_PROYECTO");
+                    obj.NombreProyecto = UtilitarioSQL.ObtieneString(reader, "NOMBRE_PROYECTO");
+                    obj.Fecha_Inicio = UtilitarioSQL.ObtieneString(reader, "FECHA_INICIO");
+                    obj.Fecha_Finalizacion = UtilitarioSQL.ObtieneString(reader, "FECHA_FINALIZACION");
                     lista.Add(obj);
                 }
                 reader.Dispose();
@@ -89,8 +93,9 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_IDUSUARIO", actividad.IdUsuario);
                 cmd.Parameters.AddWithValue("@P_IDESTADO", actividad.IdEstado);
                 cmd.Parameters.AddWithValue("@P_DESCRIPCION", actividad.Descripcion);
+                cmd.Parameters.AddWithValue("@P_HORAS_ESTIMADAS", actividad.HorasEstimadas);
+                cmd.Parameters.AddWithValue("@P_HORAS_REALES", actividad.HorasReales);
                 cmd.Parameters.AddWithValue("@P_FECHA_INICIO", actividad.Fecha_Inicio);
-                cmd.Parameters.AddWithValue("@P_FECHA_ESTIMADA", actividad.Fecha_Estimada);
                 cmd.Parameters.AddWithValue("@P_FECHA_FINALIZACION", actividad.Fecha_Finalizacion);
 
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", actividad.Esquema);
