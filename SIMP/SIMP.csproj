@@ -136,6 +136,7 @@
     <Content Include="Content\Combo\chosenSelect.js" />
     <Content Include="Content\Combo\fSelect.css" />
     <Content Include="Content\Combo\fSelect.js" />
+    <Content Include="Content\css\GanttStyle.css" />
     <Content Include="Content\css\LoginStyle.css" />
     <Content Include="Content\css\MiEstilo.css" />
     <Content Include="Content\css\Site.css" />
@@ -301,7 +302,10 @@
     <Content Include="Content\DataTables\Scroller-2.0.5\js\scroller.semanticui.min.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\bg-login.jpg" />
+    <Content Include="Content\img\grid.png" />
+    <Content Include="Content\img\icon_sprite.png" />
     <Content Include="Content\img\logo-sitsa.png" />
+    <Content Include="Content\img\slider_handle.png" />
     <Content Include="Content\plantilla\css\bootstrap.css" />
     <Content Include="Content\plantilla\css\bootstrap.min.css" />
     <Content Include="Content\plantilla\css\icons\crypto-icons\cryptocoins-colors.css" />
@@ -784,6 +788,7 @@
     <Content Include="Content\style.min.css" />
     <Content Include="Fase.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="GanttChart.aspx" />
     <Content Include="Global.asax" />
     <Content Include="icons\etapas.png" />
     <Content Include="icons\garrapata.png" />
@@ -983,6 +988,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery.fn.gantt.js" />
+    <Content Include="Scripts\jquery.fn.gantt.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -1036,6 +1043,13 @@
     </Compile>
     <Compile Include="Fase.aspx.designer.cs">
       <DependentUpon>Fase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GanttChart.aspx.cs">
+      <DependentUpon>GanttChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GanttChart.aspx.designer.cs">
+      <DependentUpon>GanttChart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1092,6 +1106,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Browsers\" />
     <Folder Include="App_Data\" />
     <Folder Include="Pages\" />
   </ItemGroup>

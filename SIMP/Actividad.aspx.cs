@@ -393,7 +393,7 @@ namespace SIMP
                     horasEstimadasStatic = Convert.ToDouble(horasEstimadas);
                     hdnIdActividad.Value = id;
                     hdnIdFase.Value = idFase;
-                    FechaInicioStatic = FormatoFecha(fecha_inicio);
+                    FechaInicioStatic = fecha_inicio;
                     hdnIdUsuario.Value = idUsuario;
                     ScriptManager.RegisterStartupScript(this, GetType(), "modalHorasReales", "$('#modalHorasReales').modal('show')", true);
                 }
