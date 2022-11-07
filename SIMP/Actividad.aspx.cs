@@ -538,31 +538,31 @@ namespace SIMP
                 WorksheetCollection collection = wb.Worksheets;
 
                 // Recorra todas las hojas de trabajo
-                for (int worksheetIndex = 0; worksheetIndex < collection.Count; worksheetIndex++)
+                for (int worksheetIndex = 2; worksheetIndex < collection.Count; worksheetIndex++)
                 {
                     // Obtener hoja de trabajo usando su índice
                     Worksheet worksheet = collection[worksheetIndex];
 
                     // Obtener el número de filas y columnas
-                    int rows = worksheet.Cells.MaxRow + 1;
-                    int cols = worksheet.Cells.MaxColumn + 1;
+                    int rows = 107;
+                    int cols = 10;
 
                     // Bucle a través de filas
-                    for (int i = 0; i < rows; i++)
+                    for (int i = 8; i < rows; i++)
                     {
                         // Recorra cada columna en la fila seleccionada
-                        for (int j = 0; j < cols; j++)
+                        for (int j = 1; j < cols; j++)
                         {
                             // Valor de la celda de impresión
                             System.Diagnostics.Debug.WriteLine(worksheet.Cells[i, j].Value);
-                            ActividadLogica.MantActividad(new ActividadEntidad()
+                            /*ActividadLogica.MantActividad(new ActividadEntidad()
                             {
                                 IdEstado = 1,
                                 Descripcion = "",
                                 HorasEstimadas = 0,
                                 HorasReales = 0,
                                 Opcion = 1
-                            });
+                            });*/
                         }
                     }
                 }
