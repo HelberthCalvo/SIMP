@@ -1,6 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using SIMP.Datos;
+﻿using SIMP.Datos;
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
