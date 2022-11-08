@@ -36,6 +36,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_FECHA_FINALIZACION", actividad.Fecha_Finalizacion);
                 cmd.Parameters.AddWithValue("@P_HORAS_ESTIMADAS", actividad.HorasEstimadas);
                 cmd.Parameters.AddWithValue("@P_HORAS_REALES", actividad.HorasEstimadas);
+                cmd.Parameters.AddWithValue("@P_IDPROYECTO", actividad.IdProyecto);
 
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", actividad.Esquema);
 

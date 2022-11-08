@@ -306,6 +306,11 @@ namespace SIMP
                     Mensaje("Aviso", "Proyecto finalizado con éxito", true);
                     CargarGridProyectos();
                 }
+                else if (e.CommandName == "Gantt")
+                {
+                    Session["IdProyectoGantt"] = id;
+                    Response.Redirect("GanttChart.aspx");
+                }
             }
             catch (Exception ex)
             {

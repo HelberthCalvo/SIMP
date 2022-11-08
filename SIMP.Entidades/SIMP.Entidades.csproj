@@ -49,6 +49,7 @@
     <Compile Include="Entorno.cs" />
     <Compile Include="EstadoEntidad.cs" />
     <Compile Include="FaseEntidad.cs" />
+    <Compile Include="GanttEntidad.cs" />
     <Compile Include="GlobalesE.cs" />
     <Compile Include="MenuEntidad.cs" />
     <Compile Include="PerfilEntidad.cs" />

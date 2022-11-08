@@ -110,6 +110,7 @@
                                 <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                                 <asp:ButtonField CommandName="CambiarEstado" HeaderText="Estado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
                                 <asp:ButtonField CommandName="Finalizar" HeaderText="Finalizar" ControlStyle-CssClass="text-success" Text="<i class='fa-sharp fa-xl fa-solid fa-circle-check'></i>" />
+                                <asp:ButtonField CommandName="Gantt" HeaderText="Diagrama Gantt" ControlStyle-CssClass="btn btn-primary rounded-pill px-4" Text="Ver" />
                             </Columns>
                         </asp:GridView>
                     </div>
