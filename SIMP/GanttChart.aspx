@@ -64,8 +64,11 @@
     <form id="form1" runat="server">
         <div>
             <div class="container">
+                <h1 class="lead" style="font-size: 2.5rem">Diagrama de Gantt</h1>
                 <div class="gantt"></div>
-
+                <div class="text-center pt-3">
+                    <a class="btn btn-primary btn-lg" href="Proyecto.aspx">Volver al menú</a>
+                </div>
             </div>
             <script src="Scripts/jquery-3.4.1.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
