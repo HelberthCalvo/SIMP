@@ -147,6 +147,12 @@
                                 </div>
                                 Clientes
                             </asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="linkBtnReporte" CssClass="nav-link" OnClick="linkBtnReporte_Click" Visible="true">
+                                <div class="sb-nav-link-icon">
+                                    <img src="../icons/reporte.png"/>
+                                </div>
+                                Reportes
+                            </asp:LinkButton>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

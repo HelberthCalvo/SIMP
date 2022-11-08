@@ -49,6 +49,7 @@
     <Compile Include="FaseLogica.cs" />
     <Compile Include="MenuLogica.cs" />
     <Compile Include="PrivilegioLogica.cs" />
+    <Compile Include="ProgresoProyectoLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoLogica.cs" />
     <Compile Include="PerfilLogica.cs" />

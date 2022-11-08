@@ -10,7 +10,7 @@ namespace SIMP.Datos
 {
   public class Conexion
   {
-    public const string ESQUEMA_PADRE = "secure";
+    public const string ESQUEMA_PADRE = "dbo";
     
     protected static ArrayList CargarPreferencias()
     {
@@ -33,6 +33,7 @@ namespace SIMP.Datos
       }
       return datos;
     }
+
     public static string CadenaDeConexion()
     {
       ArrayList Conexion = new ArrayList();
@@ -42,6 +43,7 @@ namespace SIMP.Datos
       ";User ID=" + Conexion[2].ToString() +
       ";Password=" + Conexion[3].ToString();
     }
+
     public string ObtenerDato(int dato)
     {
       ArrayList Conexion = new ArrayList();

@@ -233,5 +233,9 @@ namespace SIMP
             Response.Redirect("~/Login.aspx");
         }
 
+        protected void linkBtnReporte_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Reporte.aspx");
+        }
     }
 }
