@@ -94,24 +94,12 @@ namespace SIMP
                     }
                     else
                     {
-                        /*MENU HIJOS*/
-                        if (iMenu.Codigo_Padre == PK_CODIGO_PADRE)
-                        {
-                            //sidebarnav.InnerHtml += "<li class='sidebar-item'>";
-                            //sidebarnav.InnerHtml += $"<a class='sidebar-link has-arrow waves-effect waves-dark profile-dd' aria-expanded='false'><i class='{iMenu.Icono}'></i> <span class='hide-menu'>{iMenu.Descripcion}</span></a>";
-                            //sidebarnav.InnerHtml += "<ul aria-expanded='false' class='collapse first-level'>";
-                        }
 
                         foreach (MenuEntidad iMenuHijos in listaMenuHijos)
                         {
                             ObtenerSubMenus(iMenuHijos, listaMenu);
                         }
 
-                        if (iMenu.Codigo_Padre == PK_CODIGO_PADRE)
-                        {
-                            //sidebarnav.InnerHtml += "</ul>";
-                            //sidebarnav.InnerHtml += "</li>";
-                        }
                     }
                 }
             }
@@ -133,23 +121,15 @@ namespace SIMP
                 List<MenuEntidad> listaMenu = plistaMenu;
 
                 listaMenuHijos = listaMenu.ToList().Where(x => x.Codigo_Padre == pMenuHijos.Id.ToString()).ToList();
-                if (listaMenuHijos.Count == 0)
-                {
-                    //sidebarnav.InnerHtml += $"<li class='sidebar-item'><a class='sidebar-link' href='/{pMenuHijos.Url}'><span class='hide-menu'>{pMenuHijos.Descripcion}</span></a></li>";
-                    return;
-                }
 
-                //sidebarnav.InnerHtml += "<li class='sidebar-item'>";
-                //sidebarnav.InnerHtml += $"<a class='sidebar-link has-arrow waves-effect waves-dark profile-dd' aria-expanded='false'><i class='{pMenuHijos.Icono}'></i> <span class='hide-menu'>{pMenuHijos.Descripcion}</span></a>";
-                //sidebarnav.InnerHtml += "<ul aria-expanded='false' class='collapse first-level'>";
+
 
                 foreach (MenuEntidad iMenuHijos in listaMenuHijos)
                 {
                     ObtenerSubMenus(iMenuHijos, listaMenu);
                 }
 
-                //sidebarnav.InnerHtml += "</ul>";
-                //sidebarnav.InnerHtml += "</li>";
+
 
             }
             catch (Exception ex)

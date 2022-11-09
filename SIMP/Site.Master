@@ -104,6 +104,7 @@
                     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                         <li class="nav-item dropdown">
+                            <a href="AyudaLinea.aspx" class="btn btn-dark">Ayuda en línea</a>
                             <asp:Button ID="btnCerrarSesion" CssClass="btn btn-dark" Text="Cerrar Sesión" runat="server" OnClick="btnCerrarSesion_Click" />
                         </li>
                     </ul>
