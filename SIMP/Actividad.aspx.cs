@@ -528,6 +528,16 @@ namespace SIMP
             }
         }
 
+        private bool esDiaSemana(string valor)
+        {
+            if (valor.Equals("Lunes") || valor.Equals("Martes") || valor.Equals("Miercoles") ||
+                valor.Equals("Jueves") || valor.Equals("Viernes") || valor.Equals("Sabado"))
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void CargarActividadesExcel(string filePath)
         {
             try
@@ -544,25 +554,26 @@ namespace SIMP
                     Worksheet worksheet = collection[worksheetIndex];
 
                     // Obtener el número de filas y columnas
-                    int rows = 107;
-                    int cols = 10;
+                    int rows = 80;
 
                     // Bucle a través de filas
-                    for (int i = 8; i < rows; i++)
+                    for (int i = 7; i < rows; i++)
                     {
                         // Recorra cada columna en la fila seleccionada
-                        for (int j = 1; j < cols; j++)
+                        var tarea = worksheet.Cells[i, 1].Value;
+                        var horas = worksheet.Cells[i, 6].Value;
+                        if (tarea != null && !esDiaSemana(tarea.ToString()))
                         {
-                            // Valor de la celda de impresión
-                            System.Diagnostics.Debug.WriteLine(worksheet.Cells[i, j].Value);
-                            /*ActividadLogica.MantActividad(new ActividadEntidad()
+                            ActividadLogica.MantActividad(new ActividadEntidad()
                             {
                                 IdEstado = 1,
-                                Descripcion = "",
-                                HorasEstimadas = 0,
-                                HorasReales = 0,
-                                Opcion = 1
-                            });*/
+                                Descripcion = tarea.ToString(),
+                                HorasEstimadas = Convert.ToDouble(horas.ToString()),
+                                HorasReales = Convert.ToDouble(horas.ToString()),
+                                Opcion = 1,
+                                Fecha_Inicio = DateTime.Now.ToString(),
+                                Fecha_Finalizacion = DateTime.Now.ToString()
+                            }); ;
                         }
                     }
                 }
