@@ -27,6 +27,7 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_OPCION", menu.Opcion);
                 cmd.Parameters.AddWithValue("@P_PK_TBL_SIMP_SEG_MENU", menu.Id);
                 cmd.Parameters.AddWithValue("@P_FK_TBL_SIMP_SEG_PERFIL", menu.IdPerfil);
+                cmd.Parameters.AddWithValue("@P_CODIGO_PADRE", menu.Codigo_Padre);
                 cmd.Parameters.AddWithValue("@P_ESTADO_MENU", menu.EstadoMenu);
                 cmd.Parameters.AddWithValue("@P_ESTADO_PERMISO", menu.EstadoPermiso);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", menu.Esquema);
