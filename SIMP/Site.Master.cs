@@ -43,9 +43,9 @@ namespace SIMP
                 List<MenuEntidad> listaMenu = obMenuL.ObtenerMenu(obMenuEntidad);
 
                 string PK_CODIGO_PADRE = "";
-                if (listaMenu.Where(X => X.Descripcion == "Menú SIMP").FirstOrDefault() != null)
+                if (listaMenu.FindAll(X => X.Descripcion == "Menú SIMP").FirstOrDefault() != null)
                 {
-                    PK_CODIGO_PADRE = listaMenu.Where(X => X.Descripcion == "Menú SIMP").FirstOrDefault().Id.ToString();
+                    PK_CODIGO_PADRE = listaMenu.FindAll(X => X.Descripcion == "Menú SIMP").FirstOrDefault().Id.ToString();
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace SIMP
                 List<MenuEntidad> listaMenuPadre = new List<MenuEntidad>();
                 List<MenuEntidad> listaMenuHijos = new List<MenuEntidad>();
 
-                listaMenuPadre = listaMenu.ToList().Where(x => x.Codigo_Padre == PK_CODIGO_PADRE).ToList();
+                listaMenuPadre = listaMenu.ToList().FindAll(x => x.Codigo_Padre == PK_CODIGO_PADRE).ToList();
 
                 //sidebarnav.InnerHtml =
                 //  "";
@@ -63,7 +63,7 @@ namespace SIMP
 
                 foreach (MenuEntidad iMenu in listaMenuPadre)
                 {
-                    listaMenuHijos = listaMenu.ToList().Where(x => x.Codigo_Padre == iMenu.Id.ToString()).ToList();
+                    listaMenuHijos = listaMenu.ToList().FindAll(x => x.Codigo_Padre == iMenu.Id.ToString()).ToList();
 
                     if (listaMenuHijos.Count <= 0)
                     {
@@ -120,7 +120,7 @@ namespace SIMP
                 List<MenuEntidad> listaMenuTieneHijos = new List<MenuEntidad>();
                 List<MenuEntidad> listaMenu = plistaMenu;
 
-                listaMenuHijos = listaMenu.ToList().Where(x => x.Codigo_Padre == pMenuHijos.Id.ToString()).ToList();
+                listaMenuHijos = listaMenu.ToList().FindAll(x => x.Codigo_Padre == pMenuHijos.Id.ToString()).ToList();
 
 
 
@@ -156,7 +156,7 @@ namespace SIMP
                 List<MenuEntidad> listaMenu = obMenuL.ObtenerMenu(obMenuEntidad);
 
 
-                foreach (MenuEntidad iMenu in listaMenu.Where(x => !string.IsNullOrEmpty(x.Url)).ToList())
+                foreach (MenuEntidad iMenu in listaMenu.FindAll(x => !string.IsNullOrEmpty(x.Url)).ToList())
                 {
 
                     Session.Remove(iMenu.Url);
