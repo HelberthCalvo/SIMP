@@ -118,6 +118,7 @@ namespace SIMP
                 lstActividades.ForEach(x =>
                 {
                     x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo";
+                    x.Descripcion = x.Descripcion.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u');
                 });
                 gvActividad.DataSource = lstActividades;
                 gvActividad.DataBind();
