@@ -64,12 +64,6 @@ namespace SIMP
                         //hdfPermisoEnviarCorreos.Value = "0";
                         permisos += "- Enviar Correos";
                     }
-
-                    if (!string.IsNullOrEmpty(permisos))
-                    {
-                        mensajePermiso.Visible = true;
-                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
-                    }
                 }
             }
             catch (Exception ex)
@@ -127,6 +121,11 @@ namespace SIMP
             {
                 List<ClienteEntidad> lstCliente = new List<ClienteEntidad>();
                 lstCliente = ClienteLogica.GetClientes(new ClienteEntidad() { Id = 0, Opcion = 0, Esquema = "dbo" });
+                lstCliente.ForEach(x => {
+                    x.Nombre = x.Nombre.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u').Replace('ñ','n');
+                    x.Primer_Apellido = x.Primer_Apellido.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u').Replace('ñ', 'n');
+                    x.Segundo_Apellido = x.Segundo_Apellido.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u').Replace('ñ', 'n');
+                });
                 gvClientes.DataSource = lstCliente;
                 gvClientes.DataBind();
             }

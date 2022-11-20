@@ -32,19 +32,6 @@
 
     <div class="col-12">
 
-        <asp:UpdatePanel ID="UpdatePanel24" runat="server">
-            <contenttemplate>
-                <div class=" row pt-4 pb-4" runat="server" id="mensajePermiso" visible="false">
-                    <div class="alert alert-danger col-lg-10 col-md-10 col-sm-10 col-xs-10 text-center offset-1 " role="alert">
-                        <i class="fa fa-info-circle"></i>&nbsp;
-                  <asp:Label ID="lblMensajePermisos" runat="server"></asp:Label>
-                    </div>
-                </div>
-            </contenttemplate>
-        </asp:UpdatePanel>
-
-
-
         <div id="example-manipulation" class="mt-2 wizard clearfix" role="application">
 
             <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">

@@ -1,16 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Actividad.aspx.cs" Inherits="SIMP.Actividad" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel ID="UpdatePanel24" runat="server">
-        <ContentTemplate>
-            <div class=" row pt-4 pb-4" runat="server" id="mensajePermiso" visible="false">
-                <div class="alert alert-danger col-lg-10 col-md-10 col-sm-10 col-xs-10 text-center offset-1 " role="alert">
-                    <i class="fa fa-info-circle"></i>&nbsp;
-                  <asp:Label ID="lblMensajePermisos" runat="server"></asp:Label>
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
     <asp:UpdatePanel runat="server" UpdateMode="Always">
         <ContentTemplate>
             <asp:HiddenField ID="hdnIdProyecto" runat="server" />
@@ -126,7 +116,7 @@
                                 <asp:BoundField DataField="HorasEstimadas" HeaderText="Horas Estimadas" />
                                 <asp:BoundField DataField="HorasReales" HeaderText="Horas Reales" />
                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
-                                <asp:BoundField DataField="Fecha_Inicio" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none"/>
+                                <asp:BoundField DataField="Fecha_Inicio"/>
                                 <asp:BoundField DataField="Fecha_Finalizacion" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none"/>
                                 <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                                 <asp:ButtonField CommandName="CambiarEstado" HeaderText="Estado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />

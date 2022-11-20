@@ -81,12 +81,6 @@ namespace SIMP
                         //hdfPermisoEnviarCorreos.Value = "0";
                         permisos += "- Enviar Correos";
                     }
-
-                    if (!string.IsNullOrEmpty(permisos))
-                    {
-                        mensajePermiso.Visible = true;
-                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
-                    }
                 }
             }
             catch (Exception ex)
@@ -147,6 +141,8 @@ namespace SIMP
                 lstProyetos.ForEach(x => {
                     x.Fecha_Inicio = FormatoFechaGridView(x.Fecha_Inicio);
                     x.Fecha_Estimada = FormatoFechaGridView(x.Fecha_Estimada);
+                    x.Nombre = x.Nombre.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u').Replace('ñ', 'n');
+                    x.Descripcion = x.Descripcion.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u').Replace('ñ', 'n');
                 });
                 lstProyetos.ForEach(x => { x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo"; });
                 gvProyectos.DataSource = lstProyetos;

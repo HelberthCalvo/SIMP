@@ -75,12 +75,6 @@ namespace SIMP
                         //hdfPermisoEnviarCorreos.Value = "0";
                         permisos += "- Enviar Correos";
                     }
-
-                    if (!string.IsNullOrEmpty(permisos))
-                    {
-                        mensajePermiso.Visible = true;
-                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
-                    }
                 }
             }
             catch (Exception ex)
@@ -88,6 +82,7 @@ namespace SIMP
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
+
         private void CargarTooltips()
         {
             try
@@ -239,12 +234,14 @@ namespace SIMP
                     Usuario = "hcalvo",
                     Esquema = "dbo",
                     Opcion = 0,
-                    Fecha_Inicio = FormatoFecha(FechaInicioStatic),
-                    Fecha_Finalizacion = FormatoFecha(FechaFinalizacionStatic)
+                    Fecha_Inicio = FechaInicioStatic,
+                    Fecha_Finalizacion = FechaFinalizacionStatic
                 };
                 //Si esta editando
                 if (!string.IsNullOrEmpty(hdnIdActividad.Value))
                 {
+                    actividad.Fecha_Inicio = FormatoFecha(FechaInicioStatic);
+                    actividad.Fecha_Finalizacion = FormatoFecha(FechaFinalizacionStatic);
                     if (hdnIdProyecto.Value == "0")
                     {
                         Mensaje("Aviso", "Debe seleccionar un proyecto", false);
