@@ -304,8 +304,21 @@ namespace SIMP
                 }
                 else if (e.CommandName == "Gantt")
                 {
-                    Session["IdProyectoGantt"] = id;
-                    Response.Redirect("GanttChart.aspx");
+                    var listaActividades = ActividadLogica.GetActividades(new ActividadEntidad()
+                    {
+                        IdProyecto = Convert.ToInt32(id),
+                        Opcion = 2,
+                        Estado = "1"
+                    });
+                    if (listaActividades.Count > 0)
+                    {
+                        Session["IdProyectoGantt"] = id;
+                        Response.Redirect("GanttChart.aspx");
+                    }
+                    else
+                    {
+                        Mensaje("Aviso", "Este proyecto no posee ninguna actividad", false);
+                    }
                 }
             }
             catch (Exception ex)

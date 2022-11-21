@@ -116,7 +116,7 @@
                                 <asp:BoundField DataField="HorasEstimadas" HeaderText="Horas Estimadas" />
                                 <asp:BoundField DataField="HorasReales" HeaderText="Horas Reales" />
                                 <asp:BoundField DataField="NombreEstado" HeaderText="Estado" />
-                                <asp:BoundField DataField="Fecha_Inicio"/>
+                                <asp:BoundField DataField="Fecha_Inicio" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none"/>
                                 <asp:BoundField DataField="Fecha_Finalizacion" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none"/>
                                 <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                                 <asp:ButtonField CommandName="CambiarEstado" HeaderText="Estado" ControlStyle-CssClass="text-warning" Text="<i class='fa-sharp fa-xl fa-solid fa-rotate'></i>" />
