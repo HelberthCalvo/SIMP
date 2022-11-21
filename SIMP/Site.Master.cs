@@ -19,9 +19,12 @@ namespace SIMP
             }
             else if (!IsPostBack)
             {
-                Usuario_Sistema.Text = ((UsuarioEntidad)Session["UsuarioSistema"]).Usuario_Sistema;
-                CargarMenu();
-                SessionesAccesoPaginas();
+                if (!IsPostBack)
+                {
+                    Usuario_Sistema.Text = ((UsuarioEntidad)Session["UsuarioSistema"]).Usuario_Sistema;
+                    CargarMenu();
+                    SessionesAccesoPaginas();
+                }
             }
 
         }

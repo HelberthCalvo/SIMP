@@ -17,6 +17,7 @@ namespace SIMP
         private static bool esIndefinidoStatic = false;
         private static string descripcionStatic = "";
         private static double horasEstimadasStatic = 0;
+        private static double horasRealesStatic = 0;
         private static string FechaInicioStatic = "";
         private static string FechaFinalizacionStatic = "";
 
@@ -75,12 +76,6 @@ namespace SIMP
                         //hdfPermisoEnviarCorreos.Value = "0";
                         permisos += "- Enviar Correos";
                     }
-
-                    if (!string.IsNullOrEmpty(permisos))
-                    {
-                        mensajePermiso.Visible = true;
-                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
-                    }
                 }
             }
             catch (Exception ex)
@@ -88,6 +83,7 @@ namespace SIMP
                 Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
         }
+
         private void CargarTooltips()
         {
             try
@@ -119,6 +115,8 @@ namespace SIMP
                 {
                     x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo";
                     x.Descripcion = x.Descripcion.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u');
+                    x.Fecha_Inicio = FormatoFecha(x.Fecha_Inicio);
+                    x.Fecha_Finalizacion = FormatoFecha(x.Fecha_Finalizacion);
                 });
                 gvActividad.DataSource = lstActividades;
                 gvActividad.DataBind();
@@ -239,8 +237,8 @@ namespace SIMP
                     Usuario = "hcalvo",
                     Esquema = "dbo",
                     Opcion = 0,
-                    Fecha_Inicio = FormatoFecha(FechaInicioStatic),
-                    Fecha_Finalizacion = FormatoFecha(FechaFinalizacionStatic)
+                    Fecha_Inicio = FechaInicioStatic,
+                    Fecha_Finalizacion = FechaFinalizacionStatic
                 };
                 //Si esta editando
                 if (!string.IsNullOrEmpty(hdnIdActividad.Value))
@@ -260,12 +258,14 @@ namespace SIMP
                         Mensaje("Aviso", "Debe seleccionar un usuario", false);
                         return;
                     }
+                    actividad.HorasReales = horasRealesStatic;
+                    actividad.Fecha_Inicio = FechaInicioStatic;
+                    actividad.Fecha_Finalizacion = FechaFinalizacionStatic;
                     actividad.Id = Convert.ToInt32(hdnIdActividad.Value);
                 }
                 ActividadLogica.MantActividad(actividad);
                 Mensaje("Aviso", "La actividad se guardó correctamente", true);
                 LimpiarDatos();
-                hdnIdActividad.Value = "";
                 CargarGridActividades();
             }
             catch (Exception ex)
@@ -291,6 +291,7 @@ namespace SIMP
             esIndefinidoStatic = false;
             FechaInicioStatic = string.Empty;
             FechaFinalizacionStatic = string.Empty;
+            horasRealesStatic = 0;
         }
 
         private bool CamposValidos()
@@ -358,6 +359,7 @@ namespace SIMP
                     hdnIdProyecto.Value = idProyecto;
                     hdnIdFase.Value = idFase;
                     hdnIdUsuario.Value = idUsuario;
+                    horasRealesStatic = Convert.ToDouble(horasReales);
                     FechaInicioStatic = fecha_inicio;
                     FechaFinalizacionStatic = fecha_finalizacion;
                     txbDescripcion.Text = descripcion;
@@ -381,8 +383,8 @@ namespace SIMP
                         IdFase = Convert.ToInt32(idFase),
                         HorasEstimadas = Convert.ToDouble(horasEstimadas),
                         HorasReales = Convert.ToDouble(horasReales),
-                        Fecha_Inicio = FormatoFecha(fecha_inicio),
-                        Fecha_Finalizacion = FormatoFecha(fecha_finalizacion)
+                        Fecha_Inicio = fecha_inicio,
+                        Fecha_Finalizacion = fecha_finalizacion
                     });
                     Mensaje("Aviso", "Estado de la actividad actualizado con éxito", true);
                     CargarGridActividades();
@@ -572,8 +574,8 @@ namespace SIMP
                                 HorasEstimadas = Convert.ToDouble(horas.ToString()),
                                 HorasReales = Convert.ToDouble(horas.ToString()),
                                 Opcion = 1,
-                                Fecha_Inicio = DateTime.Now.ToString(),
-                                Fecha_Finalizacion = DateTime.Now.ToString()
+                                Fecha_Inicio = FormatoFecha(DateTime.Now.ToString()),
+                                Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString())
                             }); ;
                         }
                     }
@@ -590,29 +592,36 @@ namespace SIMP
 
         protected void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtHorasReales.Text))
+            try
             {
-                ActividadLogica.MantActividad(new ActividadEntidad
+                if (!string.IsNullOrEmpty(txtHorasReales.Text))
                 {
-                    Id = Convert.ToInt32(hdnIdActividad.Value),
-                    HorasEstimadas = horasEstimadasStatic,
-                    HorasReales = Convert.ToDouble(txtHorasReales.Text),
-                    IdEstado = 2,
-                    Opcion = esIndefinidoStatic ? 1 : 0,
-                    Esquema = "dbo",
-                    IdFase = Convert.ToInt32(hdnIdFase.Value),
-                    IdUsuario = Convert.ToInt32(hdnIdUsuario.Value),
-                    Descripcion = descripcionStatic,
-                    Fecha_Inicio = FormatoFecha(FechaInicioStatic),
-                    Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString())
-                });
-                Mensaje("Aviso", "Actividad finalizada con éxito", true);
-                LimpiarDatos();
-                CargarGridActividades();
+                    ActividadLogica.MantActividad(new ActividadEntidad
+                    {
+                        Id = Convert.ToInt32(hdnIdActividad.Value),
+                        HorasEstimadas = horasEstimadasStatic,
+                        HorasReales = Convert.ToDouble(txtHorasReales.Text),
+                        IdEstado = 2,
+                        Opcion = esIndefinidoStatic ? 1 : 0,
+                        Esquema = "dbo",
+                        IdFase = Convert.ToInt32(hdnIdFase.Value),
+                        IdUsuario = Convert.ToInt32(hdnIdUsuario.Value),
+                        Descripcion = descripcionStatic,
+                        Fecha_Inicio = FechaInicioStatic,
+                        Fecha_Finalizacion = FormatoFecha(DateTime.Now.ToString())
+                    });
+                    Mensaje("Aviso", "Actividad finalizada con éxito", true);
+                    LimpiarDatos();
+                    CargarGridActividades();
+                }
+                else
+                {
+                    Mensaje("Aviso", "Debe ingresar las horas reales para finalizar la actividad", false);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Mensaje("Aviso", "Debe ingresar las horas reales para finalizar la actividad", false);
+                Mensaje("Error", "No se pudo finalizar la actividad correctamente. Error: " + ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
             
         }

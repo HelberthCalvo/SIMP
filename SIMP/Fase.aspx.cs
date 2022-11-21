@@ -64,11 +64,6 @@ namespace SIMP
                         permisos += "- Enviar Correos";
                     }
 
-                    if (!string.IsNullOrEmpty(permisos))
-                    {
-                        mensajePermiso.Visible = true;
-                        lblMensajePermisos.Text = "El usuario no cuenta con permisos para: " + permisos;
-                    }
                 }
             }
             catch (Exception ex)
@@ -125,7 +120,11 @@ namespace SIMP
                 {
                     Esquema = "dbo"
                 });
-                lstFases.ForEach(x => { x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo"; });
+                lstFases.ForEach(x => { 
+                    x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo";
+                    x.Nombre = x.Nombre.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u').Replace('ñ', 'n');
+                    x.Descripcion = x.Descripcion.Replace('á', 'a').Replace('é', 'e').Replace('í', 'i').Replace('ó', 'o').Replace('ú', 'u').Replace('ñ', 'n');
+                });
                 gvFases.DataSource = lstFases;
                 gvFases.DataBind();
             }
