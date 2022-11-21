@@ -167,6 +167,7 @@
   <ItemGroup>
     <Content Include="Actividad.aspx" />
     <Content Include="AyudaLinea.aspx" />
+    <Content Include="Bitacora.aspx" />
     <Content Include="Clientes.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -843,6 +844,7 @@
     <Content Include="favicon.ico" />
     <Content Include="GanttChart.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="icons\bitacora.png" />
     <Content Include="icons\etapas.png" />
     <Content Include="icons\garrapata.png" />
     <Content Include="icons\hombre-de-traje-y-corbata.png" />
@@ -1039,6 +1041,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Reportes\ReportePorcentajeProyecto.rpt" />
     <Content Include="Content\ManualUsuarioSIMP.pdf" />
+    <Content Include="Reportes\ReporteCargaUsuario.rpt" />
+    <Content Include="Reportes\ReporteTiempoRealEstimado.rpt" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dashboard\scripts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1093,6 +1097,13 @@
     </Compile>
     <Compile Include="AyudaLinea.aspx.designer.cs">
       <DependentUpon>AyudaLinea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bitacora.aspx.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bitacora.aspx.designer.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>

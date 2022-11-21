@@ -17,12 +17,13 @@ namespace SIMP
             {
                 Response.Redirect("~/Login.aspx");
             }
-            else
+            else if (!IsPostBack)
             {
                 Usuario_Sistema.Text = ((UsuarioEntidad)Session["UsuarioSistema"]).Usuario_Sistema;
                 CargarMenu();
                 SessionesAccesoPaginas();
             }
+
         }
 
         private void CargarMenu()
@@ -216,6 +217,11 @@ namespace SIMP
         protected void linkBtnReporte_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Reporte.aspx");
+        }
+
+        protected void linkBtnBitacora_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Bitacora.aspx");
         }
     }
 }

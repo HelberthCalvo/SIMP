@@ -69,31 +69,40 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.Label lblMensajePermisos;
 
         /// <summary>
-        /// Control txtDescripcionPerfil.
+        /// Control txbFechaInicioProgreso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcionPerfil;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaInicioProgreso;
 
         /// <summary>
-        /// Control rdbActivoPerfil.
+        /// Control CalendarExtender1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbActivoPerfil;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
-        /// Control rdbInactivoPerfil.
+        /// Control txbFechaFinalProgreso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbInactivoPerfil;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaFinalProgreso;
+
+        /// <summary>
+        /// Control CalendarExtender2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
 
         /// <summary>
         /// Control btnBuscarProgresoProyecto.
@@ -114,76 +123,49 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.GridView gvProgresoProyecto;
 
         /// <summary>
-        /// Control txtUsuario.
+        /// Control txbFechaInicioTiempos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaInicioTiempos;
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control CalendarExtender3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender3;
 
         /// <summary>
-        /// Control txtCorreo.
+        /// Control txbFechaFinalTiempos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreo;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaFinalTiempos;
 
         /// <summary>
-        /// Control ddlPerfil.
+        /// Control CalendarExtender4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPerfil;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender4;
 
         /// <summary>
-        /// Control txtContraseña.
+        /// Control btnBuscarTiempos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraseña;
-
-        /// <summary>
-        /// Control rdbActivoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbActivoUsuario;
-
-        /// <summary>
-        /// Control rdbInactivoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbInactivoUsuario;
-
-        /// <summary>
-        /// Control btnBuscarTiempo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBuscarTiempo;
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarTiempos;
 
         /// <summary>
         /// Control gvTiempo.
@@ -195,67 +177,40 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.GridView gvTiempo;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txbFechaInicioCargaTrabajo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaInicioCargaTrabajo;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control CalendarExtender5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender5;
 
         /// <summary>
-        /// Control TextBox3.
+        /// Control txbFechaFinalCargaTrabajo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaFinalCargaTrabajo;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control CalendarExtender6.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-
-        /// <summary>
-        /// Control TextBox4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
-
-        /// <summary>
-        /// Control RadioButton1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
-
-        /// <summary>
-        /// Control RadioButton2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender6;
 
         /// <summary>
         /// Control btnBuscarCargaTrabajo.

@@ -154,6 +154,12 @@
                                 </div>
                                 Reportes
                             </asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="linkBtnBitacora" CssClass="nav-link" OnClick="linkBtnBitacora_Click" Visible="true">
+                                <div class="sb-nav-link-icon">
+                                    <img src="../icons/bitacora.png"/>
+                                </div>
+                                Bitácora
+                            </asp:LinkButton>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

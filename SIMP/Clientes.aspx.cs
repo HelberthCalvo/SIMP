@@ -91,7 +91,6 @@ namespace SIMP
                 Console.WriteLine(ex.Message);
             }
         }
-
         protected void gvClientes_PreRender(object sender, EventArgs e)
         {
             if (gvClientes.Rows.Count > 0)
@@ -100,7 +99,6 @@ namespace SIMP
                 gvClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
-
         protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
@@ -141,7 +139,6 @@ namespace SIMP
             string script = "Swal.fire({ title: '" + titulo + "!', text: '" + msg + "', icon: '" + icono + "', confirmButtonText: '" + textoBoton + "' })";
             ScriptManager.RegisterStartupScript(this, GetType(), "script", script, true);
         }
-
         public bool ValidarEmailMultiple(string email)
         {
             try
@@ -169,7 +166,6 @@ namespace SIMP
                 return false;
             }
         }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             if (CamposVacios())
@@ -233,7 +229,6 @@ namespace SIMP
             }
             return false;
         }
-
         private void LimpiarCampos()
         {
             txbNombre.Text = null;
@@ -243,7 +238,6 @@ namespace SIMP
             txbTelefono.Text = string.Empty;
             idCliente.Value = "";
         }
-
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SIMP.Datos
 {
-    public class ProgresoProyectoDatos
+    public class TiempoRealEstimadoDatos
     {
-        public static List<ProgresoProyectoEntidad> GetProgresoProyecto(ProgresoProyectoEntidad progresoProyecto)
+        public static List<TiempoRealEstimadoEntidad> GetTiempoRealEstimado(TiempoRealEstimadoEntidad tiempoRealEstimadoEntidad)
         {
             SqlConnection myConexion = null;
             SqlCommand cmd = null;
@@ -20,32 +20,36 @@ namespace SIMP.Datos
             try
             {
                 myConexion = new SqlConnection(Conexion.CadenaDeConexion());
-                string Sql = $"{progresoProyecto.Esquema}.PA_CON_SIMP_PROGRESO_PROYECTO";
+                string Sql = $"{tiempoRealEstimadoEntidad.Esquema}.PA_CON_SIMP_TIEMPO_REAL_ESTIMADO";
                 cmd = new SqlCommand(Sql, myConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@P_USUARIO", progresoProyecto.Usuario);
-                cmd.Parameters.AddWithValue("@P_OPCION", progresoProyecto.Opcion);
+                cmd.Parameters.AddWithValue("@P_USUARIO", tiempoRealEstimadoEntidad.Usuario);
+                cmd.Parameters.AddWithValue("@P_OPCION", tiempoRealEstimadoEntidad.Opcion);
 
-                cmd.Parameters.AddWithValue("@P_PK_TBL_SIMP_PY_PROYECTO", progresoProyecto.IdProyecto);
+                cmd.Parameters.AddWithValue("@P_PK_TBL_SIMP_PY_PROYECTO", tiempoRealEstimadoEntidad.IdProyecto);
                 cmd.Parameters.AddWithValue("@P_FECHA_INICIO", "");
                 cmd.Parameters.AddWithValue("@P_FECHA_FINAL", "");
-                cmd.Parameters.AddWithValue("@P_ESQUEMA", progresoProyecto.Esquema);
+                cmd.Parameters.AddWithValue("@P_ESQUEMA", tiempoRealEstimadoEntidad.Esquema);
 
                 myConexion.Open();
                 reader = cmd.ExecuteReader();
 
-                List<ProgresoProyectoEntidad> lista = new List<ProgresoProyectoEntidad>();
+                List<TiempoRealEstimadoEntidad> lista = new List<TiempoRealEstimadoEntidad>();
 
                 while (reader.Read())
                 {
-                    ProgresoProyectoEntidad obj = new ProgresoProyectoEntidad();
+                    TiempoRealEstimadoEntidad obj = new TiempoRealEstimadoEntidad();
                     obj.IdProyecto = UtilitarioSQL.ObtieneInt(reader, "PK_TBL_SIMP_PY_PROYECTO");
+                    obj.Nombre_Cliente = UtilitarioSQL.ObtieneString(reader, "NOMBRE_CLIENTE");
                     obj.Nombre_Proyecto = UtilitarioSQL.ObtieneString(reader, "NOMBRE_PROYECTO");
                     obj.Nombre_Fase = UtilitarioSQL.ObtieneString(reader, "NOMBRE_FASE");
-                    obj.Nombre_Actividad = UtilitarioSQL.ObtieneString(reader, "NOMBRE ACTIVIDAD");
-                    obj.Fecha_Inicio = UtilitarioSQL.ObtieneDateTime(reader, "FECHA_INICIO");
-                    obj.Porcentaje = UtilitarioSQL.ObtieneString(reader, "PORCENTAJE");
+                    obj.Nombre_Actividad = UtilitarioSQL.ObtieneString(reader, "NOMBRE_ACTIVIDAD");
+                    obj.Nombre_Usuario = UtilitarioSQL.ObtieneString(reader, "NOMBRE_USUARIO");
+                    obj.Horas_Estimadas = UtilitarioSQL.ObtieneDecimal(reader, "HORAS_ESTIMADAS");
+                    obj.Horas_Reales = UtilitarioSQL.ObtieneDecimal(reader, "HORAS_REALES");
+                    obj.Fecha = UtilitarioSQL.ObtieneDateTime(reader, "FECHA");
+
                     lista.Add(obj);
                 }
                 reader.Dispose();

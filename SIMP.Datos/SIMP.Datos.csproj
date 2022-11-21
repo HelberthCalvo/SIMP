@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadDatos.cs" />
+    <Compile Include="BitacoraDatos.cs" />
+    <Compile Include="CargaUsuarioDatos.cs" />
     <Compile Include="CatConfiguracionDatos.cs" />
     <Compile Include="ClienteDatos.cs" />
     <Compile Include="Conexion.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoDatos.cs" />
     <Compile Include="PerfilDatos.cs" />
+    <Compile Include="TiempoRealEstimadoDatos.cs" />
     <Compile Include="UsuarioDatos.cs" />
     <Compile Include="UtilitarioSQL.cs" />
   </ItemGroup>

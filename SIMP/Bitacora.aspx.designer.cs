@@ -11,115 +11,88 @@ namespace SIMP
 {
 
 
-    public partial class SiteMaster
+    public partial class Bitacora
     {
 
         /// <summary>
-        /// Control Style.
+        /// Control UpdatePanel24.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Style;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel24;
 
         /// <summary>
-        /// Control btnCerrarSesion.
+        /// Control mensajePermiso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensajePermiso;
 
         /// <summary>
-        /// Control linkBtnSeguridad.
+        /// Control lblMensajePermisos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnSeguridad;
+        protected global::System.Web.UI.WebControls.Label lblMensajePermisos;
 
         /// <summary>
-        /// Control linkBtnProyecto.
+        /// Control txbFechaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnProyecto;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaInicio;
 
         /// <summary>
-        /// Control linkBtnFase.
+        /// Control CalendarExtender1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnFase;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
-        /// Control linkBtnActividad.
+        /// Control txbFechaFinal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnActividad;
+        protected global::System.Web.UI.WebControls.TextBox txbFechaFinal;
 
         /// <summary>
-        /// Control linkBtnCliente.
+        /// Control CalendarExtender2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnCliente;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
 
         /// <summary>
-        /// Control linkBtnReporte.
+        /// Control btnBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnReporte;
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscar;
 
         /// <summary>
-        /// Control linkBtnBitacora.
+        /// Control gvBitacoras.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnBitacora;
-
-        /// <summary>
-        /// Control Usuario_Sistema.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Usuario_Sistema;
-
-        /// <summary>
-        /// Control MainContent.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-
-        /// <summary>
-        /// Control scriptsPersonalizados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder scriptsPersonalizados;
+        protected global::System.Web.UI.WebControls.GridView gvBitacoras;
     }
 }
