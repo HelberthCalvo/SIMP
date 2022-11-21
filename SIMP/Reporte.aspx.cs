@@ -131,15 +131,22 @@ namespace SIMP
                         permisos += "- Consultar ";
                     }
 
-          if (obMenu.EnviarPermiso)
-          {
-            //hdfPermisoEnviarCorreos.Value = "1";
-          }
-          else
-          {
-            //hdfPermisoEnviarCorreos.Value = "0";
-            permisos += "- Enviar Correos";
-          }
+                    if (obMenu.EnviarPermiso)
+                    {
+                        //hdfPermisoEnviarCorreos.Value = "1";
+                    }
+                    else
+                    {
+                        //hdfPermisoEnviarCorreos.Value = "0";
+                        permisos += "- Enviar Correos";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
         }
         protected void btnBuscarProgresoProyecto_Click(object sender, EventArgs e)
         {
