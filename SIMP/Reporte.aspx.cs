@@ -222,13 +222,13 @@ namespace SIMP
                     Hashtable parametrosReporte = new Hashtable();
                     parametrosReporte.Add("@P_USUARIO", "hcalvo");
                     parametrosReporte.Add("@P_OPCION", 0);
-                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", "0");
+                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
                     string rutaReportes = Server.MapPath(Path.Combine("Reportes", "ReportePorcentajeProyecto.rpt"));
                     EnviarCorreoReporte(new ClienteEntidad { Correo_Electronico = "hcalvo4@hotmail.com", Nombre = "Helberth", Primer_Apellido = "Calvo", Segundo_Apellido = "Picado" }, PrintHelper.generarPDF(parametrosReporte, "PrimoPDF", rutaReportes));
-
+                    Mensaje("Aviso", "El correo se envío exitosamente", true);
                 }
 
             }
@@ -304,7 +304,7 @@ namespace SIMP
                 mmsg.Attachments.Add(inlineLogo);
 
                 Attachment data = new Attachment(pdf, MediaTypeNames.Application.Octet);
-                data.Name = "ProgresoProyectos.pdf";
+                data.Name = "Reporte SIMP.pdf";
                 mmsg.Attachments.Add(data);
                 /*-------------------------CLIENTE DE CORREO----------------------*/
 
@@ -394,13 +394,13 @@ namespace SIMP
                     Hashtable parametrosReporte = new Hashtable();
                     parametrosReporte.Add("@P_USUARIO", "hcalvo");
                     parametrosReporte.Add("@P_OPCION", 0);
-                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", "0");
+                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
                     string rutaReportes = Server.MapPath(Path.Combine("Reportes", "ReporteTiempoRealEstimado.rpt"));
                     EnviarCorreoReporte(new ClienteEntidad { Correo_Electronico = "hcalvo4@hotmail.com", Nombre = "Helberth", Primer_Apellido = "Calvo", Segundo_Apellido = "Picado" }, PrintHelper.generarPDF(parametrosReporte, "PrimoPDF", rutaReportes));
-
+                    Mensaje("Aviso", "El correo se envío exitosamente", true);
                 }
 
             }
@@ -450,13 +450,13 @@ namespace SIMP
                     Hashtable parametrosReporte = new Hashtable();
                     parametrosReporte.Add("@P_USUARIO", "hcalvo");
                     parametrosReporte.Add("@P_OPCION", 0);
-                    parametrosReporte.Add("@P_PK_TBL_SIMP_SEG_USUARIO", "0");
+                    parametrosReporte.Add("@P_PK_TBL_SIMP_SEG_USUARIO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
                     string rutaReportes = Server.MapPath(Path.Combine("Reportes", "ReporteCargaUsuario.rpt"));
                     EnviarCorreoReporte(new ClienteEntidad { Correo_Electronico = "hcalvo4@hotmail.com", Nombre = "Helberth", Primer_Apellido = "Calvo", Segundo_Apellido = "Picado" }, PrintHelper.generarPDF(parametrosReporte, "PrimoPDF", rutaReportes));
-
+                    Mensaje("Aviso", "El correo se envío exitosamente", true);
                 }
 
             }
