@@ -230,7 +230,6 @@
 
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <h3 tabindex="-1" class="title current" style="color: black !important;">Permisos</h3>
                     <section role="tabpanel" aria-labelledby="example-manipulation-h-0" class="body current" aria-hidden="false">
 
 
