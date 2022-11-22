@@ -47,7 +47,15 @@ namespace SIMP
                     Session["UsuarioSistema"] = usuarioBusqueda[0];
                     Session["Compañia"] = "dbo";
                     llenarParametrosCatConfiguracion();
-                    Response.Redirect("Proyecto.aspx", false);
+                    if (usuarioBusqueda[0].Perfil == 5)
+                    {
+                        Response.Redirect("Proyecto.aspx", false);
+                    }
+                    else
+                    {
+                        Response.Redirect("Actividad.aspx", false);
+                    }
+                    
                 }
                 else
                 {
