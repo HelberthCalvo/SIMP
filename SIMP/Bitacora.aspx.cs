@@ -135,12 +135,29 @@ namespace SIMP
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            List<BitacoraEntidad> lstBitacora = new List<BitacoraEntidad>();
-            DateTime fechaInicio = DateTime.Parse(txbFechaInicio.Text);
-            DateTime fechaFinal = DateTime.Parse(txbFechaFinal.Text).AddDays(1);
-            lstBitacora = BitacoraLogica.GetBitacoras(new BitacoraEntidad() { Id = 0, Opcion = 0, Esquema = "dbo", FechaInicio =  fechaInicio, FechaFinal = fechaFinal });
-            gvBitacoras.DataSource = lstBitacora;
-            gvBitacoras.DataBind();
+            try
+            {
+                List<BitacoraEntidad> lstBitacora = new List<BitacoraEntidad>();
+                if (!string.IsNullOrEmpty(txbFechaInicio.Text) && !string.IsNullOrEmpty(txbFechaFinal.Text))
+                {
+                    DateTime fechaInicio = DateTime.Parse(txbFechaInicio.Text);
+                    DateTime fechaFinal = DateTime.Parse(txbFechaFinal.Text).AddDays(1);
+                    lstBitacora = BitacoraLogica.GetBitacoras(new BitacoraEntidad() { Id = 0, Opcion = 0, Esquema = "dbo", FechaInicio = fechaInicio, FechaFinal = fechaFinal });
+                    
+                }
+                else
+                {
+                    DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                    DateTime fechaFinal = DateTime.Now;
+                    lstBitacora = BitacoraLogica.GetBitacoras(new BitacoraEntidad() { Id = 0, Opcion = 0, Esquema = "dbo", FechaInicio = fechaInicio, FechaFinal = fechaFinal });
+                }
+                gvBitacoras.DataSource = lstBitacora;
+                gvBitacoras.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
         }
 
 
