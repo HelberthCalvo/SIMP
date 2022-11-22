@@ -106,11 +106,24 @@ namespace SIMP
             try
             {
                 List<ActividadEntidad> lstActividades = new List<ActividadEntidad>();
-                lstActividades = ActividadLogica.GetActividades(new ActividadEntidad()
+                if (((UsuarioEntidad)(Session["UsuarioSistema"])).Perfil == 1 || ((UsuarioEntidad)(Session["UsuarioSistema"])).Perfil == 2)
                 {
-                    Esquema = "dbo",
-                    Opcion = 0
-                });
+                    lstActividades = ActividadLogica.GetActividades(new ActividadEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 0,
+                        IdUsuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Id
+                    });
+                }
+                else
+                {
+                    lstActividades = ActividadLogica.GetActividades(new ActividadEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 0
+                    });
+                }
+
                 lstActividades.ForEach(x =>
                 {
                     x.NombreEstado = x.IdEstado == 1 ? "Activo" : "Inactivo";
@@ -376,7 +389,7 @@ namespace SIMP
                     {
                         Id = Convert.ToInt32(id),
                         IdEstado = nombreEstado == "Activo" ? 2 : 1,
-                        Opcion = esIndefinido? 1: 0,
+                        Opcion = esIndefinido ? 1 : 0,
                         Esquema = "dbo",
                         Descripcion = descripcion,
                         IdUsuario = Convert.ToInt32(idUsuario),
@@ -623,7 +636,7 @@ namespace SIMP
             {
                 Mensaje("Error", "No se pudo finalizar la actividad correctamente. Error: " + ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
             }
-            
+
         }
     }
 }
