@@ -54,8 +54,8 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-4">
-                                            <label class="form-label">Fecha Estimada *</label>
-                                            <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha estimada de finalización" ID="txbFechaFinalProgreso" CssClass="form-control"></asp:TextBox>
+                                            <label class="form-label">Fecha Final *</label>
+                                            <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha Final" ID="txbFechaFinalProgreso" CssClass="form-control"></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server"
                                                 TargetControlID="txbFechaFinalProgreso" PopupButtonID="txbFechaFinalProgreso" Format="dd/MM/yyyy"></ajaxToolkit:CalendarExtender>
                                         </div>
@@ -85,17 +85,15 @@
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
                                 <asp:GridView ID="gvProgresoProyecto" CssClass="table-responsive table customize-table v-middle" Style="width: 100%!important"
-                                    DataKeyNames="IdProyecto, Nombre_Proyecto, Nombre_Fase, Nombre_Actividad, Fecha_Inicio, Porcentaje" OnPreRender="gvProgresoProyecto_PreRender"
+                                    DataKeyNames="IdProyecto,Nombre_Proyecto,Fecha_Inicio" OnPreRender="gvProgresoProyecto_PreRender"
                                     OnRowCommand="gvProgresoProyecto_RowCommand"
                                     AutoGenerateColumns="false"
                                     HeaderStyle-CssClass="table-dark"
                                     runat="server">
                                     <Columns>
+                                        <asp:BoundField DataField="IdProyecto" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="Nombre_Proyecto" HeaderText="Proyecto" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Fase" HeaderText="Nombre_Fase" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Actividad" HeaderText="Nombre_Actividad" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="Fecha_Inicio" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Porcentaje" HeaderText="Porcentaje" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf'></i>" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>
@@ -156,19 +154,15 @@
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
                                 <asp:GridView ID="gvTiempo" CssClass="table-responsive table customize-table v-middle" Style="width: 100%!important"
-                                    DataKeyNames="IdProyecto,Nombre_Cliente,Nombre_Proyecto,Nombre_Fase,Nombre_Actividad,Nombre_Usuario,Horas_Estimadas,Horas_Reales,Fecha" OnPreRender="gvTiempo_PreRender"
+                                    DataKeyNames="IdProyecto,Nombre_Proyecto,Fecha" OnPreRender="gvTiempo_PreRender"
                                     OnRowCommand="gvTiempo_RowCommand"
                                     AutoGenerateColumns="false"
                                     HeaderStyle-CssClass="table-dark"
                                     runat="server">
                                     <Columns>
-                                        <asp:BoundField DataField="Nombre_Cliente" HeaderText="Cliente" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="IdProyecto" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="Nombre_Proyecto" HeaderText="Proyecto" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Fase" HeaderText="Fase" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Actividad" HeaderText="Actividad" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Usuario" HeaderText="Usuario" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Horas_Estimadas" HeaderText="Horas Estimadas" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Horas_Reales" HeaderText="Horas Reales" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf'></i>" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>
@@ -228,16 +222,13 @@
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
                                 <asp:GridView ID="gvCargaTrabajo" CssClass="table-responsive table customize-table v-middle" Style="width: 100%!important"
-                                    DataKeyNames="IdUsuario,Nombre_Cliente,Nombre_Proyecto,Nombre_Fase,Nombre_Actividad,Nombre_Usuario,Fecha" OnPreRender="gvCargaTrabajo_PreRender"
+                                    DataKeyNames="IdUsuario,Nombre_Usuario,Fecha" OnPreRender="gvCargaTrabajo_PreRender"
                                     OnRowCommand="gvCargaTrabajo_RowCommand"
                                     AutoGenerateColumns="false"
                                     HeaderStyle-CssClass="table-dark"
                                     runat="server">
                                     <Columns>
-                                        <asp:BoundField DataField="Nombre_Cliente" HeaderText="Cliente" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Proyecto" HeaderText="Proyecto" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Fase" HeaderText="Fase" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Nombre_Actividad" HeaderText="Actividad" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="IdUsuario" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="Nombre_Usuario" HeaderText="Usuario" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf'></i>" ItemStyle-HorizontalAlign="Center" />

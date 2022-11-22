@@ -37,11 +37,15 @@ namespace SIMP
         {
             try
             {
+                DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                DateTime fechaFinal = DateTime.Now.AddDays(1);
                 List<ProgresoProyectoEntidad> lstProyectoEntidad = new List<ProgresoProyectoEntidad>();
                 lstProyectoEntidad = ProgresoProyectoLogica.GetProgresoProyecto(new ProgresoProyectoEntidad()
                 {
                     Esquema = "dbo",
-                    Opcion = 0
+                    Opcion = 1,
+                    Fecha_Inicio = fechaInicio,
+                    Fecha_Final = fechaFinal
                 });
                 lstProyectoEntidad.ForEach(x =>
                 {
@@ -59,11 +63,15 @@ namespace SIMP
         {
             try
             {
+                DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                DateTime fechaFinal = DateTime.Now.AddDays(1);
                 List<TiempoRealEstimadoEntidad> lstTiempoRealEstimado = new List<TiempoRealEstimadoEntidad>();
                 lstTiempoRealEstimado = TiempoRealEstimadoLogica.GetTiempoRealEstimado(new TiempoRealEstimadoEntidad()
                 {
                     Esquema = "dbo",
-                    Opcion = 0
+                    Opcion = 1,
+                    Fecha_Inicio = fechaInicio,
+                    Fecha_Final = fechaFinal
                 });
                 lstTiempoRealEstimado.ForEach(x =>
                 {
@@ -85,7 +93,7 @@ namespace SIMP
                 lstCargaTrabajo = CargaUsuarioLogica.GetCargaUsuarios(new CargaTrabajoEntidad()
                 {
                     Esquema = "dbo",
-                    Opcion = 0
+                    Opcion = 1
                 });
                 lstCargaTrabajo.ForEach(x =>
                 {
@@ -150,18 +158,45 @@ namespace SIMP
         }
         protected void btnBuscarProgresoProyecto_Click(object sender, EventArgs e)
         {
-
+            DateTime fechaInicio = DateTime.Parse(txbFechaInicioProgreso.Text);
+            DateTime fechaFinal = DateTime.Parse(txbFechaFinalProgreso.Text).AddDays(1);
+            try
+            {
+                List<ProgresoProyectoEntidad> lstProyectoEntidad = new List<ProgresoProyectoEntidad>();
+                lstProyectoEntidad = ProgresoProyectoLogica.GetProgresoProyecto(new ProgresoProyectoEntidad()
+                {
+                    Esquema = "dbo",
+                    Opcion = 1,
+                    Fecha_Inicio = fechaInicio,
+                    Fecha_Final = fechaFinal
+                });
+                lstProyectoEntidad.ForEach(x =>
+                {
+                    x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                });
+                gvProgresoProyecto.DataSource = lstProyectoEntidad;
+                gvProgresoProyecto.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
         }
 
         protected void gvProgresoProyecto_PreRender(object sender, EventArgs e)
         {
-
+            if (gvProgresoProyecto.Rows.Count > 0)
+            {
+                gvProgresoProyecto.UseAccessibleHeader = true;
+                gvProgresoProyecto.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void gvProgresoProyecto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string error = string.Empty;
-
+            int index = Convert.ToInt32(e.CommandArgument);
+            var id = gvProgresoProyecto.Rows[index].Cells[0].Text;
             try
             {
                 if (e.CommandName == "GenerarPDF")
@@ -169,7 +204,7 @@ namespace SIMP
                     Hashtable parametrosReporte = new Hashtable();
                     parametrosReporte.Add("@P_USUARIO", "hcalvo");
                     parametrosReporte.Add("@P_OPCION", 0);
-                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", "0");
+                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
@@ -322,13 +357,18 @@ namespace SIMP
 
         protected void gvTiempo_PreRender(object sender, EventArgs e)
         {
-
+            if (gvTiempo.Rows.Count > 0)
+            {
+                gvTiempo.UseAccessibleHeader = true;
+                gvTiempo.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void gvTiempo_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string error = string.Empty;
-
+            int index = Convert.ToInt32(e.CommandArgument);
+            var id = gvTiempo.Rows[index].Cells[0].Text;
             try
             {
                 if (e.CommandName == "GenerarPDF")
@@ -336,7 +376,7 @@ namespace SIMP
                     Hashtable parametrosReporte = new Hashtable();
                     parametrosReporte.Add("@P_USUARIO", "hcalvo");
                     parametrosReporte.Add("@P_OPCION", 0);
-                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", "0");
+                    parametrosReporte.Add("@P_PK_TBL_SIMP_PY_PROYECTO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
@@ -373,13 +413,18 @@ namespace SIMP
 
         protected void gvCargaTrabajo_PreRender(object sender, EventArgs e)
         {
-
+            if (gvCargaTrabajo.Rows.Count > 0)
+            {
+                gvCargaTrabajo.UseAccessibleHeader = true;
+                gvCargaTrabajo.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void gvCargaTrabajo_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string error = string.Empty;
-
+            int index = Convert.ToInt32(e.CommandArgument);
+            var id = gvCargaTrabajo.Rows[index].Cells[0].Text;
             try
             {
                 if (e.CommandName == "GenerarPDF")
@@ -387,7 +432,7 @@ namespace SIMP
                     Hashtable parametrosReporte = new Hashtable();
                     parametrosReporte.Add("@P_USUARIO", "hcalvo");
                     parametrosReporte.Add("@P_OPCION", 0);
-                    parametrosReporte.Add("@P_PK_TBL_SIMP_SEG_USUARIO", "0");
+                    parametrosReporte.Add("@P_PK_TBL_SIMP_SEG_USUARIO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
@@ -435,7 +480,29 @@ namespace SIMP
 
         protected void btnBuscarTiempos_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                DateTime fechaInicio = DateTime.Parse(txbFechaInicioTiempos.Text);
+                DateTime fechaFinal = DateTime.Parse(txbFechaFinalTiempos.Text).AddDays(1);
+                List<TiempoRealEstimadoEntidad> lstTiempoRealEstimado = new List<TiempoRealEstimadoEntidad>();
+                lstTiempoRealEstimado = TiempoRealEstimadoLogica.GetTiempoRealEstimado(new TiempoRealEstimadoEntidad()
+                {
+                    Esquema = "dbo",
+                    Opcion = 0,
+                    Fecha_Inicio = fechaInicio,
+                    Fecha_Final = fechaFinal
+                });
+                lstTiempoRealEstimado.ForEach(x =>
+                {
+                    x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                });
+                gvTiempo.DataSource = lstTiempoRealEstimado;
+                gvTiempo.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
         }
     }
 }

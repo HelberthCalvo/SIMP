@@ -28,8 +28,8 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_OPCION", tiempoRealEstimadoEntidad.Opcion);
 
                 cmd.Parameters.AddWithValue("@P_PK_TBL_SIMP_PY_PROYECTO", tiempoRealEstimadoEntidad.IdProyecto);
-                cmd.Parameters.AddWithValue("@P_FECHA_INICIO", "");
-                cmd.Parameters.AddWithValue("@P_FECHA_FINAL", "");
+                cmd.Parameters.AddWithValue("@P_FECHA_INICIO", tiempoRealEstimadoEntidad.Fecha_Inicio);
+                cmd.Parameters.AddWithValue("@P_FECHA_FINAL", tiempoRealEstimadoEntidad.Fecha_Final);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", tiempoRealEstimadoEntidad.Esquema);
 
                 myConexion.Open();

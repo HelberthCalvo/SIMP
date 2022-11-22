@@ -17,5 +17,7 @@ namespace SIMP.Entidades
         public decimal Horas_Estimadas { get; set; }
         public decimal Horas_Reales { get; set; }
         public DateTime Fecha { get; set; }
+        public DateTime Fecha_Inicio { get; set; }
+        public DateTime Fecha_Final { get; set; }
     }
 }

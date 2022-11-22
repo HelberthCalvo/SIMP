@@ -28,8 +28,8 @@ namespace SIMP.Datos
                 cmd.Parameters.AddWithValue("@P_OPCION", progresoProyecto.Opcion);
 
                 cmd.Parameters.AddWithValue("@P_PK_TBL_SIMP_PY_PROYECTO", progresoProyecto.IdProyecto);
-                cmd.Parameters.AddWithValue("@P_FECHA_INICIO", "");
-                cmd.Parameters.AddWithValue("@P_FECHA_FINAL", "");
+                cmd.Parameters.AddWithValue("@P_FECHA_INICIO", progresoProyecto.Fecha_Inicio);
+                cmd.Parameters.AddWithValue("@P_FECHA_FINAL", progresoProyecto.Fecha_Final);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", progresoProyecto.Esquema);
 
                 myConexion.Open();
