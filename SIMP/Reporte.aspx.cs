@@ -158,22 +158,43 @@ namespace SIMP
         }
         protected void btnBuscarProgresoProyecto_Click(object sender, EventArgs e)
         {
-            DateTime fechaInicio = DateTime.Parse(txbFechaInicioProgreso.Text);
-            DateTime fechaFinal = DateTime.Parse(txbFechaFinalProgreso.Text).AddDays(1);
             try
             {
                 List<ProgresoProyectoEntidad> lstProyectoEntidad = new List<ProgresoProyectoEntidad>();
-                lstProyectoEntidad = ProgresoProyectoLogica.GetProgresoProyecto(new ProgresoProyectoEntidad()
+                if (!string.IsNullOrEmpty(txbFechaInicioProgreso.Text) && !string.IsNullOrEmpty(txbFechaFinalProgreso.Text))
                 {
-                    Esquema = "dbo",
-                    Opcion = 1,
-                    Fecha_Inicio = fechaInicio,
-                    Fecha_Final = fechaFinal
-                });
-                lstProyectoEntidad.ForEach(x =>
+                    DateTime fechaInicio = DateTime.Parse(txbFechaInicioProgreso.Text);
+                    DateTime fechaFinal = DateTime.Parse(txbFechaFinalProgreso.Text).AddDays(1);
+                    
+                    lstProyectoEntidad = ProgresoProyectoLogica.GetProgresoProyecto(new ProgresoProyectoEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 1,
+                        Fecha_Inicio = fechaInicio,
+                        Fecha_Final = fechaFinal
+                    });
+                    lstProyectoEntidad.ForEach(x =>
+                    {
+                        x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                    });
+                }
+                else
                 {
-                    x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
-                });
+                    DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                    DateTime fechaFinal = DateTime.Now.AddDays(1);
+                    lstProyectoEntidad = ProgresoProyectoLogica.GetProgresoProyecto(new ProgresoProyectoEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 1,
+                        Fecha_Inicio = fechaInicio,
+                        Fecha_Final = fechaFinal
+                    });
+                    lstProyectoEntidad.ForEach(x =>
+                    {
+                        x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                    });
+                    
+                }
                 gvProgresoProyecto.DataSource = lstProyectoEntidad;
                 gvProgresoProyecto.DataBind();
             }
@@ -482,20 +503,39 @@ namespace SIMP
         {
             try
             {
-                DateTime fechaInicio = DateTime.Parse(txbFechaInicioTiempos.Text);
-                DateTime fechaFinal = DateTime.Parse(txbFechaFinalTiempos.Text).AddDays(1);
                 List<TiempoRealEstimadoEntidad> lstTiempoRealEstimado = new List<TiempoRealEstimadoEntidad>();
-                lstTiempoRealEstimado = TiempoRealEstimadoLogica.GetTiempoRealEstimado(new TiempoRealEstimadoEntidad()
+                if (!string.IsNullOrEmpty(txbFechaInicioTiempos.Text) && !string.IsNullOrEmpty(txbFechaFinalTiempos.Text))
                 {
-                    Esquema = "dbo",
-                    Opcion = 0,
-                    Fecha_Inicio = fechaInicio,
-                    Fecha_Final = fechaFinal
-                });
-                lstTiempoRealEstimado.ForEach(x =>
+                    DateTime fechaInicio = DateTime.Parse(txbFechaInicioTiempos.Text);
+                    DateTime fechaFinal = DateTime.Parse(txbFechaFinalTiempos.Text).AddDays(1);
+                    lstTiempoRealEstimado = TiempoRealEstimadoLogica.GetTiempoRealEstimado(new TiempoRealEstimadoEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 0,
+                        Fecha_Inicio = fechaInicio,
+                        Fecha_Final = fechaFinal
+                    });
+                    lstTiempoRealEstimado.ForEach(x =>
+                    {
+                        x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                    });
+                }
+                else
                 {
-                    x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
-                });
+                    DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                    DateTime fechaFinal = DateTime.Now.AddDays(1);
+                    lstTiempoRealEstimado = TiempoRealEstimadoLogica.GetTiempoRealEstimado(new TiempoRealEstimadoEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 1,
+                        Fecha_Inicio = fechaInicio,
+                        Fecha_Final = fechaFinal
+                    });
+                    lstTiempoRealEstimado.ForEach(x =>
+                    {
+                        x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                    });
+                }
                 gvTiempo.DataSource = lstTiempoRealEstimado;
                 gvTiempo.DataBind();
             }
