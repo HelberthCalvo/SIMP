@@ -15,5 +15,7 @@ namespace SIMP.Entidades
         public string Nombre_Actividad { get; set; }
         public string Nombre_Usuario { get; set; }
         public DateTime Fecha { get; set; }
+        public DateTime Fecha_Inicio { get; set; }
+        public DateTime Fecha_Final { get; set; }
     }
 }

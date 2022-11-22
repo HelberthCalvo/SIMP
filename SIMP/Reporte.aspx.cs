@@ -89,11 +89,15 @@ namespace SIMP
         {
             try
             {
+                DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                DateTime fechaFinal = DateTime.Now.AddDays(1);
                 List<CargaTrabajoEntidad> lstCargaTrabajo = new List<CargaTrabajoEntidad>();
                 lstCargaTrabajo = CargaUsuarioLogica.GetCargaUsuarios(new CargaTrabajoEntidad()
                 {
                     Esquema = "dbo",
-                    Opcion = 1
+                    Opcion = 1,
+                    Fecha_Inicio = fechaInicio,
+                    Fecha_Final = fechaFinal
                 });
                 lstCargaTrabajo.ForEach(x =>
                 {
@@ -165,7 +169,7 @@ namespace SIMP
                 {
                     DateTime fechaInicio = DateTime.Parse(txbFechaInicioProgreso.Text);
                     DateTime fechaFinal = DateTime.Parse(txbFechaFinalProgreso.Text).AddDays(1);
-                    
+
                     lstProyectoEntidad = ProgresoProyectoLogica.GetProgresoProyecto(new ProgresoProyectoEntidad()
                     {
                         Esquema = "dbo",
@@ -193,7 +197,7 @@ namespace SIMP
                     {
                         x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
                     });
-                    
+
                 }
                 gvProgresoProyecto.DataSource = lstProyectoEntidad;
                 gvProgresoProyecto.DataBind();
@@ -371,10 +375,6 @@ namespace SIMP
                 mmsg.Dispose();
             }
         }
-        protected void btnBuscarTiempo_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void gvTiempo_PreRender(object sender, EventArgs e)
         {
@@ -490,7 +490,49 @@ namespace SIMP
 
         protected void btnBuscarCargaTrabajo_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                List<CargaTrabajoEntidad> lstCargaTrabajo = new List<CargaTrabajoEntidad>();
+                if (!string.IsNullOrEmpty(txbNombreUsuario.Text))
+                {
+                    DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                    DateTime fechaFinal = DateTime.Now.AddDays(1);
+                    lstCargaTrabajo = CargaUsuarioLogica.GetCargaUsuarios(new CargaTrabajoEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 1,
+                        Nombre_Usuario = txbNombreUsuario.Text,
+                        Fecha_Inicio = fechaInicio,
+                        Fecha_Final = fechaFinal
+                    });
+                    lstCargaTrabajo.ForEach(x =>
+                    {
+                        x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                    });
+                }
+                else
+                {
+                    DateTime fechaInicio = DateTime.Now.AddYears(-1);
+                    DateTime fechaFinal = DateTime.Now.AddDays(1);
+                    lstCargaTrabajo = CargaUsuarioLogica.GetCargaUsuarios(new CargaTrabajoEntidad()
+                    {
+                        Esquema = "dbo",
+                        Opcion = 1,
+                        Fecha_Inicio = fechaInicio,
+                        Fecha_Final = fechaFinal
+                    });
+                    lstCargaTrabajo.ForEach(x =>
+                    {
+                        x.NombreEstado = x.Estado == "1" ? "Activo" : "Inactivo";
+                    });
+                }
+                gvCargaTrabajo.DataSource = lstCargaTrabajo;
+                gvCargaTrabajo.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error", ex.Message.Replace("'", "").Replace("\n", "").Replace("\r", ""), false);
+            }
         }
         private void Mensaje(string titulo, string msg, bool esCorrecto, string textoBoton = "Ok")
         {
