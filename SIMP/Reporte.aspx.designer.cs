@@ -150,40 +150,13 @@ namespace SIMP
         protected global::System.Web.UI.WebControls.GridView gvTiempo;
 
         /// <summary>
-        /// Control txbFechaInicioCargaTrabajo.
+        /// Control txbNombreUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbFechaInicioCargaTrabajo;
-
-        /// <summary>
-        /// Control CalendarExtender5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender5;
-
-        /// <summary>
-        /// Control txbFechaFinalCargaTrabajo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbFechaFinalCargaTrabajo;
-
-        /// <summary>
-        /// Control CalendarExtender6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender6;
+        protected global::System.Web.UI.WebControls.TextBox txbNombreUsuario;
 
         /// <summary>
         /// Control btnBuscarCargaTrabajo.

@@ -148,13 +148,13 @@
                                 </div>
                                 Clientes
                             </asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="linkBtnReporte" CssClass="nav-link" OnClick="linkBtnReporte_Click" Visible="true">
+                            <asp:LinkButton runat="server" ID="linkBtnReporte" CssClass="nav-link" OnClick="linkBtnReporte_Click" Visible="false">
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/reporte.png"/>
                                 </div>
                                 Reportes
                             </asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="linkBtnBitacora" CssClass="nav-link" OnClick="linkBtnBitacora_Click" Visible="true">
+                            <asp:LinkButton runat="server" ID="linkBtnBitacora" CssClass="nav-link" OnClick="linkBtnBitacora_Click" Visible="false">
                                 <div class="sb-nav-link-icon">
                                     <img src="../icons/bitacora.png"/>
                                 </div>

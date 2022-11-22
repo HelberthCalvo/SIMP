@@ -27,8 +27,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-4">
-                        <label class="form-label">Fecha Estimada *</label>
-                        <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha estimada de finalización" ID="txbFechaFinal" CssClass="form-control"></asp:TextBox>
+                        <label class="form-label">Fecha Final *</label>
+                        <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha Final" ID="txbFechaFinal" CssClass="form-control"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server"
                             TargetControlID="txbFechaFinal" PopupButtonID="txbFechaFinal" Format="dd/MM/yyyy"></ajaxToolkit:CalendarExtender>
                     </div>

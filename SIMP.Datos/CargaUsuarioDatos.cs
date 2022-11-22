@@ -26,10 +26,10 @@ namespace SIMP.Datos
 
                 cmd.Parameters.AddWithValue("@P_USUARIO", cargaTrabajoEntidad.Usuario);
                 cmd.Parameters.AddWithValue("@P_OPCION", cargaTrabajoEntidad.Opcion);
-
                 cmd.Parameters.AddWithValue("@P_PK_TBL_SIMP_SEG_USUARIO", cargaTrabajoEntidad.IdUsuario);
-                cmd.Parameters.AddWithValue("@P_FECHA_INICIO", "");
-                cmd.Parameters.AddWithValue("@P_FECHA_FINAL", "");
+                cmd.Parameters.AddWithValue("@P_FECHA_INICIO", cargaTrabajoEntidad.Fecha_Inicio);
+                cmd.Parameters.AddWithValue("@P_FECHA_FINAL", cargaTrabajoEntidad.Fecha_Final);
+                cmd.Parameters.AddWithValue("@P_NOMBRE_USUARIO", cargaTrabajoEntidad.Nombre_Usuario);
                 cmd.Parameters.AddWithValue("@P_ESQUEMA", cargaTrabajoEntidad.Esquema);
 
                 myConexion.Open();

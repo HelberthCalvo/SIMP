@@ -122,8 +122,8 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-4">
-                                            <label class="form-label">Fecha Estimada *</label>
-                                            <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha estimada de finalización" ID="txbFechaFinalTiempos" CssClass="form-control"></asp:TextBox>
+                                            <label class="form-label">Fecha Final *</label>
+                                            <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha Final" ID="txbFechaFinalTiempos" CssClass="form-control"></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CalendarExtender4" runat="server"
                                                 TargetControlID="txbFechaFinalTiempos" PopupButtonID="txbFechaFinalTiempos" Format="dd/MM/yyyy"></ajaxToolkit:CalendarExtender>
                                         </div>
@@ -182,20 +182,12 @@
                                 <div class="row mt-4">
                                     <div class="col-lg-4">
                                         <div class="mb-4">
-                                            <label class="form-label">Fecha Inicio *</label>
-                                            <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha de inicio" ID="txbFechaInicioCargaTrabajo" CssClass="form-control"></asp:TextBox>
-                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender5" runat="server"
-                                                TargetControlID="txbFechaInicioCargaTrabajo" PopupButtonID="txbFechaInicioCargaTrabajo" Format="dd/MM/yyyy"></ajaxToolkit:CalendarExtender>
+                                            <label class="form-label">Nombre del Usuario *</label>
+                                            <asp:TextBox runat="server"  placeholder="Nombre del usuario" ID="txbNombreUsuario" CssClass="form-control"></asp:TextBox>
+                                            
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <label class="form-label">Fecha Estimada *</label>
-                                            <asp:TextBox runat="server" TextMode="DateTime" placeholder="Fecha estimada de finalización" ID="txbFechaFinalCargaTrabajo" CssClass="form-control"></asp:TextBox>
-                                            <ajaxToolkit:CalendarExtender ID="CalendarExtender6" runat="server"
-                                                TargetControlID="txbFechaFinalCargaTrabajo" PopupButtonID="txbFechaFinalCargaTrabajo" Format="dd/MM/yyyy"></ajaxToolkit:CalendarExtender>
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-12">
                                         <div class="mb-4">
                                             <label class="lead fs-6">Campos requeridos *</label>
@@ -222,7 +214,7 @@
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
                                 <asp:GridView ID="gvCargaTrabajo" CssClass="table-responsive table customize-table v-middle" Style="width: 100%!important"
-                                    DataKeyNames="IdUsuario,Nombre_Usuario,Fecha" OnPreRender="gvCargaTrabajo_PreRender"
+                                    DataKeyNames="IdUsuario,Nombre_Usuario" OnPreRender="gvCargaTrabajo_PreRender"
                                     OnRowCommand="gvCargaTrabajo_RowCommand"
                                     AutoGenerateColumns="false"
                                     HeaderStyle-CssClass="table-dark"
@@ -230,7 +222,6 @@
                                     <Columns>
                                         <asp:BoundField DataField="IdUsuario" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="Nombre_Usuario" HeaderText="Usuario" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf'></i>" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>

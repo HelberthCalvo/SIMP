@@ -93,6 +93,14 @@ namespace SIMP
                             {
                                 linkBtnCliente.Visible = true;
                             }
+                            else if (iMenu.Descripcion.Equals("Reportes") && iMenu.Estado == "1")
+                            {
+                                linkBtnReporte.Visible = true;
+                            }
+                            else if (iMenu.Descripcion.Equals("Bitacora") && iMenu.Estado == "1")
+                            {
+                                linkBtnBitacora.Visible = true;
+                            }
                             //sidebarnav.InnerHtml += $"<li class='sidebar-item'><a class='sidebar-link' href='/{iMenu.Url}'><span class='hide-menu'>{iMenu.Descripcion}</span></a></li>";
                         }
                     }
