@@ -111,7 +111,7 @@ namespace SIMP
                     lstActividades = ActividadLogica.GetActividades(new ActividadEntidad()
                     {
                         Esquema = "dbo",
-                        Opcion = 0,
+                        Opcion = 3,
                         IdUsuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Id
                     });
                 }

@@ -296,7 +296,7 @@ namespace SIMP
 
                 string mensaje = @"<h1 style='text-align:center'><b> Usuario " + pCliente.Nombre + "</b></h1>" +
                   "<p><b> Estimado(a) Cliente: </b>" + pCliente.Nombre.ToUpper() + "</p>" +
-                    "<p> Se ha generado un nuevo reporte de progreso de proyectos el día " + DateTime.Now.ToString("dd/MM/yyyy") + "</p>" +
+                    "<p> Se ha generado un nuevo reporte el día " + DateTime.Now.ToString("dd/MM/yyyy") + "</p>" +
                     "<p>Datos del Cliente:</p>" +
                     "<p>Nombre: " + pCliente.Nombre + "</p>" +
                      "<p>Apellidos: " + pCliente.Primer_Apellido + " " + pCliente.Segundo_Apellido + "</p>" +

@@ -409,7 +409,9 @@ namespace SIMP
                 usuario.Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
 
                 usuario.Usuario_Sistema = txtUsuario.Text;
-                if (usuario.Id == 0)
+                List<UsuarioEntidad> lstUsuario = new List<UsuarioEntidad>();
+                lstUsuario = new UsuarioLogica().GetUsuarios(new UsuarioEntidad() { Id = 0, Opcion = 0, Usuario = "hcalvo", Estado = 1, Esquema = "dbo", Contrasena = "" });
+                if (lstUsuario.Exists(u => u.Usuario_Sistema == usuario.Usuario_Sistema))
                 {
                     usuario.Opcion = 1;
                     if (new UsuarioLogica().GetUsuarios(usuario).Count() > 0)
@@ -588,7 +590,7 @@ namespace SIMP
             txtUsuario.Text = string.Empty;
             txtUsuario.Enabled = true;
             txtNombre.Text = string.Empty;
-            //txtContraseña.Text = string.Empty;
+            txtContraseña.Text = string.Empty;
             txtCorreo.Text = string.Empty;
             ddlPerfil.SelectedIndex = -1;
             rdbActivoUsuario.Checked = true;

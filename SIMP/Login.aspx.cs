@@ -181,6 +181,7 @@ namespace SIMP
                     return;
                 }
                 usuario.Contrasena = contraseniaAlfanumerica(8);
+                usuario.Contrasena = usuario.Contrasena + "9";
                 new UsuarioLogica().MantUsuario(usuario);
                 EnviarCorreoCrearUsuario(usuario);
                 Mensaje("Usuario", "Se ha reestablecido la clave correctamente, revise su correo electrónico", true);
