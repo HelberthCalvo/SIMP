@@ -63,7 +63,7 @@
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                     <asp:BoundField DataField="Tabla" HeaderText="Tabla" />
-                    <asp:BoundField DataField="Accion" HeaderText="Accion" />
+                    <asp:BoundField DataField="Accion" HeaderText="Acción" />
                     <asp:BoundField DataField="Datos_Anteriores" HeaderText="Datos Anteriores" />
                     <asp:BoundField DataField="Datos_Nuevos" HeaderText="Datos Nuevos" />
                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" />

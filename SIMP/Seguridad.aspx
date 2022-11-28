@@ -110,7 +110,7 @@
                                     <Columns>
                                         <asp:BoundField DataField="Descripcion" HeaderText="Perfil" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="NombreEstado" HeaderText="Estado" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Modificar" CommandName="editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:ButtonField HeaderText="Editar" CommandName="editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Eliminar" CommandName="eliminar" ControlStyle-CssClass="text-danger" Text="<i class='fas fa-xl fa-trash-alt'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>
                                     <HeaderStyle BackColor="#4285f4" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" BorderStyle="Solid" BorderColor="Black" />
@@ -212,11 +212,11 @@
                                     <Columns>
                                         <asp:BoundField DataField="Usuario_Sistema" HeaderText="Usuario" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Correo" HeaderText="Correo" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="Correo" HeaderText="Correo Electrónico" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="PerfilNombre" HeaderText="Perfil" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
                                         <%--<asp:BoundField DataField="Contrasena" HeaderText="Contraseña" />--%>
                                         <asp:BoundField DataField="NombreEstado" HeaderText="Estado" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Modificar" ControlStyle-CssClass="text-secondary" CommandName="editar" Text="<i class='fas fa-xl fa-edit'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:ButtonField HeaderText="Editar" ControlStyle-CssClass="text-secondary" CommandName="editar" Text="<i class='fas fa-xl fa-edit'></i>" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Cambiar Contraseña" ControlStyle-CssClass="text-warning" CommandName="cambiarContrasena" Text="<i class='fas fa-xl fa-retweet'></i>" ItemStyle-HorizontalAlign="Center" />
                                         <asp:ButtonField HeaderText="Eliminar" CommandName="eliminar" ControlStyle-CssClass="text-danger" Text="<i class='fas fa-xl fa-trash-alt'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>

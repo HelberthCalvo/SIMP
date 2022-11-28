@@ -79,8 +79,8 @@
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                     <asp:BoundField DataField="Primer_Apellido" HeaderText="Primer Apellido" />
                     <asp:BoundField DataField="Segundo_Apellido" HeaderText="Segundo Apellido" />
-                    <asp:BoundField DataField="Correo_Electronico" HeaderText="Correo Electronico" />
-                    <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                    <asp:BoundField DataField="Correo_Electronico" HeaderText="Correo Electrónico" />
+                    <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
                     <asp:ButtonField CommandName="Editar" HeaderText="Editar" ControlStyle-CssClass="text-secondary" Text="<i class='fas fa-xl fa-edit'></i>" />
                 </Columns>
             </asp:GridView>

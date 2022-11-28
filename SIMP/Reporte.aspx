@@ -27,13 +27,13 @@
 
             <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Progreso Proyecto</button>
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Progreso del proyecto</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Tiempos</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Carga Trabajo</button>
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Carga de trabajo</button>
                 </li>
 
             </ul>
@@ -93,9 +93,9 @@
                                     <Columns>
                                         <asp:BoundField DataField="IdProyecto" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="Nombre_Proyecto" HeaderText="Proyecto" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Fecha_Inicio" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf'></i>" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="Fecha_Inicio" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none" />
+                                        <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf text-secondary'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope' style='color: #ffa500de;'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>
                                     <HeaderStyle BackColor="#4285f4" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" BorderStyle="Solid" BorderColor="Black" />
 
@@ -162,9 +162,9 @@
                                     <Columns>
                                         <asp:BoundField DataField="IdProyecto" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="Nombre_Proyecto" HeaderText="Proyecto" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf'></i>" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="d-none" ItemStyle-CssClass="d-none" />
+                                        <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf text-secondary'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope' style='color: #ffa500de;'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>
                                     <HeaderStyle BackColor="#4285f4" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" BorderStyle="Solid" BorderColor="Black" />
 
@@ -173,6 +173,8 @@
                         </asp:UpdatePanel>
 
                     </section>
+
+                    <div class="bg-danger"></div>
 
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -222,8 +224,8 @@
                                     <Columns>
                                         <asp:BoundField DataField="IdUsuario" HeaderText="Id" ItemStyle-CssClass="d-none" HeaderStyle-CssClass="d-none" />
                                         <asp:BoundField DataField="Nombre_Usuario" HeaderText="Usuario" ItemStyle-ForeColor="Black" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf'></i>" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:ButtonField HeaderText="Generar PDF" CommandName="GenerarPDF" Text="<i class='fas fa-xl fa-file-pdf text-secondary'></i>" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:ButtonField HeaderText="Enviar Correo" CommandName="EnviarCorreo" Text="<i class='fas fa-xl fa-envelope' style='color: #ffa500de;'></i>" ItemStyle-HorizontalAlign="Center" />
                                     </Columns>
                                     <HeaderStyle BackColor="#4285f4" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" BorderStyle="Solid" BorderColor="Black" />
 
