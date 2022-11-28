@@ -21,3 +21,8 @@ C:\Proyectos_SITSA\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.AssemblyR
 C:\Proyectos_SITSA\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.CoreCompileInputs.cache
 C:\Proyectos_SITSA\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.dll
 C:\Proyectos_SITSA\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.pdb
+C:\Users\User\source\repos\SIMP\SIMP.Entidades\bin\Debug\SIMP.Entidades.dll
+C:\Users\User\source\repos\SIMP\SIMP.Entidades\bin\Debug\SIMP.Entidades.pdb
+C:\Users\User\source\repos\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.dll
+C:\Users\User\source\repos\SIMP\SIMP.Entidades\obj\Debug\SIMP.Entidades.pdb

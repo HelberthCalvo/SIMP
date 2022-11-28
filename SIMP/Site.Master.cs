@@ -118,7 +118,6 @@ namespace SIMP
             catch (Exception ex)
             {
                 string mesage = ex.Message;
-                throw;
             }
 
         }
@@ -147,7 +146,6 @@ namespace SIMP
             catch (Exception ex)
             {
                 string mesage = ex.Message;
-                throw;
             }
         }
 
@@ -183,7 +181,6 @@ namespace SIMP
             catch (Exception ex)
             {
                 string mesage = ex.Message;
-                throw;
             }
 
         }

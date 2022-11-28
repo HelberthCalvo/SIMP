@@ -71,3 +71,6 @@ C:\Proyectos_SITSA\SIMP\SIMP.Logica\bin\Debug\CrystalDecisions.ReportAppServer.C
 C:\Proyectos_SITSA\SIMP\SIMP.Logica\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Proyectos_SITSA\SIMP\SIMP.Logica\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Proyectos_SITSA\SIMP\SIMP.Logica\bin\Debug\stdole.dll
+C:\Users\User\source\repos\SIMP\SIMP.Logica\bin\Debug\SIMP.Logica.dll.config
+C:\Users\User\source\repos\SIMP\SIMP.Logica\bin\Debug\log4net.dll
+C:\Users\User\source\repos\SIMP\SIMP.Logica\bin\Debug\log4net.xml

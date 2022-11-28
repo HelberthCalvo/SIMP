@@ -1,6 +1,6 @@
 ﻿
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
+//using CrystalDecisions.CrystalReports.Engine;
+//using CrystalDecisions.Shared;
 using SIMP.Datos;
 using System;
 using System.Collections;
@@ -19,7 +19,7 @@ namespace SIMP.Logica.UTILITIES
     {
       try
       {
-        string var_reporte = rutaReporte;
+        /*string var_reporte = rutaReporte;
         TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
         TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
         ConnectionInfo crConnectionInfo = new ConnectionInfo();
@@ -60,7 +60,7 @@ namespace SIMP.Logica.UTILITIES
           
           //reportDocument.PrintToPrinter(1, false, 0, 0);
         }
-
+        */
       }
       catch (Exception ex)
       {
@@ -72,48 +72,48 @@ namespace SIMP.Logica.UTILITIES
     {
       try
       {
-        string var_reporte = rutaReporte;
-        TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
-        TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
-        ConnectionInfo crConnectionInfo = new ConnectionInfo();
-        Conexion con = new Conexion();
-        crConnectionInfo.UserID = con.ObtenerDato(2);  //"ECOMMERCE"; 
-        crConnectionInfo.Password = con.ObtenerDato(3); //"Sa123";
-        crConnectionInfo.DatabaseName = con.ObtenerDato(1);  //"Exactus";
-        crConnectionInfo.ServerName = con.ObtenerDato(0); // "Exactus";
+                /**string var_reporte = rutaReporte;
+                TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
+                TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                Conexion con = new Conexion();
+                crConnectionInfo.UserID = con.ObtenerDato(2);  //"ECOMMERCE"; 
+                crConnectionInfo.Password = con.ObtenerDato(3); //"Sa123";
+                crConnectionInfo.DatabaseName = con.ObtenerDato(1);  //"Exactus";
+                crConnectionInfo.ServerName = con.ObtenerDato(0); // "Exactus";
 
-        //  Conexion con = new Conexion();
-        //  conex.DatabaseName = con.ObtenerDato(1);  //"Exactus";
-        //  conex.UserID = con.ObtenerDato(2);  //"ECOMMERCE";  
-        //  conex.Password = con.ObtenerDato(3); //"Sa123";
-        //  conex.ServerName = con.ObtenerDato(0); // "Exactus";
-        //  conex.Type = ConnectionInfoType.SQL;
+                //  Conexion con = new Conexion();
+                //  conex.DatabaseName = con.ObtenerDato(1);  //"Exactus";
+                //  conex.UserID = con.ObtenerDato(2);  //"ECOMMERCE";  
+                //  conex.Password = con.ObtenerDato(3); //"Sa123";
+                //  conex.ServerName = con.ObtenerDato(0); // "Exactus";
+                //  conex.Type = ConnectionInfoType.SQL;
 
 
-        using (ReportDocument reportDocument = new ReportDocument())
-        {
-          reportDocument.FileName = var_reporte;
-          reportDocument.Load(reportDocument.FileName);
-          reportDocument.Refresh();
+                using (ReportDocument reportDocument = new ReportDocument())
+                {
+                  reportDocument.FileName = var_reporte;
+                  reportDocument.Load(reportDocument.FileName);
+                  reportDocument.Refresh();
 
-          ICollection listaNombresParametros = parametrosReporte.Keys;
+                  ICollection listaNombresParametros = parametrosReporte.Keys;
 
-          foreach (string nombreParametro in listaNombresParametros)
-          {
-            reportDocument.SetParameterValue(nombreParametro, parametrosReporte[nombreParametro]);
-          }
-          //System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
-          PrinterSettings printerSettings = new PrinterSettings();
-          printerSettings.PrinterName = nombreImpresora;
+                  foreach (string nombreParametro in listaNombresParametros)
+                  {
+                    reportDocument.SetParameterValue(nombreParametro, parametrosReporte[nombreParametro]);
+                  }
+                  //System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                  PrinterSettings printerSettings = new PrinterSettings();
+                  printerSettings.PrinterName = nombreImpresora;
 
-          reportDocument.SetDatabaseLogon(crConnectionInfo.UserID, crConnectionInfo.Password);
+                  reportDocument.SetDatabaseLogon(crConnectionInfo.UserID, crConnectionInfo.Password);
 
-          //int fin = reportDocument.FormatEngine.GetLastPageNumber(new CrystalDecisions.Shared.ReportPageRequestContext());
-          return reportDocument.ExportToStream(ExportFormatType.PortableDocFormat);
+                  //int fin = reportDocument.FormatEngine.GetLastPageNumber(new CrystalDecisions.Shared.ReportPageRequestContext());
+                  return reportDocument.ExportToStream(ExportFormatType.PortableDocFormat);
 
-          //reportDocument.PrintToPrinter(1, false, 0, 0);
-        }
-
+                  //reportDocument.PrintToPrinter(1, false, 0, 0);
+                }*/
+                return null;
       }
       catch (Exception ex)
       {
