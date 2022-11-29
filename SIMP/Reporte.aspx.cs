@@ -456,6 +456,7 @@ namespace SIMP
                     parametrosReporte.Add("@P_PK_TBL_SIMP_SEG_USUARIO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
+                    parametrosReporte.Add("@P_NOMBRE_USUARIO", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
 
                     string rutaReportes = Server.MapPath(Path.Combine("Reportes", "ReporteCargaUsuario.rpt"));
@@ -474,6 +475,7 @@ namespace SIMP
                     parametrosReporte.Add("@P_PK_TBL_SIMP_SEG_USUARIO", id);
                     parametrosReporte.Add("@P_FECHA_INICIO", null);
                     parametrosReporte.Add("@P_FECHA_FINAL", null);
+                    parametrosReporte.Add("@P_NOMBRE_USUARIO", null);
                     parametrosReporte.Add("@P_ESQUEMA", "DBO");
                     string rutaReportes = Server.MapPath(Path.Combine("Reportes", "ReporteCargaUsuario.rpt"));
                     EnviarCorreoReporte(new ClienteEntidad { Correo_Electronico = "hcalvo4@hotmail.com", Nombre = "Helberth", Primer_Apellido = "Calvo", Segundo_Apellido = "Picado" }, PrintHelper.generarPDF(parametrosReporte, "PrimoPDF", rutaReportes));

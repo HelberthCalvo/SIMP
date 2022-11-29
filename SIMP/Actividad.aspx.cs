@@ -168,6 +168,10 @@ namespace SIMP
         {
             try
             {
+                if(hdnIdProyecto.Value == "0")
+                {
+                    return false;
+                }
                 if (!string.IsNullOrEmpty(hdnIdProyecto.Value))
                 {
                     List<FaseEntidad> lstFases = FaseLogica.GetFases(new FaseEntidad()

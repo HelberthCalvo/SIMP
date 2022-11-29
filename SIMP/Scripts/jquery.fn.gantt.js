@@ -220,10 +220,12 @@
                 if (typeof settings.source !== "string") {
                     element.data = settings.source;
                     core.init(element);
+                    core.zoomInOut(element, -1);
                 } else {
                     $.getJSON(settings.source, function (jsData) {
                         element.data = jsData;
                         core.init(element);
+                        core.zoomInOut(element, -1);
                     });
                 }
             },

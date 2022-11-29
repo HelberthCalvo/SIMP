@@ -338,7 +338,7 @@ namespace SIMP
                     usuario.Usuario = ((UsuarioEntidad)(Session["UsuarioSistema"])).Usuario_Sistema;
                     usuario.Cambio_Clave = "1";
                     usuario.Contrasena = contraseniaAlfanumerica(8);
-
+                    usuario.Contrasena = usuario.Contrasena + "3";
                     new UsuarioLogica().MantUsuario(usuario);
 
                     if (hdfPermisoEnviarCorreos.Value == "1")
@@ -779,6 +779,7 @@ namespace SIMP
                 if (EnviarMenu)
                 {
                     TreeNode nodoPermiso = new TreeNode();
+
                     nodoPermiso.Text = "<i class='fa fa-envelope-o' aria-hidden='true'></i> &nbsp;<span>Enviar Correos </span>";
                     nodoPermiso.Value = "permiso-enviar/" + ID;
                     nodoPermiso.ShowCheckBox = true;

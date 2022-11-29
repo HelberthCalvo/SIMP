@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="text-center pb-5">
-            <a class="btn btn-primary" href="Proyecto.aspx">Volver al menú</a>
+            <a class="btn btn-primary" href="javascript:history.back(-1);">Volver</a>
         </div>
         <hr />
         <div class="mt-2 text-center">
